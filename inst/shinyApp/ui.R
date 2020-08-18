@@ -69,6 +69,11 @@ languages <- c(
 shinyUI(fluidPage(
   theme = shinytheme("darkly"),
   tags$head(
+    tags$script(src = "prettier/standalone.js"),
+    tags$script(src = "prettier/parser-babel.js"),
+    tags$script(src = "prettier/parser-html.js"),
+    tags$script(src = "prettier/parser-markdown.js"),
+    tags$script(src = "prettier/parser-postcss.js"),
     tags$script(src = "customMessageHandlers.js"),
     tags$link(rel = "stylesheet", href = "shinyMonacoEditor.css"),
     tags$link(
@@ -77,7 +82,10 @@ shinyUI(fluidPage(
     ),
     tags$script(src = "terser/bundle.min.js"),
     tags$script(src = "html-minifier-terser/bundle.min.js"),
-    tags$script(src = "clean-css/bundle.min.js")
+    tags$script(src = "clean-css/bundle.min.js"),
+    tags$script(src = "functions.js"),
+    tags$script(src = "bootstrap-flash-alert/bootstrap-flash-alert.js"),
+    tags$link(rel = "stylesheet", href = "bootstrap-flash-alert/animate.css")
   ),
   br(),
   sidebarLayout(

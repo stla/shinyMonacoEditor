@@ -1,12 +1,16 @@
-var actionRegistration = null;
+var actionRegistration_minifier = null,
+  actionRegistration_prettifier = null;
 function setLanguage(language) {
   var model = editor.getModel(); // create a model if the editor created from string value.
   monaco.editor.setModelLanguage(model, language);
   if(language === "javascript") {
-    if(actionRegistration !== null) {
-      actionRegistration.dispose();
+    if(actionRegistration_minifier !== null) {
+      actionRegistration_minifier.dispose();
     }
-    actionRegistration = editor.addAction({
+    if(actionRegistration_prettifier !== null) {
+      actionRegistration_prettifier.dispose();
+    }
+    actionRegistration_minifier = editor.addAction({
       id: "minifier",
       label: "Minify",
       precondition: null,
@@ -23,11 +27,26 @@ function setLanguage(language) {
         return null;
       }
     });
+    actionRegistration_prettifier = editor.addAction({
+      id: "prettifier",
+      label: "Prettify",
+      precondition: null,
+      keybindingContext: null,
+      contextMenuGroupId: "navigation",
+      contextMenuOrder: 1.5,
+      run: function(ed) {
+        prettify(ed.getValue(), "babel");
+        return null;
+      }
+    });
   } else if(language === "html") {
-    if(actionRegistration !== null) {
-      actionRegistration.dispose();
+    if(actionRegistration_minifier !== null) {
+      actionRegistration_minifier.dispose();
     }
-    actionRegistration = editor.addAction({
+    if(actionRegistration_prettifier !== null) {
+      actionRegistration_prettifier.dispose();
+    }
+    actionRegistration_minifier = editor.addAction({
       id: "minifier",
       label: "Minify",
       precondition: null,
@@ -44,11 +63,26 @@ function setLanguage(language) {
         return null;
       }
     });
+    actionRegistration_prettifier = editor.addAction({
+      id: "prettifier",
+      label: "Prettify",
+      precondition: null,
+      keybindingContext: null,
+      contextMenuGroupId: "navigation",
+      contextMenuOrder: 1.5,
+      run: function(ed) {
+        prettify(ed.getValue(), "html");
+        return null;
+      }
+    });
   } else if(language === "css") {
-    if(actionRegistration !== null) {
-      actionRegistration.dispose();
+    if(actionRegistration_minifier !== null) {
+      actionRegistration_minifier.dispose();
     }
-    actionRegistration = editor.addAction({
+    if(actionRegistration_prettifier !== null) {
+      actionRegistration_prettifier.dispose();
+    }
+    actionRegistration_minifier = editor.addAction({
       id: "minifier",
       label: "Minify",
       precondition: null,
@@ -61,6 +95,44 @@ function setLanguage(language) {
         return null;
       }
     });
+    actionRegistration_prettifier = editor.addAction({
+      id: "prettifier",
+      label: "Prettify",
+      precondition: null,
+      keybindingContext: null,
+      contextMenuGroupId: "navigation",
+      contextMenuOrder: 1.5,
+      run: function(ed) {
+        prettify(ed.getValue(), "css");
+        return null;
+      }
+    });
+  } else if(language === "markdown") {
+    if(actionRegistration_minifier !== null) {
+      actionRegistration_minifier.dispose();
+    }
+    if(actionRegistration_prettifier !== null) {
+      actionRegistration_prettifier.dispose();
+    }
+    actionRegistration_prettifier = editor.addAction({
+      id: "prettifier",
+      label: "Prettify",
+      precondition: null,
+      keybindingContext: null,
+      contextMenuGroupId: "navigation",
+      contextMenuOrder: 1.5,
+      run: function(ed) {
+        prettify(ed.getValue(), "markdown");
+        return null;
+      }
+    });
+  } else {
+    if(actionRegistration_minifier !== null) {
+      actionRegistration_minifier.dispose();
+    }
+    if(actionRegistration_prettifier !== null) {
+      actionRegistration_prettifier.dispose();
+    }
   }
 }
 function setValue(value) {

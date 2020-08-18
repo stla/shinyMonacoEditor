@@ -81,3 +81,15 @@ input.form-control[readonly]::-moz-placeholder { /* Firefox 18- */
   font-size: 16px;
   padding: 6px 12px;
 }
+
+#error {
+  color: red;
+  font-weight: bold;
+}
+
+.alert .glyphicon {
+  font-size: 30px;
+}
+.alert .header strong {
+  font-size: 25px;
+}
