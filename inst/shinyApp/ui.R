@@ -95,13 +95,16 @@ shinyUI(fluidPage(
         "file",
         "Choose a file"
       ),
-      selectizeInput(
-        "language",
-        label = "Language",
-        choices = languages,
-        options = list(
-          placeholder = "Select language...",
-          onInitialize = I('function() { this.setValue(""); }')
+      conditionalPanel(
+        "output.uploaded",
+        selectizeInput(
+          "language",
+          label = "Language",
+          choices = languages,
+          options = list(
+            placeholder = "Select language...",
+            onInitialize = I('function() { this.setValue(""); }')
+          )
         )
       )
     ),
