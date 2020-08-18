@@ -1,0 +1,83 @@
+.vscode-logo {
+  text-decoration: none;
+  border: 0;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  top: 3px;
+  right: 15px;
+  background: url(city-lights-three.svg) no-repeat 0 0;
+  background-size: 36px 36px;
+  position: absolute;
+  z-index: 100000000;
+}
+
+.selectize-dropdown-content::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  background-color: #363535;
+}
+.selectize-dropdown-content::-webkit-scrollbar {
+  width: 12px;
+  background-color: #363535;
+}
+.selectize-dropdown-content::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: red;
+}
+
+.selectize-input,
+.selectize-dropdown-content {
+  color: whitesmoke;
+  background-color: #464545 !important;
+}
+.selectize-control.single .selectize-input:after {
+  border-top-color: whitesmoke;
+}
+.selectize-input>input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: antiquewhite !important;
+  opacity: 0.5;
+}
+.selectize-input>input::-moz-placeholder { /* Firefox 19+ */
+  color: antiquewhite !important;
+  opacity: 0.5;
+}
+.selectize-input>input::-ms-input-placeholder { /* IE 10+ */
+  color: antiquewhite !important;
+  opacity: 0.5;
+}
+.selectize-input>input::-moz-placeholder { /* Firefox 18- */
+  color: antiquewhite !important;
+  opacity: 0.5;
+}
+.selectize-dropdown-content>.option:hover {
+  background-color: rgba(176,224,230,0.7);
+}
+.selectize-dropdown-content>.option.active:not(:hover) {
+  background-color: rgba(250,128,114,0.5);
+}
+
+input.form-control[readonly] {
+  background-color: rgba(176, 196, 222, 0.5);
+  padding: 8.25px 12px;
+  height: auto;
+}
+input.form-control[readonly]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: powderblue !important;
+}
+input.form-control[readonly]::-moz-placeholder { /* Firefox 19+ */
+  color: powderblue !important;
+}
+input.form-control[readonly]::-ms-input-placeholder { /* IE 10+ */
+  color: powderblue !important;
+}
+input.form-control[readonly]::-moz-placeholder { /* Firefox 18- */
+  color: powderblue !important;
+}
+.btn-file {
+  font-style: oblique;
+  font-weight: normal;
+  font-size: 16px;
+  padding: 6px 12px;
+}
