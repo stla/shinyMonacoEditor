@@ -19,18 +19,18 @@ el.addEventListener("activeTabChange", function(e) {
 
 chromeTabs.addTab({
   title: "example.js",
-  favicon: false,
+  favicon: "SuperTinyIcons/javascript.svg",
   id: counter.toString()
 });
 
 $("#add").on("click", function() {
 });
 
-function addChromeTab(title){
+function addChromeTab(titleAndIcon){
   counter++;
   chromeTabs.addTab({
-    title: title,
-    favicon: false,
+    title: titleAndIcon.title,
+    favicon: titleAndIcon.icon,
     id: counter.toString()
   });
 }
