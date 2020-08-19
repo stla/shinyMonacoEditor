@@ -75,4 +75,19 @@ shinyServer(function(input, output, session){
     session$sendCustomMessage("language", input[["language"]])
   }, ignoreInit = TRUE)
 
+  session$sendCustomMessage("clangFormat", unname(Sys.which("clang-format") != ""))
+
+  observeEvent(input[["clangFormat"]], {
+    tmpDir <- tempdir()
+    file.copy(
+      system.file("clang-format.txt", package = "shinyMonacoEditor"),
+      file.path(tmpDir, ".clang-format")
+    )
+    tmpFile <- tempfile(fileext = ".cpp")
+    writeLines(input[["clangFormat"]], tmpFile)
+    formatted <- system(paste0("clang-format ", tmpFile), intern = TRUE)
+    print(formatted)
+    session$sendCustomMessage("value", paste0(formatted, collapse = "\n"))
+  })
+
 })

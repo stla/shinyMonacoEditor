@@ -1,6 +1,7 @@
 var actionRegistration_minifier = null,
   actionRegistration_prettifier = null,
-  actionRegistration_sass = null;
+  actionRegistration_sass = null,
+  actionRegistration_clangFormat = null;
 
 function actionRegistration(language) {
   if(actionRegistration_minifier !== null) {
@@ -11,6 +12,9 @@ function actionRegistration(language) {
   }
   if(actionRegistration_sass !== null) {
     actionRegistration_sass.dispose();
+  }
+  if(actionRegistration_clangFormat !== null) {
+    actionRegistration_clangFormat.dispose();
   }
   if(language === "javascript") {
     actionRegistration_minifier = editor.addAction({
@@ -147,6 +151,36 @@ function actionRegistration(language) {
         return null;
       }
     });
+  } else if(language === "cpp") {
+    actionRegistration_clangFormat = editor.addAction({
+      id: "clangFormatter",
+      label: "Prettify",
+      precondition: null,
+      keybindingContext: null,
+      contextMenuGroupId: "navigation",
+      contextMenuOrder: 1.5,
+      run: function(ed) {
+        if(clangFormat) {
+          Shiny.setInputValue("clangFormat", ed.getValue());
+        } else {
+          flashFunction({
+            message: "Either <span style='font-style: monospace;'>clang-format</span> is not installed or it is not in the PATH variable.",
+            title: "<span style='font-style: monospace;'>clang-format</span> not found",
+            type: "info",
+            icon: "glyphicon glyphicon-ban-circle",
+            withTime: true,
+            autoClose: true,
+            closeTime: 10000,
+            animation: true,
+            animShow: "rotateInDownLeft",
+            animHide: "bounceOutRight",
+            position: ["bottom-left", [0, 0.01]],
+            speed: "slow"
+          });
+        }
+        return null;
+      }
+    });
   }
 }
 
@@ -166,12 +200,17 @@ function setLanguage(language) {
   actionRegistration(language);
 }
 
-/*function setValue(value) {
+function setValue(value) {
   editor.setValue(value);
-}*/
+}
+
+function setClangFormat(x) {
+  clangFormat = x;
+}
 
 $(document).on("shiny:connected", function() {
   Shiny.addCustomMessageHandler("modelInstance", setModel);
   Shiny.addCustomMessageHandler("language", setLanguage);
-//  Shiny.addCustomMessageHandler("value", setValue);
+  Shiny.addCustomMessageHandler("value", setValue);
+  Shiny.addCustomMessageHandler("clangFormat", setClangFormat);
 });

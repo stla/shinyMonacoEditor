@@ -43,13 +43,19 @@ function prettify(code, parser) {
 }
 
 function languageExt(language) {
-  var ext = ".txt";
+  var ext = "." + language;
   switch(language) {
-    case "css":
-      ext = ".css";
-      break;
     case "javascript":
       ext = ".js";
+      break;
+    case "plaintext":
+      ext = ".txt";
+      break;
+    case "python":
+      ext = ".py";
+      break;
+    case "r":
+      ext = ".R";
       break;
   }
   return ext;
