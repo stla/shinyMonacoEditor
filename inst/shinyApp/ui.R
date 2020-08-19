@@ -124,6 +124,9 @@ shinyUI(fluidPage(
             style = "--tab-content-margin: 9px",
             tags$div(
               class = "chrome-tabs-content"
+            ),
+            tags$div(
+              class = "chrome-tabs-bottom-bar"
             )
           ),
           tags$div(

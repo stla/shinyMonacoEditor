@@ -97,3 +97,8 @@ input.form-control[readonly]::-moz-placeholder { /* Firefox 18- */
 .chrome-tab-favicon {
   background-repeat: no-repeat;
 }
+.chrome-tabs .chrome-tabs-bottom-bar {
+  bottom: 1px;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+}

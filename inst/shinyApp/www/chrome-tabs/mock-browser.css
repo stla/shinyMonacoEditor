@@ -31,9 +31,9 @@ html.dark-theme {
   .mock-browser {
     width: 100%;
     background: #dee1e6;
-    border-radius: 8px;
+    /*border-radius: 8px;*/
     flex-shrink: 0;
-    overflow: hidden;
+    /*overflow: hidden;*/
   }
 
   html.dark-theme .mock-browser {

@@ -129,7 +129,7 @@ function actionRegistration(language) {
             var fileName = $(chromeTabs.activeTabEl).find(".chrome-tab-title").html();
             var fileSansExt = fileName.split('.').slice(0, -1).join('.');
             var title = (fileSansExt === "" ? fileName : fileSansExt) + ".css";
-            addChromeTab(title);
+            addChromeTab({title: title, icon: "freeicons/css.svg"});
           }
         });
         return null;

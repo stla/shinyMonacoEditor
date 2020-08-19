@@ -28,6 +28,7 @@ shinyServer(function(input, output, session){
       py = "python",
       r = "r",
       rmd = "markdown",
+      scss = "scss",
       sql = "sql",
       svg = "xml",
       xml = "xml",
