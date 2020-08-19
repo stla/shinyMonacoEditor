@@ -142,7 +142,7 @@ shinyUI(fluidPage(
   ),
 
   tags$script(
-    src = "https://unpkg.com/draggabilly@2.2.0/dist/draggabilly.pkgd.min.js"
+    src = "chrome-tabs/draggabilly.pkgd.min.js"
   ),
   tags$script(
     src = "chrome-tabs/chrome-tabs.js"
