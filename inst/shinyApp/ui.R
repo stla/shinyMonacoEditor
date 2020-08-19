@@ -69,6 +69,10 @@ languages <- c(
 shinyUI(fluidPage(
   theme = shinytheme("darkly"),
   tags$head(
+    tags$script(src = "globalVariables.js"),
+    tags$link(rel = "stylesheet", href = "chrome-tabs/chrome-tabs.css"),
+    tags$link(rel = "stylesheet", href = "chrome-tabs/chrome-tabs-dark-theme.css"),
+    tags$link(rel = "stylesheet", href = "chrome-tabs/mock-browser.css"),
     tags$script(src = "prettier/standalone.js"),
     tags$script(src = "prettier/parser-babel.js"),
     tags$script(src = "prettier/parser-html.js"),
@@ -95,25 +99,55 @@ shinyUI(fluidPage(
         "file",
         "Choose a file"
       ),
-      conditionalPanel(
-        "output.uploaded",
+      # conditionalPanel(
+      #   "output.uploaded",
         selectizeInput(
           "language",
           label = "Language",
           choices = languages,
+          selected = "javascript",
           options = list(
             placeholder = "Select language...",
-            onInitialize = I('function() { this.setValue(""); }')
+            onInitialize = I('function() { selectize = this; }')
           )
         )
-      )
+#      )
     ),
     mainPanel(
       tags$div(
-        id="container", style="width:100%; height:500px; border:1px solid grey;"
+        class = "surface",
+        tags$div(
+          class = "mock-browser",
+          tags$div(
+            class = "chrome-tabs",
+            style = "--tab-content-margin: 9px",
+            tags$div(
+              class = "chrome-tabs-content"
+            )
+          ),
+          tags$div(
+            class = "mock-browser-content",
+            tags$div(
+              id = "container",
+              style = "width: 100%; height: 500px; border: 1px solid grey;"
+            )
+          )
+        )
       )
     )
   ),
+
+  tags$script(
+    src = "https://unpkg.com/draggabilly@2.2.0/dist/draggabilly.pkgd.min.js"
+  ),
+  tags$script(
+    src = "chrome-tabs/chrome-tabs.js"
+  ),
+  tags$script(
+    src = "chromeTabs.js"
+  ),
+
+
   tags$script(
     HTML("var require = { paths: { 'vs': 'monaco-editor/min/vs' } };")
   ),
@@ -127,4 +161,5 @@ shinyUI(fluidPage(
     src="monaco-editor/min/vs/editor/editor.main.js"
   ),
   tags$script(src = "shinyMonacoEditor.js")
+
 ))

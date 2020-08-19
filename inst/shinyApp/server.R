@@ -9,11 +9,14 @@ shinyServer(function(input, output, session){
 
   observeEvent(input[["file"]], {
     uploaded(TRUE)
+
+    session$sendCustomMessage("addChromeTab", input[["file"]][["name"]])
+
     content <- paste0(
       suppressWarnings(readLines(input[["file"]][["datapath"]])),
       collapse = "\n"
     )
-    session$sendCustomMessage("value", content)
+#    session$sendCustomMessage("value", content)
     ext <- tools::file_ext(input[["file"]][["name"]])
     language <- switch(
       tolower(ext),
@@ -33,7 +36,9 @@ shinyServer(function(input, output, session){
       yaml = "yaml"
     )
     if(is.null(language)) language <- "plaintext"
-    updateSelectizeInput(session, "language", selected = language)
+    session$sendCustomMessage("modelInstance",
+                              list(value = content, language = language))
+#    updateSelectizeInput(session, "language", selected = language)
   })
 
   observeEvent(input[["language"]], {

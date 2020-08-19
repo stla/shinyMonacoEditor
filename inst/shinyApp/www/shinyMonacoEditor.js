@@ -9,13 +9,17 @@ monaco.editor.defineTheme("myTheme", {
 });
 monaco.editor.setTheme("myTheme");
 //monaco.editor.setTheme("hc-black");
-var editor = monaco.editor.create(document.getElementById("container"), {
-	value: [
-		"function test(x) {",
-		"\tconsole.log('Hello world!');",
-		"}"
-	].join("\n"),
-	language: "javascript",
+editor = monaco.editor.create(document.getElementById("container"), {
+  model: null,
 	tabSize: 2,
 	automaticLayout: true
 });
+setModel({
+  value: ["function test(x) {",
+		"\tconsole.log('Hello world!');",
+		"}"
+	].join("\n"),
+	language: "javascript"
+});
+//modelInstances.push(modelInstance);
+editor.setModel(modelInstances[0]);
