@@ -23,3 +23,4 @@ setModel({
 });
 //modelInstances.push(modelInstance);
 editor.setModel(modelInstances[0]);
+$("#container").show();

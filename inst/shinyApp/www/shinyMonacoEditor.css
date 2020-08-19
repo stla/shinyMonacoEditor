@@ -108,3 +108,93 @@ input.form-control[readonly]::-moz-placeholder { /* Firefox 18- */
   border-top-left-radius: 50%;
   border-top-right-radius: 50%;
 }
+
+
+/* empty editor */
+@keyframes red {
+    0% {transform: rotate(0deg) translate(-40px) rotate(0deg) scale(1,1);}
+    50% {transform: rotate(-180deg) translate(-40px) rotate(-180deg) scale(1,1.33);}
+    100% {transform: rotate(-360deg) translate(-40px) rotate(-360deg) scale(1,1);}
+}
+@-webkit-keyframes red {
+    0% {-webkit-transform: rotate(0deg) translate(-40px) rotate(0deg) scale(1,1);}
+    50% {-webkit-transform: rotate(-180deg) translate(-40px) rotate(-180deg) scale(1,1.33);}
+    100% {-webkit-transform: rotate(-360deg) translate(-40px) rotate(-360deg) scale(1,1);}
+}
+@-moz-keyframes red {
+    0% {-moz-transform: rotate(0deg) translate(-40px) rotate(0deg) scale(1,1);}
+    50% {-moz-transform: rotate(-180deg) translate(-40px) rotate(-180deg) scale(1,1.33);}
+    100% {-moz-transform: rotate(-360deg) translate(-40px) rotate(-360deg) scale(1,1);}
+}
+
+@keyframes green {
+    0% {transform: rotate(0deg) translate(30px) rotate(0deg) scale(1,1);opacity:1}
+    66% {transform: rotate(180deg) translate(30px) rotate(-180deg) scale(1,1.33);opacity:.33}
+    100% {transform: rotate(360deg) translate(30px) rotate(-360deg) scale(1,1);opacity:1}
+}
+@-webkit-keyframes green {
+    0% {-webkit-transform: rotate(0deg) translate(30px) rotate(0deg) scale(1,1);opacity:1}
+    66% {-webkit-transform: rotate(180deg) translate(30px) rotate(-180deg) scale(1,1.33);opacity:.33}
+    100% {-webkit-transform: rotate(360deg) translate(30px) rotate(-360deg) scale(1,1);opacity:1}
+}
+@-moz-keyframes green {
+    0% {-moz-transform: rotate(0deg) translate(30px) rotate(0deg) scale(1,1);opacity:1;}
+    66% {-moz-transform: rotate(180deg) translate(30px) rotate(-180deg) scale(1,1.33);opacity:.33;}
+    100% {-moz-transform: rotate(360deg) translate(30px) rotate(-360deg) scale(1,1);opacity:1;}
+}
+
+@keyframes blue {
+    0% {transform: rotate(0deg) translate(30px) rotate(0deg) scale(1,1);}
+    33% {transform: rotate(180deg) translate(30px) rotate(-180deg) scale(1.66,1);}
+    100% {transform: rotate(360deg) translate(30px) rotate(-360deg) scale(1,1);}
+}
+@-webkit-keyframes blue {
+    0% {-webkit-transform: rotate(0deg) translate(30px) rotate(0deg) scale(1,1);}
+    33% {-webkit-transform: rotate(180deg) translate(30px) rotate(-180deg) scale(1.66,1);}
+    100% {-webkit-transform: rotate(360deg) translate(30px) rotate(-360deg) scale(1,1);}
+}
+@-moz-keyframes blue {
+    0% {-moz-transform: rotate(0deg) translate(30px) rotate(0deg) scale(1,1);}
+    33% {-moz-transform: rotate(180deg) translate(30px) rotate(-180deg) scale(1.66,1);}
+    100% {-moz-transform: rotate(360deg) translate(30px) rotate(-360deg) scale(1,1);}
+}
+
+.radialred,
+.radialgreen,
+.radialblue {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    margin: -150px 0 0 -150px;
+}
+
+.radialred {
+    animation: red 7s linear infinite;
+    -webkit-animation: red 7s linear infinite;
+    -moz-animation: red 7s linear infinite;
+    background-image: radial-gradient(50% 50%, circle contain, rgba(222, 75, 218, .75), rgba(222, 75, 218, 0) 100%);
+    background-image: -moz-radial-gradient(50% 50%, circle contain, rgba(222, 75, 218, .75), rgba(222, 75, 218, 0) 100%);
+    background-image: -webkit-radial-gradient(50% 50%, circle contain, rgba(222, 75, 218, .75), rgba(222, 75, 218, 0) 100%);
+    background-image: -o-radial-gradient(50% 50%, circle contain, rgba(222, 75, 218, .75), rgba(222, 75, 218, 0) 100%);
+    background-image: -ms-radial-gradient(50% 50%, circle contain, rgba(222, 75, 218, .75), rgba(222, 75, 218, 0) 100%);
+}
+
+.radialblue {
+    animation: blue 6s linear infinite;
+    -webkit-animation:blue 6s linear infinite;
+    -moz-animation:blue 6s linear infinite;
+    background-image: radial-gradient(50% 50%, circle contain, rgba(86, 173, 223, .75), rgba(86, 173, 223, 0) 100%);
+    background-image: -webkit-radial-gradient(50% 50%, circle contain, rgba(86, 173, 223, .75), rgba(86, 173, 223, 0) 100%);
+    background-image: -moz-radial-gradient(50% 50%, circle contain, rgba(86, 173, 223, .75), rgba(86, 173, 223, 0) 100%);
+}
+
+.radialgreen {
+    animation: green 8s linear infinite;
+    -webkit-animation: green 8s linear infinite;
+    -moz-animation: green 8s linear infinite;
+    background-image: radial-gradient(50% 50%, circle contain, rgba(210, 222, 12, .75), rgba(210, 222, 12, 0) 100%);
+    background-image: -webkit-radial-gradient(50% 50%, circle contain, rgba(210, 222, 12, .75), rgba(210, 222, 12, 0) 100%);
+    background-image: -moz-radial-gradient(50% 50%, circle contain, rgba(210, 222, 12, .75), rgba(210, 222, 12, 0) 100%);
+}

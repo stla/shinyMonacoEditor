@@ -133,7 +133,12 @@ shinyUI(fluidPage(
             class = "mock-browser-content",
             tags$div(
               id = "container",
-              style = "width: 100%; height: 500px; border: 1px solid grey;"
+              style = "width: 100%; height: 500px; border: 1px solid grey; background-color: black; display: none;",
+              div(id = "radials",
+                  div(class = "radialred"),
+                  div(class = "radialgreen"),
+                  div(class = "radialblue")
+              )
             )
           )
         )
