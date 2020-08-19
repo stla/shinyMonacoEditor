@@ -42,3 +42,15 @@ function prettify(code, parser) {
   }
 }
 
+function languageExt(language) {
+  var ext = ".txt";
+  switch(language) {
+    case "css":
+      ext = ".css";
+      break;
+    case "javascript":
+      ext = ".js";
+      break;
+  }
+  return ext;
+}

@@ -15,12 +15,37 @@ editor = monaco.editor.create(document.getElementById("container"), {
 	automaticLayout: true
 });
 setModel({
-  value: ["function test(x) {",
+  value: [
+    "function test(x) {",
 		"\tconsole.log('Hello world!');",
 		"}"
 	].join("\n"),
 	language: "javascript"
 });
-//modelInstances.push(modelInstance);
 editor.setModel(modelInstances[0]);
+editor.addAction({
+  id: "save",
+  label: "Save",
+  precondition: null,
+  keybindingContext: null,
+  contextMenuGroupId: "navigation",
+  contextMenuOrder: 0,
+  run: function(ed) {
+    var fileName = $(chromeTabs.activeTabEl).find(".chrome-tab-title").html();
+    var unnamed = fileName.match(/^unnamed/) !== null && fileName.match(/\./) === null;
+    if(unnamed) {
+      var language = ed.getModel().getLanguageIdentifier().language;
+      var ext = languageExt(language);
+      fileName += ext;
+    }
+    const a = document.createElement("a");
+    document.body.append(a);
+    a.download = fileName;
+    a.href = "data:text/plain;base64," + btoa(ed.getValue());
+    a.click();
+    a.remove();
+    return null;
+  }
+});
+
 $("#container").show();
