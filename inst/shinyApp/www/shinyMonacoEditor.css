@@ -88,3 +88,8 @@ input.form-control[readonly]::-moz-placeholder { /* Firefox 18- */
 .alert .header strong {
   font-size: 25px;
 }
+
+#newTab {
+  padding: 0;
+  margin-bottom: 18px;
+}

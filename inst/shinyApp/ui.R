@@ -70,6 +70,7 @@ shinyUI(fluidPage(
   theme = shinytheme("darkly"),
   tags$head(
     tags$script(src = "globalVariables.js"),
+    tags$script(src = "docReady.js"),
     tags$script(src = "sass/sass.js"),
     tags$link(rel = "stylesheet", href = "chrome-tabs/chrome-tabs.css"),
     tags$link(rel = "stylesheet", href = "chrome-tabs/chrome-tabs-dark-theme.css"),
@@ -100,19 +101,18 @@ shinyUI(fluidPage(
         "file",
         "Choose a file"
       ),
-      # conditionalPanel(
-      #   "output.uploaded",
-        selectizeInput(
-          "language",
-          label = "Language",
-          choices = languages,
-          selected = "javascript",
-          options = list(
-            placeholder = "Select language...",
-            onInitialize = I('function() { selectize = this; }')
-          )
+      tags$label("Or open a new tab"),
+      actionButton("newTab", "New tab", class = "btn-block"),
+      selectizeInput(
+        "language",
+        label = "Language",
+        choices = languages,
+        selected = "javascript",
+        options = list(
+          placeholder = "Select language...",
+          onInitialize = I('function() { selectize = this; }')
         )
-#      )
+      )
     ),
     mainPanel(
       tags$div(
