@@ -70,6 +70,7 @@ shinyUI(fluidPage(
   theme = shinytheme("darkly"),
   tags$head(
     tags$script(src = "globalVariables.js"),
+    tags$script(src = "sass/sass.js"),
     tags$link(rel = "stylesheet", href = "chrome-tabs/chrome-tabs.css"),
     tags$link(rel = "stylesheet", href = "chrome-tabs/chrome-tabs-dark-theme.css"),
     tags$link(rel = "stylesheet", href = "chrome-tabs/mock-browser.css"),
