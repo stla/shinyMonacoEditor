@@ -1,7 +1,8 @@
 $(document).ready(function() {
   $("#newTab").on("click", function(){
     setModel({value: "", language: "plaintext"});
-    addChromeTab({title: "unnamed", icon: false});
+    counter_unnamed++;
+    addChromeTab({title: "unnamed" + counter_unnamed, icon: false});
     setTimeout(function() {
       selectize.setValue("");
     }, 0);

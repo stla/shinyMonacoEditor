@@ -32,8 +32,14 @@
   color: whitesmoke;
   background-color: #464545 !important;
 }
+.selectize-input.input-active>input {
+  color: orangered;
+}
 .selectize-control.single .selectize-input:after {
   border-top-color: whitesmoke;
+}
+.selectize-control.single .selectize-input.dropdown-active:after {
+  border-bottom-color: whitesmoke;
 }
 .selectize-input>input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: antiquewhite !important;

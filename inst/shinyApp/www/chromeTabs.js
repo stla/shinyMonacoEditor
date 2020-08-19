@@ -17,13 +17,16 @@ el.addEventListener("activeTabChange", function(e) {
   }
 });
 
+el.addEventListener("tabRemove", function(e) {
+  if(chromeTabs.tabEls.length === 0) {
+    editor.dispose();
+  }
+});
+
 chromeTabs.addTab({
   title: "example.js",
   favicon: "SuperTinyIcons/javascript.svg",
   id: counter.toString()
-});
-
-$("#add").on("click", function() {
 });
 
 function addChromeTab(titleAndIcon){
