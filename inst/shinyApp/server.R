@@ -24,7 +24,10 @@ shinyServer(function(input, output, session){
       c = "c",
       cpp = "cpp",
       css = "css",
+      h = "c",
+      hpp = "cpp",
       html = "html",
+      java = "java",
       js = "javascript",
       json = "json",
       md = "markdown",
@@ -91,8 +94,9 @@ shinyServer(function(input, output, session){
       system.file("clang-format.txt", package = "shinyMonacoEditor"),
       file.path(tmpDir, ".clang-format")
     )
-    tmpFile <- tempfile(fileext = ".cpp")
-    writeLines(input[["clangFormat"]], tmpFile)
+    tmpFile <-
+      tempfile(fileext = paste0(".", input[["clangFormat"]][["language"]]))
+    writeLines(input[["clangFormat"]][["content"]], tmpFile)
     formatted <- system(paste0("clang-format ", tmpFile), intern = TRUE)
     print(formatted)
     session$sendCustomMessage("value", paste0(formatted, collapse = "\n"))
@@ -105,12 +109,15 @@ shinyServer(function(input, output, session){
 
   observeEvent(input[["cppCheck"]], {
     tmpDir <- tempdir()
-    tmpFile <- tempfile(fileext = ".cpp")
+    tmpFile <-
+      tempfile(fileext = paste0(".", input[["cppCheck"]][["language"]]))
     writeLines(input[["cppCheck"]][["content"]], tmpFile)
     report <- system2(
       "cppcheck",
       args = c(
         "--quiet",
+        sprintf("--language=%s",
+                ifelse(input[["cppCheck"]][["language"]] == "c", "c", "c++")),
         "--template='{severity} {line}:{column} -> {message}\n{code}'",
         tmpFile
       ),

@@ -197,7 +197,7 @@ function actionRegistration(language) {
         return null;
       }
     });
-  } else if(language === "cpp") { /*                                      cpp */
+  } else if(["c","cpp","java"].indexOf(language) > -1) { /*      c, cpp, java */
     actionRegistration_clangFormat = editor.addAction({
       id: "clangFormatter",
       label: "Prettify",
@@ -211,7 +211,10 @@ function actionRegistration(language) {
             var modelId = ed.getModel().id;
             modelValues[modelId] = ed.getValue();
           }
-          Shiny.setInputValue("clangFormat", ed.getValue());
+          Shiny.setInputValue("clangFormat", {
+            language: language,
+            content: ed.getValue()
+          });
         } else {
           flashFunction({
             message: "Either <span style='font-style: monospace;'>clang-format</span> is not installed or it is not in the PATH variable.",
@@ -231,36 +234,42 @@ function actionRegistration(language) {
         return null;
       }
     });
-    actionRegistration_cppCheck = editor.addAction({
-      id: "cppCheck",
-      label: "Check code",
-      precondition: null,
-      keybindingContext: null,
-      contextMenuGroupId: "navigation",
-      contextMenuOrder: 1.5,
-      run: function(ed) {
-        if(cppCheck) {
-          var fileName = $(chromeTabs.activeTabEl).find(".chrome-tab-title").html();
-          Shiny.setInputValue("cppCheck", {title: fileName, content: ed.getValue()});
-        } else {
-          flashFunction({
-            message: "Either <span style='font-style: monospace;'>cppcheck</span> is not installed or it is not in the PATH variable.",
-            title: "<span style='font-style: monospace;'>cppcheck</span> not found",
-            type: "info",
-            icon: "glyphicon glyphicon-ban-circle",
-            withTime: true,
-            autoClose: true,
-            closeTime: 10000,
-            animation: true,
-            animShow: "rotateInDownLeft",
-            animHide: "bounceOutRight",
-            position: ["bottom-left", [0, 0.01]],
-            speed: "slow"
-          });
+    if(language !== "java") { /* c or cpp */
+      actionRegistration_cppCheck = editor.addAction({
+        id: "cppCheck",
+        label: "Check code",
+        precondition: null,
+        keybindingContext: null,
+        contextMenuGroupId: "navigation",
+        contextMenuOrder: 1.5,
+        run: function(ed) {
+          if(cppCheck) {
+            var fileName = $(chromeTabs.activeTabEl).find(".chrome-tab-title").html();
+            Shiny.setInputValue("cppCheck", {
+              title: fileName,
+              language: language,
+              content: ed.getValue()
+            });
+          } else {
+            flashFunction({
+              message: "Either <span style='font-style: monospace;'>cppcheck</span> is not installed or it is not in the PATH variable.",
+              title: "<span style='font-style: monospace;'>cppcheck</span> not found",
+              type: "info",
+              icon: "glyphicon glyphicon-ban-circle",
+              withTime: true,
+              autoClose: true,
+              closeTime: 10000,
+              animation: true,
+              animShow: "rotateInDownLeft",
+              animHide: "bounceOutRight",
+              position: ["bottom-left", [0, 0.01]],
+              speed: "slow"
+            });
+          }
+          return null;
         }
-        return null;
-      }
-    });
+      });
+    }
   }
   if(language === "r") { /*                                                 r */
     actionRegistration_styler = editor.addAction({
