@@ -1,3 +1,6 @@
+library(styler)
+library(formatR)
+
 shinyServer(function(input, output, session){
 
   uploaded <- reactiveVal(FALSE)
@@ -129,6 +132,22 @@ shinyServer(function(input, output, session){
       "modelInstance",
       list(value = report, language = "plaintext")
     )
+  })
+
+  observeEvent(input[["styler"]], {
+    styled <- paste0(style_text(input[["styler"]]), collapse = "\n")
+    session$sendCustomMessage("value", styled)
+  })
+
+  observeEvent(input[["formatR"]], {
+    formatted <- paste0(tidy_source(
+      text = input[["formatR"]],
+      indent = 2,
+      arrow = TRUE,
+      output = FALSE,
+      width.cutoff = 80
+    )[["text.tidy"]], collapse = "\n")
+    session$sendCustomMessage("value", formatted)
   })
 
 })

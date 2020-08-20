@@ -2,7 +2,9 @@ var actionRegistration_minifier = null,
   actionRegistration_prettifier = null,
   actionRegistration_sass = null,
   actionRegistration_clangFormat = null,
-  actionRegistration_cppCheck = null;
+  actionRegistration_cppCheck = null,
+  actionRegistration_styler = null,
+  actionRegistration_formatR = null;
 
 function actionRegistration(language) {
   if(actionRegistration_minifier !== null) {
@@ -19,6 +21,12 @@ function actionRegistration(language) {
   }
   if(actionRegistration_cppCheck !== null) {
     actionRegistration_cppCheck.dispose();
+  }
+  if(actionRegistration_styler !== null) {
+    actionRegistration_styler.dispose();
+  }
+  if(actionRegistration_formatR !== null) {
+    actionRegistration_formatR.dispose();
   }
   if(language === "javascript") { /*                               javascript */
     actionRegistration_minifier = editor.addAction({
@@ -213,6 +221,32 @@ function actionRegistration(language) {
             speed: "slow"
           });
         }
+        return null;
+      }
+    });
+  }
+  if(language === "r") { /*                                                 r */
+    actionRegistration_styler = editor.addAction({
+      id: "styler",
+      label: "Prettify (styler)",
+      precondition: null,
+      keybindingContext: null,
+      contextMenuGroupId: "navigation",
+      contextMenuOrder: 1.5,
+      run: function(ed) {
+        Shiny.setInputValue("styler", ed.getValue());
+        return null;
+      }
+    });
+    actionRegistration_formatR = editor.addAction({
+      id: "styler",
+      label: "Prettify (formatR)",
+      precondition: null,
+      keybindingContext: null,
+      contextMenuGroupId: "navigation",
+      contextMenuOrder: 1.5,
+      run: function(ed) {
+        Shiny.setInputValue("formatR", ed.getValue());
         return null;
       }
     });
