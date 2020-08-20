@@ -112,7 +112,8 @@ shinyUI(fluidPage(
           placeholder = "Select language...",
           onInitialize = I('function() { selectize = this; }')
         )
-      )
+      ),
+      tinyCheckbox("bookmark", "Bookmark before prettifying/minifying")
     ),
     mainPanel(
       tags$div(

@@ -28,6 +28,7 @@ function actionRegistration(language) {
   if(actionRegistration_formatR !== null) {
     actionRegistration_formatR.dispose();
   }
+  var bookmark = $("#bookmark").prop("checked");
   if(language === "javascript") { /*                               javascript */
     actionRegistration_minifier = editor.addAction({
       id: "minifier",
@@ -37,6 +38,10 @@ function actionRegistration(language) {
       contextMenuGroupId: "navigation",
       contextMenuOrder: 1.5,
       run: function(ed) {
+        if(bookmark) {
+          var modelId = ed.getModel().id;
+          modelValues[modelId] = ed.getValue();
+        }
         var minified = Terser.minify(ed.getValue());
         minified.then(function(result) {
           ed.setValue(result.code);
@@ -54,6 +59,10 @@ function actionRegistration(language) {
       contextMenuGroupId: "navigation",
       contextMenuOrder: 1.5,
       run: function(ed) {
+        if(bookmark) {
+          var modelId = ed.getModel().id;
+          modelValues[modelId] = ed.getValue();
+        }
         prettify(ed.getValue(), "babel");
         return null;
       }
@@ -67,6 +76,10 @@ function actionRegistration(language) {
       contextMenuGroupId: "navigation",
       contextMenuOrder: 1.5,
       run: function(ed) {
+        if(bookmark) {
+          var modelId = ed.getModel().id;
+          modelValues[modelId] = ed.getValue();
+        }
         var minified = HtmlMinifierTerser.minify(editor.getValue(), {
           minifyJS: true,
           minifyCSS: true,
@@ -84,6 +97,10 @@ function actionRegistration(language) {
       contextMenuGroupId: "navigation",
       contextMenuOrder: 1.5,
       run: function(ed) {
+        if(bookmark) {
+          var modelId = ed.getModel().id;
+          modelValues[modelId] = ed.getValue();
+        }
         prettify(ed.getValue(), "html");
         return null;
       }
@@ -97,6 +114,10 @@ function actionRegistration(language) {
       contextMenuGroupId: "navigation",
       contextMenuOrder: 1.5,
       run: function(ed) {
+        if(bookmark) {
+          var modelId = ed.getModel().id;
+          modelValues[modelId] = ed.getValue();
+        }
         var minified = new CleanCSS().minify(editor.getValue());
         ed.setValue(minified.styles);
         return null;
@@ -110,6 +131,10 @@ function actionRegistration(language) {
       contextMenuGroupId: "navigation",
       contextMenuOrder: 1.5,
       run: function(ed) {
+        if(bookmark) {
+          var modelId = ed.getModel().id;
+          modelValues[modelId] = ed.getValue();
+        }
         prettify(ed.getValue(), "css");
         return null;
       }
@@ -123,6 +148,10 @@ function actionRegistration(language) {
       contextMenuGroupId: "navigation",
       contextMenuOrder: 1.5,
       run: function(ed) {
+        if(bookmark) {
+          var modelId = ed.getModel().id;
+          modelValues[modelId] = ed.getValue();
+        }
         prettify(ed.getValue(), "markdown");
         return null;
       }
@@ -160,6 +189,10 @@ function actionRegistration(language) {
       contextMenuGroupId: "navigation",
       contextMenuOrder: 1.5,
       run: function(ed) {
+        if(bookmark) {
+          var modelId = ed.getModel().id;
+          modelValues[modelId] = ed.getValue();
+        }
         prettify(ed.getValue(), "css");
         return null;
       }
@@ -174,6 +207,10 @@ function actionRegistration(language) {
       contextMenuOrder: 1.5,
       run: function(ed) {
         if(clangFormat) {
+          if(bookmark) {
+            var modelId = ed.getModel().id;
+            modelValues[modelId] = ed.getValue();
+          }
           Shiny.setInputValue("clangFormat", ed.getValue());
         } else {
           flashFunction({
@@ -234,6 +271,10 @@ function actionRegistration(language) {
       contextMenuGroupId: "navigation",
       contextMenuOrder: 1.5,
       run: function(ed) {
+        if(bookmark) {
+          var modelId = ed.getModel().id;
+          modelValues[modelId] = ed.getValue();
+        }
         Shiny.setInputValue("styler", ed.getValue());
         return null;
       }
@@ -246,6 +287,10 @@ function actionRegistration(language) {
       contextMenuGroupId: "navigation",
       contextMenuOrder: 1.5,
       run: function(ed) {
+        if(bookmark) {
+          var modelId = ed.getModel().id;
+          modelValues[modelId] = ed.getValue();
+        }
         Shiny.setInputValue("formatR", ed.getValue());
         return null;
       }
