@@ -12,6 +12,7 @@ el.addEventListener("activeTabChange", function(e) {
     setTimeout(function() {
       editor.setModel(modelInstances[index]);
       var language = editor.getModel().getLanguageIdentifier().language;
+      actionRegistration(language);
       selectize.setValue(language, true);
     }, 0);
   }

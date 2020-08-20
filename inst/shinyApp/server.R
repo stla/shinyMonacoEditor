@@ -75,7 +75,10 @@ shinyServer(function(input, output, session){
     session$sendCustomMessage("language", input[["language"]])
   }, ignoreInit = TRUE)
 
-  session$sendCustomMessage("clangFormat", unname(Sys.which("clang-format") != ""))
+  session$sendCustomMessage(
+    "clangFormat",
+    unname(Sys.which("clang-format") != "")
+  )
 
   observeEvent(input[["clangFormat"]], {
     tmpDir <- tempdir()
@@ -90,22 +93,40 @@ shinyServer(function(input, output, session){
     session$sendCustomMessage("value", paste0(formatted, collapse = "\n"))
   })
 
-  #session$sendCustomMessage("cppCheck", unname(Sys.which("cppcheck") != ""))
+  session$sendCustomMessage(
+    "cppCheck",
+    unname(Sys.which("cppcheck") != "")
+  )
 
   observeEvent(input[["cppCheck"]], {
     tmpDir <- tempdir()
     tmpFile <- tempfile(fileext = ".cpp")
-    writeLines(input[["cppCheck"]], tmpFile)
+    writeLines(input[["cppCheck"]][["content"]], tmpFile)
     report <- system2(
       "cppcheck",
       args = c(
         "--quiet",
-        "--template='{severity} {line}:{column}\t{message}\n{code}'",
+        "--template='{severity} {line}:{column} -> {message}\n{code}'",
         tmpFile
       ),
       stderr = TRUE, stdout = TRUE)
     print(report)
-    session$sendCustomMessage("value", paste0(report, collapse = "\n"))
+    session$sendCustomMessage(
+      "addChromeTab",
+      list(
+        title = paste0(input[["cppCheck"]][["title"]], ".check"),
+        icon = "cppcheck-gui.svg"
+      )
+    )
+    if(length(report) == 0L){
+      report <- "No error found."
+    }else{
+      report <- paste0(report, collapse = "\n")
+    }
+    session$sendCustomMessage(
+      "modelInstance",
+      list(value = report, language = "plaintext")
+    )
   })
 
 })

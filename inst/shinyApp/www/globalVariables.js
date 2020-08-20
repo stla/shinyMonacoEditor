@@ -3,4 +3,5 @@ var counter = 0,
   editor,
   modelInstances = [],
   selectize,
-  clangFormat = false;
+  clangFormat = false,
+  cppCheck = false;
