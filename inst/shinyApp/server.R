@@ -1,5 +1,6 @@
 library(styler)
 library(formatR)
+library(uchardet)
 
 shinyServer(function(input, output, session){
 
@@ -12,7 +13,9 @@ shinyServer(function(input, output, session){
 
   observeEvent(input[["file"]], {
 
-    if(!grepl("^text", input[["file"]][["type"]])){
+    enc <- suppressWarnings(detect_file_enc(input[["file"]][["datapath"]]))
+
+    if(is.na(enc)){
       flashMessage <- list(
         message = "This file is not of type 'text'.",
         title = "Invalid file",
@@ -46,6 +49,7 @@ shinyServer(function(input, output, session){
       java = "java",
       js = "javascript",
       json = "json",
+      jsx = "javascript",
       md = "markdown",
       py = "python",
       r = "r",
@@ -60,6 +64,8 @@ shinyServer(function(input, output, session){
 
     favicon <- if(ext == "svg"){
       "SuperTinyIcons/svg.svg"
+    }else if(ext == "jsx"){
+      "SuperTinyIcons/react.svg"
     }else{
       switch(
         language,
@@ -92,11 +98,14 @@ shinyServer(function(input, output, session){
 
     session$sendCustomMessage("modelInstance",
                               list(value = content, language = language))
-    #    updateSelectizeInput(session, "language", selected = language)
+    updateSelectizeInput(session, "language", selected = language)
   })
 
   observeEvent(input[["language"]], {
-    session$sendCustomMessage("language", input[["language"]])
+    print(input[["language"]])
+    if(input[["language"]] != ""){
+      session$sendCustomMessage("language", input[["language"]])
+    }
   }, ignoreInit = TRUE)
 
   session$sendCustomMessage(
