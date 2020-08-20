@@ -226,6 +226,8 @@ function setModel(valueAndLanguage) {
     language
   );
   modelInstances.push(modelInstance);
+  modelValues[modelInstance.id] = valueAndLanguage.value;
+  console.log("modelInstance", modelInstance);
   actionRegistration(language);
   var ss = editor.saveViewState();
   console.log(ss);
