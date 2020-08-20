@@ -8,13 +8,22 @@ chromeTabs.init(el);
 
 el.addEventListener("activeTabChange", function(e) {
   var index = parseInt($(e.detail.tabEl).data("tab-id"));
-  if(editor){
-    setTimeout(function() {
+  if(editor) {
+    var interval = setInterval(function() {
+      if(editor.getModel()) {
+        clearInterval(interval);
+        editor.setModel(modelInstances[index]);
+        var language = editor.getModel().getLanguageIdentifier().language;
+        actionRegistration(language);
+        selectize.setValue(language, true);
+      }
+    }, 100);
+/*    setTimeout(function() {
       editor.setModel(modelInstances[index]);
       var language = editor.getModel().getLanguageIdentifier().language;
       actionRegistration(language);
       selectize.setValue(language, true);
-    }, 0);
+    }, 500); */
   }
 });
 

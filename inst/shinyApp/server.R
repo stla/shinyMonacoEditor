@@ -41,6 +41,8 @@ shinyServer(function(input, output, session){
     }else{
       switch(
         language,
+        c = "freeicons/c.svg",
+        cpp = "freeicons/cpp.svg",
         css = "freeicons/css.svg",
         html = "freeicons/html.svg",
         go = "SuperTinyIcons/go.svg",
