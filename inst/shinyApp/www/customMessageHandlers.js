@@ -41,6 +41,9 @@ function actionRegistration(language) {
         if(bookmark) {
           var modelId = ed.getModel().id;
           modelValues[modelId] = ed.getValue();
+          $(chromeTabs.activeTabEl)
+            .find(".chrome-tab-title")
+              .css("font-style", "normal");
         }
         var minified = Terser.minify(ed.getValue());
         minified.then(function(result) {
@@ -62,6 +65,9 @@ function actionRegistration(language) {
         if(bookmark) {
           var modelId = ed.getModel().id;
           modelValues[modelId] = ed.getValue();
+          $(chromeTabs.activeTabEl)
+            .find(".chrome-tab-title")
+              .css("font-style", "normal");
         }
         prettify(ed.getValue(), "babel");
         return null;
@@ -79,6 +85,9 @@ function actionRegistration(language) {
         if(bookmark) {
           var modelId = ed.getModel().id;
           modelValues[modelId] = ed.getValue();
+          $(chromeTabs.activeTabEl)
+            .find(".chrome-tab-title")
+              .css("font-style", "normal");
         }
         var minified = HtmlMinifierTerser.minify(editor.getValue(), {
           minifyJS: true,
@@ -100,6 +109,9 @@ function actionRegistration(language) {
         if(bookmark) {
           var modelId = ed.getModel().id;
           modelValues[modelId] = ed.getValue();
+          $(chromeTabs.activeTabEl)
+            .find(".chrome-tab-title")
+              .css("font-style", "normal");
         }
         prettify(ed.getValue(), "html");
         return null;
@@ -117,6 +129,9 @@ function actionRegistration(language) {
         if(bookmark) {
           var modelId = ed.getModel().id;
           modelValues[modelId] = ed.getValue();
+          $(chromeTabs.activeTabEl)
+            .find(".chrome-tab-title")
+              .css("font-style", "normal");
         }
         var minified = new CleanCSS().minify(editor.getValue());
         ed.setValue(minified.styles);
@@ -134,6 +149,9 @@ function actionRegistration(language) {
         if(bookmark) {
           var modelId = ed.getModel().id;
           modelValues[modelId] = ed.getValue();
+          $(chromeTabs.activeTabEl)
+            .find(".chrome-tab-title")
+              .css("font-style", "normal");
         }
         prettify(ed.getValue(), "css");
         return null;
@@ -151,6 +169,9 @@ function actionRegistration(language) {
         if(bookmark) {
           var modelId = ed.getModel().id;
           modelValues[modelId] = ed.getValue();
+          $(chromeTabs.activeTabEl)
+            .find(".chrome-tab-title")
+              .css("font-style", "normal");
         }
         prettify(ed.getValue(), "markdown");
         return null;
@@ -192,6 +213,9 @@ function actionRegistration(language) {
         if(bookmark) {
           var modelId = ed.getModel().id;
           modelValues[modelId] = ed.getValue();
+          $(chromeTabs.activeTabEl)
+            .find(".chrome-tab-title")
+              .css("font-style", "normal");
         }
         prettify(ed.getValue(), "css");
         return null;
@@ -210,6 +234,9 @@ function actionRegistration(language) {
           if(bookmark) {
             var modelId = ed.getModel().id;
             modelValues[modelId] = ed.getValue();
+            $(chromeTabs.activeTabEl)
+              .find(".chrome-tab-title")
+                .css("font-style", "normal");
           }
           Shiny.setInputValue("clangFormat", {
             language: language,
@@ -283,6 +310,9 @@ function actionRegistration(language) {
         if(bookmark) {
           var modelId = ed.getModel().id;
           modelValues[modelId] = ed.getValue();
+          $(chromeTabs.activeTabEl)
+            .find(".chrome-tab-title")
+              .css("font-style", "normal");
         }
         Shiny.setInputValue("styler", ed.getValue());
         return null;
@@ -299,6 +329,9 @@ function actionRegistration(language) {
         if(bookmark) {
           var modelId = ed.getModel().id;
           modelValues[modelId] = ed.getValue();
+          $(chromeTabs.activeTabEl)
+            .find(".chrome-tab-title")
+              .css("font-style", "normal");
         }
         Shiny.setInputValue("formatR", ed.getValue());
         return null;
@@ -313,6 +346,11 @@ function setModel(valueAndLanguage) {
     valueAndLanguage.value,
     language
   );
+  modelInstance.onDidChangeContent((event) => {
+    $(chromeTabs.activeTabEl)
+      .find(".chrome-tab-title")
+        .css("font-style", "italic");
+  });
   modelInstances.push(modelInstance);
   modelValues[modelInstance.id] = valueAndLanguage.value;
   console.log("modelInstance", modelInstance);

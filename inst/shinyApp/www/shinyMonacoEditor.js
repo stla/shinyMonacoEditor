@@ -64,6 +64,9 @@ editor.addAction({
   run: function(ed) {
     var modelId = ed.getModel().id;
     modelValues[modelId] = ed.getValue();
+    $(chromeTabs.activeTabEl)
+      .find(".chrome-tab-title")
+        .css("font-style", "normal");
     return null;
   }
 });
@@ -79,6 +82,9 @@ editor.addAction({
   run: function(ed) {
     var modelId = ed.getModel().id;
     ed.setValue(modelValues[modelId]);
+    $(chromeTabs.activeTabEl)
+      .find(".chrome-tab-title")
+        .css("font-style", "normal");
     return null;
   }
 });
