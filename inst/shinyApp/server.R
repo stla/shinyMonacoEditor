@@ -11,6 +11,22 @@ shinyServer(function(input, output, session){
   outputOptions(output, "uploaded", suspendWhenHidden = FALSE)
 
   observeEvent(input[["file"]], {
+
+    if(!grepl("^text", input[["file"]][["type"]])){
+      flashMessage <- list(
+        message = "This file is not of type 'text'.",
+        title = "Invalid file",
+        type = "danger",
+        icon = "glyphicon glyphicon-ban-circle",
+        withTime = FALSE,
+        closeTime = 10000,
+        animShow = "flash",
+        animHide = "backOutDown",
+        position = list("center", list(0, 0))
+      )
+      session$sendCustomMessage("flashMessage", flashMessage)
+      return(NULL)
+    }
     uploaded(TRUE)
 
     content <- paste0(

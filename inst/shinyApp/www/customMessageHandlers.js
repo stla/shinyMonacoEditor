@@ -383,4 +383,5 @@ $(document).on("shiny:connected", function() {
   Shiny.addCustomMessageHandler("value", setValue);
   Shiny.addCustomMessageHandler("clangFormat", setClangFormat);
   Shiny.addCustomMessageHandler("cppCheck", setCppCheck);
+  Shiny.addCustomMessageHandler("flashMessage", flashFunction);
 });
