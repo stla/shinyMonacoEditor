@@ -355,8 +355,6 @@ function setModel(valueAndLanguage) {
   modelValues[modelInstance.id] = valueAndLanguage.value;
   console.log("modelInstance", modelInstance);
   actionRegistration(language);
-  var ss = editor.saveViewState();
-  console.log(ss);
 }
 
 function setLanguage(language) {

@@ -12,8 +12,16 @@ el.addEventListener("activeTabChange", function(e) {
     var interval = setInterval(function() {
       if(editor.getModel()) {
         clearInterval(interval);
+        var previousModelId = editor.getModel().id;
+        modelStates[previousModelId] = editor.saveViewState();
         editor.setModel(modelInstances[index]);
-        var language = editor.getModel().getLanguageIdentifier().language;
+        var newModel = editor.getModel();
+        var newModelId = newModel.id;
+        if(modelStates[newModelId]) {
+          editor.restoreViewState(modelStates[newModelId]);
+          editor.focus();
+        }
+        var language = newModel.getLanguageIdentifier().language;
         actionRegistration(language);
         selectize.setValue(language, true);
       }

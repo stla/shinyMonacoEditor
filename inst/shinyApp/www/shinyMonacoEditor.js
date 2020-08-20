@@ -3,7 +3,7 @@ monaco.editor.defineTheme("myTheme", {
   inherit: true,
   rules: [{ background: "161920" }],
   colors: {
-    "editorIndentGuide.background": "#ffffff90",
+    "editorIndentGuide.background": "#ffffff50",
     "editorGutter.background": "#19197040"
   }
 });
