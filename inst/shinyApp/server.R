@@ -90,4 +90,22 @@ shinyServer(function(input, output, session){
     session$sendCustomMessage("value", paste0(formatted, collapse = "\n"))
   })
 
+  #session$sendCustomMessage("cppCheck", unname(Sys.which("cppcheck") != ""))
+
+  observeEvent(input[["cppCheck"]], {
+    tmpDir <- tempdir()
+    tmpFile <- tempfile(fileext = ".cpp")
+    writeLines(input[["cppCheck"]], tmpFile)
+    report <- system2(
+      "cppcheck",
+      args = c(
+        "--quiet",
+        "--template='{severity} {line}:{column}\t{message}\n{code}'",
+        tmpFile
+      ),
+      stderr = TRUE, stdout = TRUE)
+    print(report)
+    session$sendCustomMessage("value", paste0(report, collapse = "\n"))
+  })
+
 })
