@@ -1,5 +1,6 @@
 library(shinythemes)
 
+
 languages <- c(
   "abap",
   "aes",
@@ -113,7 +114,10 @@ shinyUI(fluidPage(
           onInitialize = I('function() { selectize = this; }')
         )
       ),
-      tinyCheckbox("bookmark", "Bookmark before prettifying/minifying")
+      shinyMonacoEditor::tinyCheckbox(
+        "bookmark",
+        "Bookmark before prettifying/minifying"
+      )
     ),
     mainPanel(
       tags$div(
