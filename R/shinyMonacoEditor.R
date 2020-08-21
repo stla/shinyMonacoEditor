@@ -1,11 +1,6 @@
-#' Title
-#'
-#' @param label xxx
-#'
-#' @return xxx
-#'
 #' @importFrom shiny tags
 #' @export
+#' @noRd
 tinyCheckbox <- function(id, label){
   tags$div(class = "check-box-container",
       style = "display: inline-block;",

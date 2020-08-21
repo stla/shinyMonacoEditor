@@ -85,7 +85,7 @@ shinyUI(fluidPage(
     tags$link(rel = "stylesheet", href = "shinyMonacoEditor.css"),
     tags$link(
       rel="stylesheet", `data-name`="vs/editor/editor.main",
-      href="monaco-editor/min/vs/editor/editor.main.css"
+      href="monaco/vs/editor/editor.main.css"
     ),
     tags$script(src = "terser/bundle.min.js"),
     tags$script(src = "html-minifier-terser/bundle.min.js"),
@@ -163,16 +163,16 @@ shinyUI(fluidPage(
 
 
   tags$script(
-    HTML("var require = { paths: { 'vs': 'monaco-editor/min/vs' } };")
+    HTML("var require = { paths: { 'vs': 'monaco/vs' } };")
   ),
   tags$script(
-    src="monaco-editor/min/vs/loader.js"
+    src="monaco/vs/loader.js"
   ),
   tags$script(
-    src="monaco-editor/min/vs/editor/editor.main.nls.js"
+    src="monaco/vs/editor/editor.main.nls.js"
   ),
   tags$script(
-    src="monaco-editor/min/vs/editor/editor.main.js"
+    src="monaco/vs/editor/editor.main.js"
   ),
   tags$script(src = "shinyMonacoEditor.js")
 

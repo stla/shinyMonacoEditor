@@ -119,7 +119,8 @@ shinyServer(function(input, output, session){
     tmpDir <- tempdir()
     file.copy(
       system.file("clang-format.txt", package = "shinyMonacoEditor"),
-      file.path(tmpDir, ".clang-format")
+      file.path(tmpDir, ".clang-format"),
+      ooverwrite = TRUE
     )
     tmpFile <-
       tempfile(fileext = paste0(".", input[["clangFormat"]][["language"]]))
