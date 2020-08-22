@@ -112,6 +112,9 @@ input.form-control[readonly]::-moz-placeholder { /* Firefox 18- */
   border-top-right-radius: 50%;
 }
 
+.irs-min, .irs-max {
+  color: white;
+}
 
 /* empty editor */
 @keyframes red {

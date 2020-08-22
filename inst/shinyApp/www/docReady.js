@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+  setTimeout(function() {
+    slider = $("#wrapWidth").data("ionRangeSlider");
+  }, 0);
+
   $("#newTab").on("click", function(){
     setModel({value: "", language: "plaintext"});
     counter_unnamed++;

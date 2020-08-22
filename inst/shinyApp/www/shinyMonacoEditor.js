@@ -16,16 +16,21 @@ editor = monaco.editor.create(document.getElementById("container"), {
 	automaticLayout: true
 });
 
-setModel({
-  value: [
-    "function test(x) {",
-		"\tconsole.log('Hello world!');",
-		"}"
-	].join("\n"),
-	language: "javascript"
-});
-
-editor.setModel(modelInstances[0]);
+var interval = setInterval(function(){
+  if(slider) {
+    clearInterval(interval);
+    setModel({
+      value: [
+        "function test(x) {",
+		    "\tconsole.log('Hello world!');",
+		    "}"
+	    ].join("\n"),
+	    language: "javascript"
+    });
+    editor.setModel(modelInstances[0]);
+    $("#container").show();
+  }
+}, 50);
 
 editor.addAction({
   id: "save",
@@ -89,4 +94,5 @@ editor.addAction({
   }
 });
 
-$("#container").show();
+
+

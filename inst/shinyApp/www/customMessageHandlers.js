@@ -7,7 +7,8 @@ var actionRegistration_minifier = null,
   actionRegistration_formatR = null,
   actionRegistration_svgChecker = null,
   actionRegistration_svgParser = null,
-  actionRegistration_svgViewer = null;
+  actionRegistration_svgViewer = null,
+  actionRegistration_wordWrapper = null;
 
 function prettifier(parser, bookmark) {
   return {
@@ -31,7 +32,39 @@ function prettifier(parser, bookmark) {
   };
 }
 
+function wordWrapper(bookmark) {
+  return {
+    id: "wordWrapper",
+    label: "Word wrap",
+    precondition: null,
+    keybindingContext: null,
+    contextMenuGroupId: "navigation",
+    contextMenuOrder: 1.5,
+    run: function(ed) {
+      if(bookmark) {
+        var modelId = ed.getModel().id;
+        modelValues[modelId] = ed.getValue();
+        $(chromeTabs.activeTabEl)
+          .find(".chrome-tab-title")
+            .css("font-style", "normal");
+      }
+      var text = ed.getValue();
+      var newText = wordWrap(text, {
+        width: parseInt(slider.input.value),
+        indent: ""
+      });
+      ed.setValue(newText);
+      return null;
+    }
+  };
+}
+
 function actionRegistration(language) {
+  if(language === "plaintext" || language === "markdown") {
+    slider.update({disable: false});
+  } else {
+    slider.update({disable: true});
+  }
   if(actionRegistration_minifier !== null) {
     actionRegistration_minifier.dispose();
   }
@@ -62,7 +95,11 @@ function actionRegistration(language) {
   if(actionRegistration_svgChecker !== null) {
     actionRegistration_svgChecker.dispose();
   }
+  if(actionRegistration_wordWrapper !== null) {
+    actionRegistration_wordWrapper.dispose();
+  }
   var bookmark = $("#bookmark").prop("checked");
+  var bookmark2 = $("#bookmark2").prop("checked");
   if(language === "javascript") { /*                               javascript */
     actionRegistration_minifier = editor.addAction({
       id: "minifier",
@@ -143,6 +180,8 @@ function actionRegistration(language) {
   } else if(language === "markdown") { /*                            markdown */
     actionRegistration_prettifier =
       editor.addAction(prettifier("markdown", bookmark));
+    actionRegistration_wordWrapper =
+      editor.addAction(wordWrapper(bookmark2));
   } else if(language === "scss") { /*                                    scss */
     actionRegistration_sass = editor.addAction({
       id: "scssCompiler",
@@ -424,6 +463,9 @@ function actionRegistration(language) {
   } else if(language == "xml") { /*                                       xml */
     actionRegistration_prettifier =
       editor.addAction(prettifier("html", bookmark));
+  } else if(language === "plaintext") { /*                          plaintext */
+    actionRegistration_wordWrapper =
+      editor.addAction(wordWrapper(bookmark2));
   }
 }
 
