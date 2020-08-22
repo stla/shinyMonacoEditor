@@ -9,6 +9,28 @@ var actionRegistration_minifier = null,
   actionRegistration_svgParser = null,
   actionRegistration_svgViewer = null;
 
+function prettifier(parser, bookmark) {
+  return {
+    id: "prettifier",
+    label: "Prettify",
+    precondition: null,
+    keybindingContext: null,
+    contextMenuGroupId: "navigation",
+    contextMenuOrder: 1.5,
+    run: function(ed) {
+      if(bookmark) {
+        var modelId = ed.getModel().id;
+        modelValues[modelId] = ed.getValue();
+        $(chromeTabs.activeTabEl)
+          .find(".chrome-tab-title")
+            .css("font-style", "normal");
+      }
+      prettify(ed.getValue(), parser);
+      return null;
+    }
+  };
+}
+
 function actionRegistration(language) {
   if(actionRegistration_minifier !== null) {
     actionRegistration_minifier.dispose();
@@ -66,25 +88,8 @@ function actionRegistration(language) {
         return null;
       }
     });
-    actionRegistration_prettifier = editor.addAction({
-      id: "prettifier",
-      label: "Prettify",
-      precondition: null,
-      keybindingContext: null,
-      contextMenuGroupId: "navigation",
-      contextMenuOrder: 1.5,
-      run: function(ed) {
-        if(bookmark) {
-          var modelId = ed.getModel().id;
-          modelValues[modelId] = ed.getValue();
-          $(chromeTabs.activeTabEl)
-            .find(".chrome-tab-title")
-              .css("font-style", "normal");
-        }
-        prettify(ed.getValue(), "babel");
-        return null;
-      }
-    });
+    actionRegistration_prettifier =
+      editor.addAction(prettifier("babel", bookmark));
   } else if(language === "html") { /*                                    html */
     actionRegistration_minifier = editor.addAction({
       id: "minifier",
@@ -110,25 +115,8 @@ function actionRegistration(language) {
         return null;
       }
     });
-    actionRegistration_prettifier = editor.addAction({
-      id: "prettifier",
-      label: "Prettify",
-      precondition: null,
-      keybindingContext: null,
-      contextMenuGroupId: "navigation",
-      contextMenuOrder: 1.5,
-      run: function(ed) {
-        if(bookmark) {
-          var modelId = ed.getModel().id;
-          modelValues[modelId] = ed.getValue();
-          $(chromeTabs.activeTabEl)
-            .find(".chrome-tab-title")
-              .css("font-style", "normal");
-        }
-        prettify(ed.getValue(), "html");
-        return null;
-      }
-    });
+    actionRegistration_prettifier =
+      editor.addAction(prettifier("html", bookmark));
   } else if(language === "css") { /*                                      css */
     actionRegistration_minifier = editor.addAction({
       id: "minifier",
@@ -150,45 +138,11 @@ function actionRegistration(language) {
         return null;
       }
     });
-    actionRegistration_prettifier = editor.addAction({
-      id: "prettifier",
-      label: "Prettify",
-      precondition: null,
-      keybindingContext: null,
-      contextMenuGroupId: "navigation",
-      contextMenuOrder: 1.5,
-      run: function(ed) {
-        if(bookmark) {
-          var modelId = ed.getModel().id;
-          modelValues[modelId] = ed.getValue();
-          $(chromeTabs.activeTabEl)
-            .find(".chrome-tab-title")
-              .css("font-style", "normal");
-        }
-        prettify(ed.getValue(), "css");
-        return null;
-      }
-    });
+    actionRegistration_prettifier =
+      editor.addAction(prettifier("css", bookmark));
   } else if(language === "markdown") { /*                            markdown */
-    actionRegistration_prettifier = editor.addAction({
-      id: "prettifier",
-      label: "Prettify",
-      precondition: null,
-      keybindingContext: null,
-      contextMenuGroupId: "navigation",
-      contextMenuOrder: 1.5,
-      run: function(ed) {
-        if(bookmark) {
-          var modelId = ed.getModel().id;
-          modelValues[modelId] = ed.getValue();
-          $(chromeTabs.activeTabEl)
-            .find(".chrome-tab-title")
-              .css("font-style", "normal");
-        }
-        prettify(ed.getValue(), "markdown");
-        return null;
-      }
-    });
+    actionRegistration_prettifier =
+      editor.addAction(prettifier("markdown", bookmark));
   } else if(language === "scss") { /*                                    scss */
     actionRegistration_sass = editor.addAction({
       id: "scssCompiler",
@@ -218,25 +172,8 @@ function actionRegistration(language) {
         return null;
       }
     });
-    actionRegistration_prettifier = editor.addAction({
-      id: "prettifier",
-      label: "Prettify",
-      precondition: null,
-      keybindingContext: null,
-      contextMenuGroupId: "navigation",
-      contextMenuOrder: 1.5,
-      run: function(ed) {
-        if(bookmark) {
-          var modelId = ed.getModel().id;
-          modelValues[modelId] = ed.getValue();
-          $(chromeTabs.activeTabEl)
-            .find(".chrome-tab-title")
-              .css("font-style", "normal");
-        }
-        prettify(ed.getValue(), "css");
-        return null;
-      }
-    });
+    actionRegistration_prettifier =
+      editor.addAction(prettifier("css", bookmark));
   } else if(["c","cpp","java"].indexOf(language) > -1) { /*      c, cpp, java */
     actionRegistration_clangFormat = editor.addAction({
       id: "clangFormatter",
@@ -287,7 +224,8 @@ function actionRegistration(language) {
         contextMenuOrder: 1.5,
         run: function(ed) {
           if(cppCheck) {
-            var fileName = $(chromeTabs.activeTabEl).find(".chrome-tab-title").html();
+            var fileName =
+              $(chromeTabs.activeTabEl).find(".chrome-tab-title").html();
             Shiny.setInputValue("cppCheck", {
               title: fileName,
               language: language,
@@ -481,6 +419,11 @@ function actionRegistration(language) {
         return null;
       }
     });
+    actionRegistration_prettifier =
+      editor.addAction(prettifier("html", bookmark));
+  } else if(language == "xml") { /*                                       xml */
+    actionRegistration_prettifier =
+      editor.addAction(prettifier("html", bookmark));
   }
 }
 

@@ -13,4 +13,5 @@ The VS code editor in a Shiny app.
 - **JSX**: prettifier
 - **R**: prettifier
 - **SCSS**: prettifier, compiler
-- **SVG**: code checking, viewer
+- **SVG**: prettifier, code checking, viewer
+- **XML**: prettifier
