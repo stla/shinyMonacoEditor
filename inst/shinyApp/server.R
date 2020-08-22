@@ -65,9 +65,7 @@ shinyServer(function(input, output, session){
     )
     if(is.null(language)) language <- "plaintext"
 
-    favicon <- if(ext == "svg"){
-      "SuperTinyIcons/svg.svg"
-    }else if(ext == "jsx"){
+    favicon <- if(ext == "jsx"){
       "SuperTinyIcons/react.svg"
     }else{
       switch(
@@ -86,7 +84,8 @@ shinyServer(function(input, output, session){
         r = "freeicons/r.svg",
         ruby = "SuperTinyIcons/ruby.svg",
         rust = "SuperTinyIcons/rust.svg",
-        scss = "SuperTinyIcons/sass.svg"
+        scss = "SuperTinyIcons/sass.svg",
+        svg = "SuperTinyIcons/svg.svg"
       )
     }
     if(is.null(favicon)) favicon <- FALSE

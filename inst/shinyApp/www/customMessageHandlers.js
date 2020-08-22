@@ -5,6 +5,7 @@ var actionRegistration_minifier = null,
   actionRegistration_cppCheck = null,
   actionRegistration_styler = null,
   actionRegistration_formatR = null,
+  actionRegistration_svgChecker = null,
   actionRegistration_svgParser = null,
   actionRegistration_svgViewer = null;
 
@@ -35,6 +36,9 @@ function actionRegistration(language) {
   }
   if(actionRegistration_svgViewer !== null) {
     actionRegistration_svgViewer.dispose();
+  }
+  if(actionRegistration_svgChecker !== null) {
+    actionRegistration_svgChecker.dispose();
   }
   var bookmark = $("#bookmark").prop("checked");
   if(language === "javascript") { /*                               javascript */
@@ -372,7 +376,6 @@ function actionRegistration(language) {
             language: "json"
           });
         } catch(err) {
-          console.log(err.message);
           var error = err.message.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
             return "&#" + i.charCodeAt(0) + ";";
           });
@@ -407,6 +410,54 @@ function actionRegistration(language) {
         try {
           var json = SVGparse.parse(svg);
           Shiny.setInputValue("svg", svg);
+        } catch(err) {
+          var error = err.message.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+            return "&#" + i.charCodeAt(0) + ";";
+          });
+          flashFunction({
+            message: "<pre style='font-weight: bold; color: red;'>" +
+              error + "</pre>",
+            title: "This SVG is not valid!",
+            type: "danger",
+            icon: "glyphicon glyphicon-ban-circle",
+            withTime: false,
+            autoClose: false,
+            closeTime: 6000,
+            animation: true,
+            animShow: "rotateInDownLeft",
+            animHide: "bounceOutRight",
+            position: ["bottom-left", [0, 0.01]],
+            speed: "slow"
+          });
+        }
+        return null;
+      }
+    });
+    actionRegistration_svgChecker = editor.addAction({
+      id: "svgChecker",
+      label: "Check SVG validity",
+      precondition: null,
+      keybindingContext: null,
+      contextMenuGroupId: "navigation",
+      contextMenuOrder: 1.5,
+      run: function(ed) {
+        var svg = ed.getValue();
+        try {
+          var json = SVGparse.parse(svg);
+          flashFunction({
+            message: "No problem detected",
+            title: "This SVG is valid!",
+            type: "success",
+            icon: "glyphicon glyphicon-check",
+            withTime: true,
+            autoClose: true,
+            closeTime: 10000,
+            animation: true,
+            animShow: "rotateInDownLeft",
+            animHide: "bounceOutRight",
+            position: ["bottom-left", [0, 0.01]],
+            speed: "slow"
+          });
         } catch(err) {
           var error = err.message.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
             return "&#" + i.charCodeAt(0) + ";";
