@@ -5,7 +5,8 @@ var actionRegistration_minifier = null,
   actionRegistration_cppCheck = null,
   actionRegistration_styler = null,
   actionRegistration_formatR = null,
-  actionRegistration_svgParser = null;
+  actionRegistration_svgParser = null,
+  actionRegistration_svgViewer = null;
 
 function actionRegistration(language) {
   if(actionRegistration_minifier !== null) {
@@ -31,6 +32,9 @@ function actionRegistration(language) {
   }
   if(actionRegistration_svgParser !== null) {
     actionRegistration_svgParser.dispose();
+  }
+  if(actionRegistration_svgViewer !== null) {
+    actionRegistration_svgViewer.dispose();
   }
   var bookmark = $("#bookmark").prop("checked");
   if(language === "javascript") { /*                               javascript */
@@ -376,6 +380,41 @@ function actionRegistration(language) {
             message: "<pre style='font-weight: bold; color: red;'>" +
               error + "</pre>",
             title: "An error occured!",
+            type: "danger",
+            icon: "glyphicon glyphicon-ban-circle",
+            withTime: false,
+            autoClose: false,
+            closeTime: 6000,
+            animation: true,
+            animShow: "rotateInDownLeft",
+            animHide: "bounceOutRight",
+            position: ["bottom-left", [0, 0.01]],
+            speed: "slow"
+          });
+        }
+        return null;
+      }
+    });
+    actionRegistration_svgViewer = editor.addAction({
+      id: "svgViewer",
+      label: "View SVG image",
+      precondition: null,
+      keybindingContext: null,
+      contextMenuGroupId: "navigation",
+      contextMenuOrder: 1.5,
+      run: function(ed) {
+        var svg = ed.getValue();
+        try {
+          var json = SVGparse.parse(svg);
+          Shiny.setInputValue("svg", svg);
+        } catch(err) {
+          var error = err.message.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+            return "&#" + i.charCodeAt(0) + ";";
+          });
+          flashFunction({
+            message: "<pre style='font-weight: bold; color: red;'>" +
+              error + "</pre>",
+            title: "This SVG is not valid!",
             type: "danger",
             icon: "glyphicon glyphicon-ban-circle",
             withTime: false,

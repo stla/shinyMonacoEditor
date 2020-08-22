@@ -187,4 +187,11 @@ shinyServer(function(input, output, session){
     session$sendCustomMessage("value", formatted)
   })
 
+  observeEvent(input[["svg"]], {
+    showModal(modalDialog(
+      tags$div(HTML(input[["svg"]])),
+      size = "s"
+    ))
+  })
+
 })
