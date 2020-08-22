@@ -59,7 +59,7 @@ shinyServer(function(input, output, session){
       ru = "ruby",
       scss = "scss",
       sql = "sql",
-      svg = "xml",
+      svg = "svg",
       xml = "xml",
       yaml = "yaml"
     )
@@ -95,7 +95,8 @@ shinyServer(function(input, output, session){
       "addChromeTab",
       list(
         title = input[["file"]][["name"]],
-        icon = favicon
+        icon = favicon,
+        language = language
       )
     )
 

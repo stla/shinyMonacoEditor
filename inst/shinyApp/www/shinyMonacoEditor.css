@@ -94,6 +94,9 @@ input.form-control[readonly]::-moz-placeholder { /* Firefox 18- */
 .alert .header strong {
   font-size: 25px;
 }
+.alert pre {
+  white-space: pre-line;
+}
 
 #newTab {
   padding: 0;

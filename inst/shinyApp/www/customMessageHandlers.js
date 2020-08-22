@@ -4,7 +4,8 @@ var actionRegistration_minifier = null,
   actionRegistration_clangFormat = null,
   actionRegistration_cppCheck = null,
   actionRegistration_styler = null,
-  actionRegistration_formatR = null;
+  actionRegistration_formatR = null,
+  actionRegistration_svgParser = null;
 
 function actionRegistration(language) {
   if(actionRegistration_minifier !== null) {
@@ -27,6 +28,9 @@ function actionRegistration(language) {
   }
   if(actionRegistration_formatR !== null) {
     actionRegistration_formatR.dispose();
+  }
+  if(actionRegistration_svgParser !== null) {
+    actionRegistration_svgParser.dispose();
   }
   var bookmark = $("#bookmark").prop("checked");
   if(language === "javascript") { /*                               javascript */
@@ -196,7 +200,11 @@ function actionRegistration(language) {
               $(chromeTabs.activeTabEl).find(".chrome-tab-title").html();
             var fileSansExt = fileName.split('.').slice(0, -1).join('.');
             var title = (fileSansExt === "" ? fileName : fileSansExt) + ".css";
-            addChromeTab({title: title, icon: "freeicons/css.svg"});
+            addChromeTab({
+              title: title,
+              icon: "freeicons/css.svg",
+              language: "css"
+            });
           }
         });
         return null;
@@ -297,8 +305,7 @@ function actionRegistration(language) {
         }
       });
     }
-  }
-  if(language === "r") { /*                                                 r */
+  } else if(language === "r") { /*                                          r */
     actionRegistration_styler = editor.addAction({
       id: "styler",
       label: "Prettify (styler)",
@@ -337,11 +344,59 @@ function actionRegistration(language) {
         return null;
       }
     });
+  } else if(language === "svg") { /*                                      svg */
+    actionRegistration_svgParser = editor.addAction({
+      id: "svgParser",
+      label: "Parse to JSON",
+      precondition: null,
+      keybindingContext: null,
+      contextMenuGroupId: "navigation",
+      contextMenuOrder: 1.5,
+      run: function(ed) {
+        var svg = ed.getValue();
+        var json;
+        try {
+          json = SVGparse.parse(svg);
+          setModel({value: JSON.stringify(json, null, 2), language: "json"});
+          var fileName =
+            $(chromeTabs.activeTabEl).find(".chrome-tab-title").html();
+          var fileSansExt = fileName.split('.').slice(0, -1).join('.');
+          var title = (fileSansExt === "" ? fileName : fileSansExt) + ".json";
+          addChromeTab({
+            title: title,
+            icon: "SuperTinyIcons/json.svg",
+            language: "json"
+          });
+        } catch(err) {
+          console.log(err.message);
+          var error = err.message.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+            return "&#" + i.charCodeAt(0) + ";";
+          });
+          flashFunction({
+            message: "<pre style='font-weight: bold; color: red;'>" +
+              error + "</pre>",
+            title: "An error occured!",
+            type: "danger",
+            icon: "glyphicon glyphicon-ban-circle",
+            withTime: false,
+            autoClose: false,
+            closeTime: 6000,
+            animation: true,
+            animShow: "rotateInDownLeft",
+            animHide: "bounceOutRight",
+            position: ["bottom-left", [0, 0.01]],
+            speed: "slow"
+          });
+        }
+        return null;
+      }
+    });
   }
 }
 
 function setModel(valueAndLanguage) {
-  var language = valueAndLanguage.language;
+  var language0 = valueAndLanguage.language;
+  var language = language0 === "svg" ? "xml" : language0;
   var modelInstance = monaco.editor.createModel(
     valueAndLanguage.value,
     language
@@ -354,13 +409,14 @@ function setModel(valueAndLanguage) {
   modelInstances.push(modelInstance);
   modelValues[modelInstance.id] = valueAndLanguage.value;
   console.log("modelInstance", modelInstance);
-  actionRegistration(language);
+  actionRegistration(language0);
 }
 
-function setLanguage(language) {
+function setLanguage(language0) {
   var model = editor.getModel(); // create a model if the editor created from string value.
+  var language = language0 === "svg" ? "xml" : language0;
   monaco.editor.setModelLanguage(model, language);
-  actionRegistration(language);
+  actionRegistration(language0);
 }
 
 function setValue(value) {

@@ -259,6 +259,9 @@
       if (tabProperties.id) {
         tabEl.setAttribute('data-tab-id', tabProperties.id)
       }
+      if (tabProperties.language) {
+        tabEl.setAttribute('data-tab-language', tabProperties.language)
+      }
     }
 
     cleanUpPreviouslyDraggedTabs() {

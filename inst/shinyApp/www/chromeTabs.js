@@ -8,6 +8,7 @@ chromeTabs.init(el);
 
 el.addEventListener("activeTabChange", function(e) {
   var index = parseInt($(e.detail.tabEl).data("tab-id"));
+  var language = $(e.detail.tabEl).data("tab-language");
   if(editor) {
     var interval = setInterval(function() {
       if(editor.getModel()) {
@@ -21,7 +22,7 @@ el.addEventListener("activeTabChange", function(e) {
           editor.restoreViewState(modelStates[newModelId]);
           editor.focus();
         }
-        var language = newModel.getLanguageIdentifier().language;
+        //var language = newModel.getLanguageIdentifier().language;
         actionRegistration(language);
         selectize.setValue(language, true);
       }
@@ -44,15 +45,17 @@ el.addEventListener("tabRemove", function(e) {
 chromeTabs.addTab({
   title: "example.js",
   favicon: "SuperTinyIcons/javascript.svg",
-  id: counter.toString()
+  id: counter.toString(),
+  language: "javascript"
 });
 
-function addChromeTab(titleAndIcon){
+function addChromeTab(titleIconLanguage){
   counter++;
   chromeTabs.addTab({
-    title: titleAndIcon.title,
-    favicon: titleAndIcon.icon,
-    id: counter.toString()
+    title: titleIconLanguage.title,
+    favicon: titleIconLanguage.icon,
+    id: counter.toString(),
+    language: titleIconLanguage.language
   });
 }
 
