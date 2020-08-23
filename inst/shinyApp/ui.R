@@ -140,13 +140,25 @@ shinyUI(fluidPage(
         ticks = FALSE
       ),
       tags$hr(),
-      tags$label("Bookmark"),
-      tinyCheckbox(
-        "bookmark",
-        "before prettifying/minifying"
+      tags$label(
+        "Bookmark",
+        `data-toggle` = "tooltip",
+        `data-placement` = "top",
+        title = paste0(
+          "You can bookmark a tab with the context menu or by pressing ",
+          "'Ctrl+b', and restore it with the context menu or by pressing ",
+          "'Ctrl+r'. The title of a non-bookmarked tab appears in italic. ",
+          "A new tab is automatically bookmarked."
+        )
       ),
       tags$div(
-        style = "margin-top: -18px;"
+        tinyCheckbox(
+          "bookmark",
+          "before prettifying/minifying"
+        ),
+        tags$div(
+          style = "margin-top: -18px;"
+        )
       ),
       tinyCheckbox(
         "bookmark2",

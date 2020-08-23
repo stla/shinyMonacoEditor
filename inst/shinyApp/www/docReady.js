@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+  $("[data-toggle=tooltip]").tooltip();
+
   setTimeout(function() {
     slider = $("#wrapWidth").data("ionRangeSlider");
   }, 0);
