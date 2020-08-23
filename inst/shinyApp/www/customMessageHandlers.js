@@ -60,8 +60,15 @@ function wordWrapper(bookmark) {
 }
 
 function actionRegistration(language) {
-  if(language === "plaintext" || language === "markdown") {
-    slider.update({disable: false});
+  console.log("language", language);
+  if(language === "plaintext" ||
+      language === "markdown" ||
+      language === undefined)
+  {
+    if(slider.options.disable) {
+      slider.update({disable: false});
+      $("#wrapWidth").parent().effect("bounce", {distance: 10}, 1000);
+    }
   } else {
     slider.update({disable: true});
   }
@@ -463,7 +470,7 @@ function actionRegistration(language) {
   } else if(language == "xml") { /*                                       xml */
     actionRegistration_prettifier =
       editor.addAction(prettifier("html", bookmark));
-  } else if(language === "plaintext") { /*                          plaintext */
+  } else if(language === "plaintext" || language === undefined) {/* plaintext */
     actionRegistration_wordWrapper =
       editor.addAction(wordWrapper(bookmark2));
   }

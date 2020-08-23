@@ -121,6 +121,7 @@ shinyUI(fluidPage(
       ),
       tags$label("Or open a new tab"),
       actionButton("newTab", "New tab", class = "btn-block"),
+      tags$hr(),
       selectizeInput(
         "language",
         label = "Language",
@@ -131,22 +132,25 @@ shinyUI(fluidPage(
           onInitialize = I("function() { selectize = this; }")
         )
       ),
-      tinyCheckbox(
-        "bookmark",
-        "Bookmark before prettifying/minifying"
-      ),
+      tags$hr(),
       sliderInput(
         "wrapWidth",
         label = "Word wrap - width",
         min = 10, max = 120, value = 80, step = 1,
         ticks = FALSE
       ),
+      tags$hr(),
+      tags$label("Bookmark"),
+      tinyCheckbox(
+        "bookmark",
+        "before prettifying/minifying"
+      ),
       tags$div(
-        style = "margin-top: -20px;"
+        style = "margin-top: -18px;"
       ),
       tinyCheckbox(
         "bookmark2",
-        "bookmark before wrapping"
+        "before wrapping"
       )
     ),
     mainPanel(
