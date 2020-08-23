@@ -2,7 +2,6 @@ library(styler)
 library(formatR)
 library(uchardet)
 
-
 shinyServer(function(input, output, session){
 
   uploaded <- reactiveVal(FALSE)
@@ -11,6 +10,7 @@ shinyServer(function(input, output, session){
     uploaded()
   })
   outputOptions(output, "uploaded", suspendWhenHidden = FALSE)
+
 
   observeEvent(input[["file"]], {
 

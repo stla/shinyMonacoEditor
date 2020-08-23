@@ -1,5 +1,5 @@
 library(shinythemes)
-
+library(shinyjqui)
 
 languages <- c(
   "abap",
@@ -128,7 +128,7 @@ shinyUI(fluidPage(
         selected = "javascript",
         options = list(
           placeholder = "Select language...",
-          onInitialize = I('function() { selectize = this; }')
+          onInitialize = I("function() { selectize = this; }")
         )
       ),
       tinyCheckbox(
@@ -142,7 +142,7 @@ shinyUI(fluidPage(
         ticks = FALSE
       ),
       tags$div(
-        style = "margin-top: -10px;"
+        style = "margin-top: -20px;"
       ),
       tinyCheckbox(
         "bookmark2",
@@ -166,14 +166,18 @@ shinyUI(fluidPage(
           ),
           tags$div(
             class = "mock-browser-content",
-            tags$div(
-              id = "container",
-              style = "width: 100%; height: 500px; border: 1px solid grey; background-color: black; display: none;",
-              div(id = "radials",
-                  div(class = "radialred"),
-                  div(class = "radialgreen"),
-                  div(class = "radialblue")
-              )
+            jqui_resizable(
+              tags$div(
+                id = "container",
+                style = "width: 100%; height: 500px; border: 1px solid grey; background-color: black; display: none;",
+                div(id = "radials",
+                    style = "display: none;",
+                    div(class = "radialred"),
+                    div(class = "radialgreen"),
+                    div(class = "radialblue")
+                )
+              ),
+              options = list(handles = "s")
             )
           )
         )

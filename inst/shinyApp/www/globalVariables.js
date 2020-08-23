@@ -6,5 +6,6 @@ var counter = 0,
   modelStates = {},
   selectize,
   slider,
+  editorIsDisposed = false,
   clangFormat = false,
   cppCheck = false;

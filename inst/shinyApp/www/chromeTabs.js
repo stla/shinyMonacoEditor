@@ -11,10 +11,13 @@ el.addEventListener("activeTabChange", function(e) {
   var language = $(e.detail.tabEl).data("tab-language");
   if(editor) {
     var interval = setInterval(function() {
-      if(editor.getModel()) {
+      if(editor.getModel() || editorIsDisposed) {
         clearInterval(interval);
-        var previousModelId = editor.getModel().id;
-        modelStates[previousModelId] = editor.saveViewState();
+        editorIsDisposed = false;
+        if(editor.getModel()){
+          var previousModelId = editor.getModel().id;
+          modelStates[previousModelId] = editor.saveViewState();
+        }
         editor.setModel(modelInstances[index]);
         var newModel = editor.getModel();
         var newModelId = newModel.id;
@@ -26,7 +29,7 @@ el.addEventListener("activeTabChange", function(e) {
         actionRegistration(language);
         selectize.setValue(language, true);
       }
-    }, 100);
+    }, 50);
 /*    setTimeout(function() {
       editor.setModel(modelInstances[index]);
       var language = editor.getModel().getLanguageIdentifier().language;
@@ -38,7 +41,9 @@ el.addEventListener("activeTabChange", function(e) {
 
 el.addEventListener("tabRemove", function(e) {
   if(chromeTabs.tabEls.length === 0) {
-    editor.dispose();
+    editor.getModel().dispose();
+    editorIsDisposed = true;
+    $("#radials").show();
   }
 });
 
@@ -50,6 +55,7 @@ chromeTabs.addTab({
 });
 
 function addChromeTab(titleIconLanguage){
+  $("#radials").hide();
   counter++;
   chromeTabs.addTab({
     title: titleIconLanguage.title,

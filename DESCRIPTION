@@ -10,5 +10,5 @@ License: What license is it under?
 Encoding: UTF-8
 LazyData: true
 Imports: shiny
-Suggests: shinythemes, tools, styler, formatR, uchardet
+Suggests: shinythemes, tools, styler, formatR, uchardet, shinyjqui
 RoxygenNote: 7.1.1

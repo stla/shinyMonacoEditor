@@ -5,6 +5,7 @@ $(document).ready(function() {
   }, 0);
 
   $("#newTab").on("click", function(){
+
     setModel({value: "", language: "plaintext"});
     counter_unnamed++;
     addChromeTab({
