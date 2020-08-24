@@ -113,7 +113,19 @@ shinyUI(fluidPage(
     tags$script(src = "bootstrap-flash-alert/bootstrap-flash-alert.js"),
     tags$link(rel = "stylesheet", href = "bootstrap-flash-alert/animate.css")
   ),
+
+  tags$div(
+    class = "background",
+    tags$div(
+      id = "stars",
+      tags$div(id = "stars1"),
+      tags$div(id = "stars2"),
+      tags$div(id = "stars3")
+    )
+  ),
+
   br(),
+
   sidebarLayout(
     sidebarPanel(
       tags$div(class = "vscode-logo", title = "VS Code"),
@@ -192,9 +204,10 @@ shinyUI(fluidPage(
                 id = "container",
                 style = "width: 100%; height: 500px; border: 1px solid grey; background-color: black; display: none;",
                 tags$div(
-                  id = "background",
-                  style = "display: none;",
-                  tags$div(class = "delight"),
+                  class = "background",
+                  tags$div(
+                    class = "delight"
+                  ),
                   tags$div(
                     id = "radials",
                     tags$div(class = "radialred"),
