@@ -623,7 +623,7 @@ input[type=checkbox][disabled].check-box-input ~ label {
   height: 3em;
   content: ".";
   mix-blend-mode: screen;
-  animation: 44s -27s move infinite ease-in-out alternate;
+  animation: 44s 0s move infinite ease-in-out alternate;
 }
 
 .delight::before {
@@ -669,7 +669,7 @@ input[type=checkbox][disabled].check-box-input ~ label {
     1.2088556563em 1.3023499225em 7px rgba(0, 2, 255, 0.9),
     1.1686366192em -0.397016271em 7px rgba(0, 12, 255, 0.9);
   animation-duration: 44s;
-  animation-delay: -27s;
+  animation-delay: 0s;
 }
 
 .delight::after {
@@ -715,7 +715,7 @@ input[type=checkbox][disabled].check-box-input ~ label {
     1.1120837952em 2.3683024473em 7px rgba(124, 0, 255, 0.9),
     0.2110097047em 0.5044196958em 7px rgba(41, 0, 255, 0.9);
   animation-duration: 43s;
-  animation-delay: -32s;
+  animation-delay: -5s;
 }
 
 @keyframes move {

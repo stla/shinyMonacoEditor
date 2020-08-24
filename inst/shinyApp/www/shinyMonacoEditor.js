@@ -16,7 +16,7 @@ editor = monaco.editor.create(document.getElementById("container"), {
 	automaticLayout: true
 });
 
-var interval = setInterval(function(){
+var interval = setInterval(function() {
   if(slider) {
     clearInterval(interval);
     setModel({
