@@ -246,7 +246,7 @@
   left: 0;
   width: 100%;
   background: #fff;
-  z-index: 10;
+  /*z-index: 10;*/
 }
 .chrome-tabs-optional-shadow-below-bottom-bar {
   position: relative;

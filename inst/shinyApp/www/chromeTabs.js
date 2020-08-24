@@ -43,7 +43,9 @@ el.addEventListener("tabRemove", function(e) {
   if(chromeTabs.tabEls.length === 0) {
     editor.getModel().dispose();
     editorIsDisposed = true;
-    $("#radials").show();
+    $("#background").show();
+    $("#options").hide();
+    $(".well").css("background-color", "transparent");
   }
 });
 
@@ -55,7 +57,9 @@ chromeTabs.addTab({
 });
 
 function addChromeTab(titleIconLanguage){
-  $("#radials").hide();
+  $("#background").hide();
+  $("#options").show();
+  $(".well").css("background-color", bg_well);
   counter++;
   chromeTabs.addTab({
     title: titleIconLanguage.title,

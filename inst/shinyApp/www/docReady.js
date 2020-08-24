@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+  bg_well = $(".well").css("background-color");
+
   $("[data-toggle=tooltip]").tooltip();
 
   setTimeout(function() {
@@ -20,7 +22,7 @@ $(document).ready(function() {
     }, 0);
   });
 
-  $("#radials").on("mouseenter", function(){
+  $(".radialred,.radialgreen,.radialblue").on("mouseenter", function(){
     $(".radialred,.radialgreen,.radialblue")
       .animate({width:"250px",height:"250px",margin:"-125px 0 0 -125px"}, "slow");
   }).on("mouseleave", function(){

@@ -67,8 +67,10 @@ function actionRegistration(language) {
       language === undefined)
   {
     if(slider.options.disable) {
-      slider.update({disable: false});
-      $("#wrapWidth").parent().effect("bounce", {distance: 10}, 1000);
+      setTimeout(function() {
+        slider.update({disable: false});
+        $("#wrapWidth").parent().effect("bounce", {distance: 10}, 1000);
+      }, 0);
     }
   } else {
     slider.update({disable: true});

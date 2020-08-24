@@ -123,48 +123,51 @@ shinyUI(fluidPage(
       ),
       tags$label("Or open a new tab"),
       actionButton("newTab", "New tab", class = "btn-block"),
-      tags$hr(),
-      selectizeInput(
-        "language",
-        label = "Language",
-        choices = languages,
-        selected = "javascript",
-        options = list(
-          placeholder = "Select language...",
-          onInitialize = I("function() { selectize = this; }")
-        )
-      ),
-      tags$hr(),
-      sliderInput(
-        "wrapWidth",
-        label = "Word wrap - width",
-        min = 10, max = 120, value = 80, step = 1,
-        ticks = FALSE
-      ),
-      tags$hr(),
-      tags$label(
-        "Bookmark",
-        `data-toggle` = "tooltip",
-        `data-placement` = "top",
-        title = paste0(
-          "You can bookmark a tab with the context menu or by pressing ",
-          "'Ctrl+b', and restore it with the context menu or by pressing ",
-          "'Ctrl+r'. The title of a non-bookmarked tab appears in italic. ",
-          "A new tab is automatically bookmarked."
-        )
-      ),
       tags$div(
-        tinyCheckbox(
-          "bookmark",
-          "before prettifying/minifying"
+        id = "options",
+        tags$hr(),
+        selectizeInput(
+          "language",
+          label = "Language",
+          choices = languages,
+          selected = "javascript",
+          options = list(
+            placeholder = "Select language...",
+            onInitialize = I("function() { selectize = this; }")
+          )
+        ),
+        tags$hr(),
+        sliderInput(
+          "wrapWidth",
+          label = "Word wrap - width",
+          min = 10, max = 120, value = 80, step = 1,
+          ticks = FALSE
+        ),
+        tags$hr(),
+        tags$label(
+          "Bookmark",
+          `data-toggle` = "tooltip",
+          `data-placement` = "top",
+          title = paste0(
+            "You can bookmark a tab with the context menu or by pressing ",
+            "'Ctrl+b', and restore it with the context menu or by pressing ",
+            "'Ctrl+r'. The title of a non-bookmarked tab appears in italic. ",
+            "A new tab is automatically bookmarked."
+          )
         ),
         tags$div(
-          style = "margin-top: -18px;"
+          tinyCheckbox(
+            "bookmark",
+            "before prettifying/minifying"
+          ),
+          tags$div(
+            style = "margin-top: -18px;"
+          )
+        ),
+        tinyCheckbox(
+          "bookmark2",
+          "before wrapping"
         )
-      ),
-      tinyCheckbox(
-        "bookmark2",
-        "before wrapping"
       )
     ),
     mainPanel(
@@ -188,11 +191,16 @@ shinyUI(fluidPage(
               tags$div(
                 id = "container",
                 style = "width: 100%; height: 500px; border: 1px solid grey; background-color: black; display: none;",
-                div(id = "radials",
-                    style = "display: none;",
-                    div(class = "radialred"),
-                    div(class = "radialgreen"),
-                    div(class = "radialblue")
+                tags$div(
+                  id = "background",
+                  style = "display: none;",
+                  tags$div(class = "delight"),
+                  tags$div(
+                    id = "radials",
+                    tags$div(class = "radialred"),
+                    tags$div(class = "radialgreen"),
+                    tags$div(class = "radialblue")
+                  )
                 )
               ),
               options = list(handles = "s")
