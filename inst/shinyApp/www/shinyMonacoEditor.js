@@ -28,7 +28,7 @@ var interval = setInterval(function(){
 	    language: "javascript"
     });
     editor.setModel(modelInstances[0]);
-    $("#container").show();
+    $("#container").show("fade", 1000);
   }
 }, 50);
 

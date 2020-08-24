@@ -44,7 +44,7 @@ el.addEventListener("tabRemove", function(e) {
     editor.getModel().dispose();
     editorIsDisposed = true;
     $(".background").show();
-    $("#options").hide();
+    $("#options").hide("fade", 1000);
     $(".well").css("background-color", "transparent");
   }
 });
@@ -58,7 +58,7 @@ chromeTabs.addTab({
 
 function addChromeTab(titleIconLanguage){
   $(".background").hide();
-  $("#options").show();
+  $("#options").show("fade", 1000);
   $(".well").css("background-color", bg_well);
   counter++;
   chromeTabs.addTab({
