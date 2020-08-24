@@ -1,12 +1,65 @@
 Package: shinyMonacoEditor
 Type: Package
-Title: What the Package Does (Title Case)
+Title: The Monaco Editor in 'Shiny'
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Authors@R: c(
+    person(given = "Stéphane",
+           family = "Laurent",
+           role = c("aut", "cre"),
+           email = "laurent_step@outlook.fr"),
+    person(given = "Microsoft Corporation",
+           role = c("ctb", "cph"),
+           comment = "Monaco Editor"),
+    person(given = "James Long and contributors",
+           role = c("ctb", "cph"),
+           comment = "Prettier"),
+    person(given = "Leandro",
+           family = "Vital",
+           role = c("ctb", "cph"),
+           comment = "Bootstrap Flash Alert"),
+    person(given = "Daniel",
+           family = "Eden",
+           role = c("ctb", "cph"),
+           comment = "animate.css"),
+    person(given = "Adam",
+           family = "Schwartz",
+           role = c("ctb", "cph"),
+           comment = "chrome-tabs"),
+    person(given = "David",
+           family = "DeSandro",
+           role = c("ctb", "cph"),
+           comment = "Draggabilly"),
+    person(given = "JakubPawlowicz.com",
+           role = c("ctb", "cph"),
+           comment = "clean-css"),
+    person(given = "xxx",
+           family = "xxx",
+           role = c("ctb", "cph"),
+           comment = "terser"),
+    person(given = 'Juriy "kangax" Zaytsev',
+           role = c("ctb", "cph"),
+           comment = "HTMLMinifier"),
+    person(given = "Rodney",
+           family = "Rehm",
+           role = c("ctb", "cph"),
+           comment = "Sass.js"),
+    person(given = "Rich",
+           family = "Harris",
+           role = c("ctb", "cph"),
+           comment = "svg-parser"),
+    person(given = "John",
+           family = "Schlinkert",
+           role = c("ctb", "cph"),
+           comment = "word-wrap"),
+    person(given = "Terence",
+           family = "Eden",
+           role = c("ctb", "cph"),
+           comment = "SuperTinyIcons")
+    )
+Description: A Shiny app including the Monaco editor. The Monaco editor is the code editor which powers VS Code. Additional features include prettifiers and minifiers for multiple languages, SCSS and TypeScript compilers, code checking for C and C++ (requires 'cppcheck').
+URL: https://github.com/stla/shinyMonacoEditor
+BugReports: https://github.com/stla/shinyMonacoEditor/issues
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports: shiny
