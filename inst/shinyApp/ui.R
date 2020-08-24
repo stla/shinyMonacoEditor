@@ -99,6 +99,7 @@ shinyUI(fluidPage(
     tags$script(src = "prettier/parser-markdown.js"),
     tags$script(src = "prettier/parser-postcss.js"),
     tags$script(src = "prettier/parser-typescript.js"),
+    tags$script(src = "prettier/parser-yaml.js"),
     tags$script(src = "customMessageHandlers.js"),
     tags$link(rel = "stylesheet", href = "shinyMonacoEditor.css"),
     tags$link(

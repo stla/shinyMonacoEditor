@@ -8,12 +8,13 @@ The VS code editor in a Shiny app.
 
 - **C, C++**: prettifer (requires `clang-format`), code checking (requires `cppcheck`)
 - **CSS**: prettifier, minifier
-- **Java**: prettifer (requires `clang-format`)
+- **Java**: prettifier (requires `clang-format`)
 - **JavaScript**: prettifier, minifier
 - **JSX**: prettifier
 - **R**: prettifier
 - **SCSS**: prettifier, compiler
 - **SVG**: prettifier, code checking, viewer
+- **TypeScript**: prettifier, compiler
 - **XML**: prettifier
 
 

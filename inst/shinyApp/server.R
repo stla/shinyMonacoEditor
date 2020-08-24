@@ -62,7 +62,8 @@ shinyServer(function(input, output, session){
       svg = "svg",
       ts = "typescript",
       xml = "xml",
-      yaml = "yaml"
+      yaml = "yaml",
+      yml = "yaml"
     )
     if(is.null(language)) language <- "plaintext"
 
@@ -87,7 +88,8 @@ shinyServer(function(input, output, session){
         rust = "SuperTinyIcons/rust.svg",
         scss = "SuperTinyIcons/sass.svg",
         svg = "SuperTinyIcons/svg.svg",
-        typescript = "freeicons/typescript.svg"
+        typescript = "freeicons/typescript.svg",
+        yaml = "yaml.svg"
       )
     }
     if(is.null(favicon)) favicon <- FALSE

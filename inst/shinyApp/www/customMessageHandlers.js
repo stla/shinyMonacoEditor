@@ -564,6 +564,9 @@ function actionRegistration(language) {
         return null;
       }
     });
+  } else if(language === "yaml") { /*                                    yaml */
+    actionRegistration_prettifier =
+      editor.addAction(prettifier("yaml", bookmark));
   }
 }
 
