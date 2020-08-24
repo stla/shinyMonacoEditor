@@ -60,6 +60,7 @@ shinyServer(function(input, output, session){
       scss = "scss",
       sql = "sql",
       svg = "svg",
+      ts = "typescript",
       xml = "xml",
       yaml = "yaml"
     )
@@ -85,7 +86,8 @@ shinyServer(function(input, output, session){
         ruby = "SuperTinyIcons/ruby.svg",
         rust = "SuperTinyIcons/rust.svg",
         scss = "SuperTinyIcons/sass.svg",
-        svg = "SuperTinyIcons/svg.svg"
+        svg = "SuperTinyIcons/svg.svg",
+        typescript = "freeicons/typescript.svg"
       )
     }
     if(is.null(favicon)) favicon <- FALSE

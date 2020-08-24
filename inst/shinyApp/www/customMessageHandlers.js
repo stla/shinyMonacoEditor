@@ -473,6 +473,9 @@ function actionRegistration(language) {
   } else if(language === "plaintext" || language === undefined) {/* plaintext */
     actionRegistration_wordWrapper =
       editor.addAction(wordWrapper(bookmark2));
+  } else if(language === "typescript") { /*                        typescript */
+    actionRegistration_prettifier =
+      editor.addAction(prettifier("typescript", bookmark));
   }
 }
 
