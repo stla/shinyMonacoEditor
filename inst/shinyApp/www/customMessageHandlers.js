@@ -8,7 +8,8 @@ var actionRegistration_minifier = null,
   actionRegistration_svgChecker = null,
   actionRegistration_svgParser = null,
   actionRegistration_svgViewer = null,
-  actionRegistration_wordWrapper = null;
+  actionRegistration_wordWrapper = null,
+  actionRegistration_typescript = null;
 
 function prettifier(parser, bookmark) {
   return {
@@ -104,6 +105,9 @@ function actionRegistration(language) {
   }
   if(actionRegistration_wordWrapper !== null) {
     actionRegistration_wordWrapper.dispose();
+  }
+  if(actionRegistration_typescript !== null) {
+    actionRegistration_typescript.dispose();
   }
   var bookmark = $("#bookmark").prop("checked");
   var bookmark2 = $("#bookmark2").prop("checked");
@@ -467,7 +471,7 @@ function actionRegistration(language) {
     });
     actionRegistration_prettifier =
       editor.addAction(prettifier("html", bookmark));
-  } else if(language == "xml") { /*                                       xml */
+  } else if(language === "xml") { /*                                       xml */
     actionRegistration_prettifier =
       editor.addAction(prettifier("html", bookmark));
   } else if(language === "plaintext" || language === undefined) {/* plaintext */
@@ -476,6 +480,90 @@ function actionRegistration(language) {
   } else if(language === "typescript") { /*                        typescript */
     actionRegistration_prettifier =
       editor.addAction(prettifier("typescript", bookmark));
+    actionRegistration_typescript = editor.addAction({
+      id: "typescript",
+      label: "Compile to JavaScript",
+      precondition: null,
+      keybindingContext: null,
+      contextMenuGroupId: "navigation",
+      contextMenuOrder: 1.5,
+      run: function(ed) {
+				$.getScript("https://unpkg.com/typescript@latest/lib/typescriptServices.js")
+					.done(function(script, textStatus) {
+						if(textStatus === "success") {
+							var tsCode = ed.getValue();
+							try {
+								var jsCode = window.ts.transpile(tsCode);
+								setModel({value: jsCode, language: "javascript"});
+								var fileName = $(chromeTabs.activeTabEl)
+									.find(".chrome-tab-title")
+									.html();
+								var fileSansExt = fileName.split(".").slice(0, -1).join(".");
+								var title = (fileSansExt === "" ? fileName : fileSansExt) + ".js";
+								addChromeTab({
+									title: title,
+									icon: "SuperTinyIcons/javascript.svg",
+									language: "javascript"
+								});
+							} catch(err) {
+								var error =
+								  err.message.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+									  return "&#" + i.charCodeAt(0) + ";";
+								  });
+								flashFunction({
+									message:
+										"<pre style='font-weight: bold; color: red;'>" + error + "</pre>",
+									title: "An error occured!",
+									type: "danger",
+									icon: "glyphicon glyphicon-ban-circle",
+									withTime: false,
+									autoClose: false,
+									closeTime: 6000,
+									animation: true,
+									animShow: "rotateInDownLeft",
+									animHide: "bounceOutRight",
+									position: ["bottom-left", [0, 0.01]],
+									speed: "slow"
+								});
+							}
+						} else {
+              console.log("textStatus", textStatus);
+  						flashFunction({
+	  						message: "textStatus: " + textStatus,
+		  					title: "A problem occured!",
+			  				type: "danger",
+				  			icon: "glyphicon glyphicon-ban-circle",
+					  		withTime: true,
+						  	autoClose: true,
+							  closeTime: 7000,
+							  animation: true,
+							  animShow: "rotateInDownLeft",
+							  animHide: "bounceOutRight",
+							  position: ["bottom-left", [0, 0.01]],
+							  speed: "slow"
+						  });
+						}
+					})
+					.fail(function(jqxhr, settings, exception) {
+						console.log("exception", exception);
+						flashFunction({
+							message: "Do you have an Internet connection?",
+							title: "Failed to load <span style='font-family: monospace;'>typescriptServices.js</span>!",
+							type: "danger",
+							icon: "glyphicon glyphicon-ban-circle",
+							withTime: true,
+							autoClose: true,
+							closeTime: 7000,
+							animation: true,
+							animShow: "rotateInDownLeft",
+							animHide: "bounceOutRight",
+							position: ["bottom-left", [0, 0.01]],
+							speed: "slow"
+						});
+					});
+        return null;
+      }
+    });
   }
 }
 
