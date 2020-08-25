@@ -3,6 +3,7 @@ library(shinyjqui)
 
 languages <- c(
   "abap",
+  "ada",
   "aes",
   "apex",
   "azcli",
@@ -10,21 +11,30 @@ languages <- c(
   "c",
   "cameligo",
   "clojure",
+  "cobol",
   "coffeescript",
   "cpp",
   "csharp",
   "csp",
   "css",
+  "d",
+  "dart",
   "dockerfile",
+  "elixir",
+  "erlang",
+  "fortran",
   "fsharp",
   "go",
   "graphql",
+  "groovy",
   "handlebars",
+  "haskell",
   "html",
   "ini",
   "java",
   "javascript",
   "json",
+  "julia",
   "kotlin",
   "less",
   "lua",
@@ -33,6 +43,7 @@ languages <- c(
   "msdax",
   "mysql",
   "objective-c",
+  "ocaml",
   "pascal",
   "pascaligo",
   "perl",
@@ -45,6 +56,7 @@ languages <- c(
   "pug",
   "python",
   "r",
+  "racket",
   "razor",
   "redis",
   "redshift",
@@ -52,6 +64,8 @@ languages <- c(
   "ruby",
   "rust",
   "sb",
+  "sbcl",
+  "scala",
   "scheme",
   "scss",
   "shell",
@@ -234,9 +248,54 @@ shinyUI(fluidPage(
     src = "chromeTabs.js"
   ),
 
+  tags$script(
+    src = "monaco-ace-tokenizer/monaco-tokenizer.js"
+  ),
+  tags$script(
+    src = "monaco-ace-tokenizer/definitions/ada.js"
+  ),
+  tags$script(
+    src = "monaco-ace-tokenizer/definitions/cobol.js"
+  ),
+  tags$script(
+    src = "monaco-ace-tokenizer/definitions/d.js"
+  ),
+  tags$script(
+    src = "monaco-ace-tokenizer/definitions/dart.js"
+  ),
+  tags$script(
+    src = "monaco-ace-tokenizer/definitions/elixir.js"
+  ),
+  tags$script(
+    src = "monaco-ace-tokenizer/definitions/erlang.js"
+  ),
+  tags$script(
+    src = "monaco-ace-tokenizer/definitions/fortran.js"
+  ),
+  tags$script(
+    src = "monaco-ace-tokenizer/definitions/groovy.js"
+  ),
+  tags$script(
+    src = "monaco-ace-tokenizer/definitions/haskell.js"
+  ),
+  tags$script(
+    src = "monaco-ace-tokenizer/definitions/julia.js"
+  ),
+  tags$script(
+    src = "monaco-ace-tokenizer/definitions/ocaml.js"
+  ),
+  tags$script(
+    src = "monaco-ace-tokenizer/definitions/racket.js"
+  ),
+  tags$script(
+    src = "monaco-ace-tokenizer/definitions/sbcl.js"
+  ),
+  tags$script(
+    src = "monaco-ace-tokenizer/definitions/scala.js"
+  ),
 
   tags$script(
-    HTML("var require = { paths: { 'vs': 'monaco/vs' } };")
+    HTML("var require = { paths: { 'vs': 'monaco/vs', 'tokenizer': 'monaco-ace-tokenizer' } };")
   ),
   tags$script(
     src="monaco/vs/loader.js"
@@ -247,6 +306,7 @@ shinyUI(fluidPage(
   tags$script(
     src="monaco/vs/editor/editor.main.js"
   ),
+
   tags$script(src = "shinyMonacoEditor.js")
 
 ))

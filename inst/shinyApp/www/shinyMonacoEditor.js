@@ -1,3 +1,17 @@
+require(["tokenizer/monaco-tokenizer"], function(MonacoAceTokenizer) {
+  MonacoAceTokenizer.AVAILABLE_LANGUAGES.forEach((lang) => {
+    require(["tokenizer/definitions/" + lang], function(LangDefinition) {
+      monaco.languages.register({
+        id: lang,
+      });
+      MonacoAceTokenizer.registerRulesForLanguage(
+        lang,
+        new LangDefinition.default()
+      );
+    });
+  });
+});
+
 monaco.editor.defineTheme("myTheme", {
   base: "hc-black",
   inherit: true,
