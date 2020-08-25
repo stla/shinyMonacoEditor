@@ -9,12 +9,16 @@ var actionRegistration_minifier = null,
   actionRegistration_svgParser = null,
   actionRegistration_svgViewer = null,
   actionRegistration_wordWrapper = null,
-  actionRegistration_typescript = null;
+  actionRegistration_typescript = null,
+  actionRegistration_formatCodeApi = null;
 
-function prettifier(parser, bookmark) {
+function prettifier(parser, bookmark, label) {
+  if(typeof label === "undefined") {
+    label = "Prettify";
+  }
   return {
     id: "prettifier",
-    label: "Prettify",
+    label: label,
     precondition: null,
     keybindingContext: null,
     contextMenuGroupId: "navigation",
@@ -60,8 +64,89 @@ function wordWrapper(bookmark) {
   };
 }
 
+function formatCodeApi(language, bookmark, label) {
+  if(typeof label === "undefined") {
+    label = "Prettify";
+  }
+  var url;
+  switch(language) {
+    case "apex":
+      url = "http://aozozo.com:600/apex";
+      break;
+    case "csharp":
+      url = "http://aozozo.com:600/csharp";
+      break;
+    case "graphql":
+      url = "http://aozozo.com:600/graphql";
+      break;
+    case "html":
+      url = "http://aozozo.com:600/html";
+      break;
+    case "java":
+      url = "http://aozozo.com:600/java";
+      break;
+    case "php":
+      url = "http://aozozo.com:600/php";
+      break;
+    case "python":
+      url = "http://www.zafuswitchout.com:3001/python";
+      break;
+    case "ruby":
+      url = "http://www.zafuswitchout.com:3001/ruby";
+      break;
+    case "swift":
+      url = "http://www.zafuswitchout.com:3001/swift";
+      break;
+  }
+  return {
+    id: "formatCodeApi",
+    label: label,
+    precondition: null,
+    keybindingContext: null,
+    contextMenuGroupId: "navigation",
+    contextMenuOrder: 1.5,
+    run: function(ed) {
+      if(bookmark) {
+        var modelId = ed.getModel().id;
+        modelValues[modelId] = ed.getValue();
+        $(chromeTabs.activeTabEl)
+          .find(".chrome-tab-title")
+            .css("font-style", "normal");
+      }
+      $.post({
+        url: url,
+//        timeout: 0,
+        contentType: "text/plain; charset=UTF-8",
+        data: ed.getValue(),
+        success: function(data) {
+          var formattedCode = decodeURIComponent(data);
+          ed.setValue(formattedCode);
+        },
+        error: function(e) {
+          console.log(e);
+					flashFunction({
+						message: "The POST request has failed (status " + e.status + ")",
+						title: "An error occured!",
+						type: "danger",
+						icon: "glyphicon glyphicon-ban-circle",
+						withTime: true,
+						autoClose: true,
+						closeTime: 7000,
+						animation: true,
+						animShow: "rotateInDownLeft",
+						animHide: "bounceOutRight",
+						position: ["bottom-left", [0, 0.01]],
+						speed: "slow"
+					});
+        }
+      });
+      return null;
+    }
+  };
+}
+
+
 function actionRegistration(language) {
-  console.log("language", language);
   if(language === "plaintext" ||
       language === "markdown" ||
       language === undefined)
@@ -111,6 +196,18 @@ function actionRegistration(language) {
   if(actionRegistration_typescript !== null) {
     actionRegistration_typescript.dispose();
   }
+  if(actionRegistration_formatCodeApi !== null) {
+    actionRegistration_formatCodeApi.dispose();
+  }
+  var languages_formatCodeApi = [
+    "apex",
+    "csharp",
+    "graphql",
+    "php",
+    "python",
+    "ruby",
+    "swift"
+  ];
   var bookmark = $("#bookmark").prop("checked");
   var bookmark2 = $("#bookmark2").prop("checked");
   if(language === "javascript") { /*                               javascript */
@@ -229,7 +326,7 @@ function actionRegistration(language) {
   } else if(["c","cpp","java"].indexOf(language) > -1) { /*      c, cpp, java */
     actionRegistration_clangFormat = editor.addAction({
       id: "clangFormatter",
-      label: "Prettify",
+      label: language === "java" ? "Prettify (clang-format)" : "Prettify",
       precondition: null,
       keybindingContext: null,
       contextMenuGroupId: "navigation",
@@ -302,6 +399,11 @@ function actionRegistration(language) {
           return null;
         }
       });
+    } else { /* java */
+      actionRegistration_formatCodeApi =
+        editor.addAction(
+          formatCodeApi("java", bookmark, "Prettify (formatCodeApi)")
+        );
     }
   } else if(language === "r") { /*                                          r */
     actionRegistration_styler = editor.addAction({
@@ -569,6 +671,9 @@ function actionRegistration(language) {
   } else if(language === "yaml") { /*                                    yaml */
     actionRegistration_prettifier =
       editor.addAction(prettifier("yaml", bookmark));
+  } else if(languages_formatCodeApi.indexOf(language) > -1) {/* formatCodeApi */
+    actionRegistration_formatCodeApi =
+      editor.addAction(formatCodeApi(language, bookmark));
   }
 }
 
