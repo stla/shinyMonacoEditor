@@ -43,6 +43,7 @@ var interval = setInterval(function() {
     });
     editor.setModel(modelInstances[0]);
     $("#container").show("fade", 1000);
+    $(".well").show("fade", 2000);
   }
 }, 50);
 
@@ -107,6 +108,3 @@ editor.addAction({
     return null;
   }
 });
-
-
-

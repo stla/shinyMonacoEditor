@@ -1,3 +1,7 @@
+.well {
+  display: none;
+}
+
 .vscode-logo {
   text-decoration: none;
   border: 0;
