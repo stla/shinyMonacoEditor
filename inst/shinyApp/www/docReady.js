@@ -1,32 +1,34 @@
 $(document).ready(function() {
 
+  $("#container").height(0.8 * window.innerHeight);
+
   bg_well = $(".well").css("background-color");
 
+  var d = 1000;
   $("#hide-sidebar").on("click", function() {
-    $(".chrome-tabs").animate({opacity: 0}, 1000, function() {
-      $("#container").hide("fade", {duration: 1000}, function() {
-        $("#sidebar").parent().hide("fold", {duration: 1000}, function() {
+    $(".chrome-tabs").animate({opacity: 0}, d, function() {
+      $("#container").hide("fade", {duration: d}, function() {
+        $("#sidebar").parent().hide("fold", {duration: d}, function() {
           $("#mainPanel").toggleClass("col-sm-8 col-sm-12");
-          $("#right").toggleClass("col-sm-11 col-sm-12");
-          $("#show-sidebar").parent().show("fade", {duration: 1000}, function() {
-            $("#container").show("fade", {duration: 1000}, function() {
-              $(".chrome-tabs").animate({opacity: 1}, 1000);
+          $("#main").toggleClass("col-sm-11 col-sm-12");
+          $("#show-sidebar-container").show("fade", {duration: d}, function() {
+            $("#container").show("fade", {duration: d}, function() {
+              $(".chrome-tabs").animate({opacity: 1}, d);
             });
           });
         });
       });
     });
   });
-
   $("#show-sidebar").on("click", function() {
-    $(".chrome-tabs").animate({opacity: 0}, 1000, function() {
-      $("#container").hide("fade", {duration: 1000}, function() {
-        $("#show-sidebar").parent().hide("fade", {duration: 1000}, function() {
+    $(".chrome-tabs").animate({opacity: 0}, d, function() {
+      $("#container").hide("fade", {duration: d}, function() {
+        $("#show-sidebar-container").hide("fade", {duration: d}, function() {
           $("#mainPanel").toggleClass("col-sm-8 col-sm-12");
-          $("#right").toggleClass("col-sm-11 col-sm-12");
-          $("#sidebar").parent().show("fold", {duration: 1000}, function() {
-            $("#container").show("fade", {duration: 1000}, function() {
-              $(".chrome-tabs").animate({opacity: 1}, 1000);
+          $("#main").toggleClass("col-sm-11 col-sm-12");
+          $("#sidebar").parent().show("fold", {duration: d}, function() {
+            $("#container").show("fade", {duration: d}, function() {
+              $(".chrome-tabs").animate({opacity: 1}, d);
             });
           });
         });

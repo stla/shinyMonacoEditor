@@ -16,6 +16,20 @@
   z-index: 100000000;
 }
 
+#show-sidebar-container {
+  display: none;
+  transform: rotateZ(-90deg);
+  transform-origin: bottom right;
+}
+
+#container {
+  width: 100%;
+/*  height: 500px; */
+  border: 1px solid grey;
+  background-color: black;
+  display: none;
+}
+
 .col-sm-4 {
   z-index: 10;
 }

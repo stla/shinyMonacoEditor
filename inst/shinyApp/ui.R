@@ -95,7 +95,7 @@ tinyCheckbox <- function(id, label){
   )
 }
 
-leftRight <- function(left, right){
+App <- function(main){
   # flowLayout(left, right, cellArgs = list(style = "width: auto;"))
   # tags$table(
   #   style = "table-layout: fixed;",
@@ -115,15 +115,19 @@ leftRight <- function(left, right){
         ),
         column(
           width = 6,
-          style = "display: none; transform: rotateZ(-90deg); transform-origin: bottom right;",
-          left
+          id = "show-sidebar-container",
+          actionButton(
+            "show-sidebar", "Show sidebar",
+            class = "btn-sm",
+            style = "float: right;"
+          )
         )
       )
     ),
     column(
       width = 12,
-      id = "right",
-      right
+      id = "main",
+      main
     )
   )
   # tags$div(
@@ -167,8 +171,8 @@ shinyUI(fluidPage(
     tags$link(rel = "stylesheet", href = "shinyMonacoEditor.css"),
     tags$link(rel = "stylesheet", href = "iconsClasses.css"),
     tags$link(
-      rel="stylesheet", `data-name`="vs/editor/editor.main",
-      href="monaco/vs/editor/editor.main.css"
+      rel = "stylesheet", `data-name` = "vs/editor/editor.main",
+      href = "monaco/vs/editor/editor.main.css"
     ),
     tags$script(src = "terser/bundle.min.js"),
     tags$script(src = "html-minifier-terser/bundle.min.js"),
@@ -189,130 +193,115 @@ shinyUI(fluidPage(
   ),
 
   br(),
-  leftRight(
-    actionButton(
-      "show-sidebar", "Show sidebar",
-      class = "btn-sm",
-      style = "float: right;"
-    ),
-  #   fluidRow(
-  #   column(
-  #     width = 4,
-  #     tags$div(
-  #       style = "display: none;",
-  #       actionButton("toggle1", "Toggle sidebar", class = "btn-sm toggle-sidebar")
-  #     )
-  #   )
-  # ),
 
-  sidebarLayout(
-    sidebarPanel(
-      id = "sidebar",
-      tags$div(class = "vscode-logo", title = "VS Code"),
-      fileInput(
-        "file",
-        "Choose a file"
-      ),
-      tags$label("Or open a new tab"),
-      actionButton("newTab", "New tab", class = "btn-block"),
-      tags$span(class = "icon-coffeescript"),
-      tags$div(
-        id = "options",
-        tags$hr(),
-        selectizeInput(
-          "language",
-          label = "Language",
-          choices = languages,
-          selected = "javascript",
-          options = list(
-            placeholder = "Select language...",
-            onInitialize = I("function() { selectize = this; }"),
-            render = I("selectize_render")
-          )
+  App(
+    sidebarLayout(
+      sidebarPanel(
+        id = "sidebar",
+        tags$div(class = "vscode-logo", title = "VS Code"),
+        fileInput(
+          "file",
+          "Choose a file"
         ),
-        tags$hr(),
-        sliderInput(
-          "wrapWidth",
-          label = "Word wrap - width",
-          min = 10, max = 120, value = 80, step = 1,
-          ticks = FALSE
-        ),
-        tags$hr(),
-        tags$label(
-          "Bookmark",
-          `data-toggle` = "tooltip",
-          `data-placement` = "top",
-          title = paste0(
-            "You can bookmark a tab with the context menu or by pressing ",
-            "'Ctrl+b', and restore it with the context menu or by pressing ",
-            "'Ctrl+r'. The title of a non-bookmarked tab appears in italic. ",
-            "A new tab is automatically bookmarked."
-          )
-        ),
+        tags$label("Or open a new tab"),
+        actionButton("newTab", "New tab", class = "btn-block"),
+        tags$span(class = "icon-coffeescript"),
         tags$div(
-          tinyCheckbox(
-            "bookmark",
-            "before prettifying/minifying"
+          id = "options",
+          tags$hr(),
+          selectizeInput(
+            "language",
+            label = "Language",
+            choices = languages,
+            selected = "javascript",
+            options = list(
+              placeholder = "Select language...",
+              onInitialize = I("function() { selectize = this; }"),
+              render = I("selectize_render")
+            )
           ),
-          tags$div(
-            style = "margin-top: -18px;"
-          )
-        ),
-        tinyCheckbox(
-          "bookmark2",
-          "before wrapping"
-        ),
-        tags$div(
-          style = "margin-top: -18px;"
-        ),
-        tags$hr(),
-        actionButton(
-          "hide-sidebar", "Hide sidebar", class = "btn-sm btn-block")
-      )
-    ),
-    mainPanel(
-      id = "mainPanel",
-      tags$div(
-        class = "surface",
-        tags$div(
-          class = "mock-browser",
-          tags$div(
-            class = "chrome-tabs",
-            style = "--tab-content-margin: 9px",
-            tags$div(
-              class = "chrome-tabs-content"
-            ),
-            tags$div(
-              class = "chrome-tabs-bottom-bar"
+          tags$hr(),
+          sliderInput(
+            "wrapWidth",
+            label = "Word wrap - width",
+            min = 10, max = 120, value = 80, step = 1,
+            ticks = FALSE
+          ),
+          tags$hr(),
+          tags$label(
+            "Bookmark",
+            `data-toggle` = "tooltip",
+            `data-placement` = "top",
+            title = paste0(
+              "You can bookmark a tab with the context menu or by pressing ",
+              "'Ctrl+b', and restore it with the context menu or by pressing ",
+              "'Ctrl+r'. The title of a non-bookmarked tab appears in italic. ",
+              "A new tab is automatically bookmarked."
             )
           ),
           tags$div(
-            class = "mock-browser-content",
-            jqui_resizable(
+            tinyCheckbox(
+              "bookmark",
+              "before prettifying/minifying"
+            ),
+            tags$div(
+              style = "margin-top: -18px;"
+            )
+          ),
+          tinyCheckbox(
+            "bookmark2",
+            "before wrapping"
+          ),
+          tags$div(
+            style = "margin-top: -18px;"
+          ),
+          tags$hr(),
+          actionButton(
+            "hide-sidebar", "Hide sidebar", class = "btn-sm btn-block")
+        )
+      ),
+      mainPanel(
+        id = "mainPanel",
+        tags$div(
+          class = "surface",
+          tags$div(
+            class = "mock-browser",
+            tags$div(
+              class = "chrome-tabs",
+              style = "--tab-content-margin: 9px",
               tags$div(
-                id = "container",
-                style = "width: 100%; height: 500px; border: 1px solid grey; background-color: black; display: none;",
-                tags$div(
-                  class = "background",
-                  tags$div(
-                    class = "delight"
-                  ),
-                  tags$div(
-                    id = "radials",
-                    tags$div(class = "radialred"),
-                    tags$div(class = "radialgreen"),
-                    tags$div(class = "radialblue")
-                  )
-                )
+                class = "chrome-tabs-content"
               ),
-              options = list(handles = "s")
+              tags$div(
+                class = "chrome-tabs-bottom-bar"
+              )
+            ),
+            tags$div(
+              class = "mock-browser-content",
+              jqui_resizable(
+                tags$div(
+                  id = "container",
+                  tags$div(
+                    class = "background",
+                    tags$div(
+                      class = "delight"
+                    ),
+                    tags$div(
+                      id = "radials",
+                      tags$div(class = "radialred"),
+                      tags$div(class = "radialgreen"),
+                      tags$div(class = "radialblue")
+                    )
+                  )
+                ),
+                options = list(handles = "s")
+              )
             )
           )
         )
       )
     )
-  )
-),
+  ),
   tags$script(
     src = "chrome-tabs/draggabilly.pkgd.min.js"
   ),
