@@ -3,3 +3,4 @@
 ^inst/\.gitignore$
 ^inst/screenshots$
 ^inst/testFiles$
+^LICENSE\.note\.md$
