@@ -95,6 +95,55 @@ tinyCheckbox <- function(id, label){
   )
 }
 
+leftRight <- function(left, right){
+  # flowLayout(left, right, cellArgs = list(style = "width: auto;"))
+  # tags$table(
+  #   style = "table-layout: fixed;",
+  #   tags$tbody(
+  #     tags$tr(
+  #       tags$td(left),
+  #       tags$td(right)
+  #     )
+  #   )
+  # )
+  fluidRow(
+    column(
+      width = 1,
+      fluidRow(
+        column(
+          width = 6
+        ),
+        column(
+          width = 6,
+          style = "display: none; transform: rotateZ(-90deg); transform-origin: bottom right;",
+          left
+        )
+      )
+    ),
+    column(
+      width = 12,
+      id = "right",
+      right
+    )
+  )
+  # tags$div(
+  #   #class = "row",
+  #   style = "display: block;",
+  #   tags$div(
+  #     class = "",
+  #     style = "float: left;",
+  #     left,
+  #   ),
+  #   tags$div(
+  #     class = "",
+  #     style = "float: right;",
+  #     right
+  #   ),
+  #   tags$div(
+  #     style = "clear: both;"
+  #   )
+  # )
+}
 
 shinyUI(fluidPage(
   theme = shinytheme("darkly"),
@@ -140,9 +189,25 @@ shinyUI(fluidPage(
   ),
 
   br(),
+  leftRight(
+    actionButton(
+      "toggle1", "Toggle sidebar",
+      class = "btn-sm toggle-sidebar",
+      style = "float: right;"
+    ),
+  #   fluidRow(
+  #   column(
+  #     width = 4,
+  #     tags$div(
+  #       style = "display: none;",
+  #       actionButton("toggle1", "Toggle sidebar", class = "btn-sm toggle-sidebar")
+  #     )
+  #   )
+  # ),
 
   sidebarLayout(
     sidebarPanel(
+      id = "sidebar",
       tags$div(class = "vscode-logo", title = "VS Code"),
       fileInput(
         "file",
@@ -196,10 +261,16 @@ shinyUI(fluidPage(
         tinyCheckbox(
           "bookmark2",
           "before wrapping"
-        )
+        ),
+        tags$div(
+          style = "margin-top: -18px;"
+        ),
+        tags$hr(),
+        actionButton("toggle2", "Toggle sidebar", class = "btn-sm btn-block toggle-sidebar")
       )
     ),
     mainPanel(
+      id = "mainPanel",
       tags$div(
         class = "surface",
         tags$div(
@@ -239,8 +310,8 @@ shinyUI(fluidPage(
         )
       )
     )
-  ),
-
+  )
+),
   tags$script(
     src = "chrome-tabs/draggabilly.pkgd.min.js"
   ),
