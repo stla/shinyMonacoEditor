@@ -191,8 +191,8 @@ shinyUI(fluidPage(
   br(),
   leftRight(
     actionButton(
-      "toggle1", "Toggle sidebar",
-      class = "btn-sm toggle-sidebar",
+      "show-sidebar", "Show sidebar",
+      class = "btn-sm",
       style = "float: right;"
     ),
   #   fluidRow(
@@ -266,7 +266,8 @@ shinyUI(fluidPage(
           style = "margin-top: -18px;"
         ),
         tags$hr(),
-        actionButton("toggle2", "Toggle sidebar", class = "btn-sm btn-block toggle-sidebar")
+        actionButton(
+          "hide-sidebar", "Hide sidebar", class = "btn-sm btn-block")
       )
     ),
     mainPanel(

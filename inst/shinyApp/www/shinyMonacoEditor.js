@@ -35,11 +35,31 @@ var interval = setInterval(function() {
     clearInterval(interval);
     setModel({
       value: [
-        "function test(x) {",
-		    "\tconsole.log('Hello world!');",
-		    "}"
-	    ].join("\n"),
-	    language: "javascript"
+        "// try to hover the 'zzz' argument",
+        "function hello(zzz) {",
+        " alert('Hello world!');",
+        "}",
+        "",
+        "// right-click on 'hello' and 'Go to Definition'",
+        "$('#sayHello').on(\"click\", function(){",
+        "      hello();",
+        "})",
+        "",
+        "// right-click and try 'Prettify' and 'Minify'",
+        "",
+        "/* ",
+        "Before doing a change, you can bookmark the ",
+        "current contents to restore it later: use the ",
+        "context menu or the keyboard shortcuts.",
+        "*/ ",
+        "",
+        "/*",
+        "You can hide the sidebar to gain some space, and ",
+        "you can vertically resize the tab.",
+        "*/",
+        "",
+      ].join("\n"),
+      language: "javascript",
     });
     editor.setModel(modelInstances[0]);
     $("#container").show("fade", 1000);

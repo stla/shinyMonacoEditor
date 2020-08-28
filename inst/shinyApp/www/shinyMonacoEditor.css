@@ -137,6 +137,10 @@ input.form-control[readonly]::-moz-placeholder { /* Firefox 18- */
   border: solid 1px #ccc;
 }
 
+#hide-sidebar, #show-sidebar {
+  border: solid 1px #ccc;
+}
+
 /*
 .glow-on-hover {
   border: none;
