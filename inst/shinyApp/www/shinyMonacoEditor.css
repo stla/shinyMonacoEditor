@@ -81,7 +81,7 @@ hr {
   color: antiquewhite !important;
   opacity: 0.5;
 }
-.selectize-input>input::-moz-placeholder { /* Firefox 18- */
+.selectize-input>input::-moz-placeholder { /* Firefox 18- XXX ??*/
   color: antiquewhite !important;
   opacity: 0.5;
 }

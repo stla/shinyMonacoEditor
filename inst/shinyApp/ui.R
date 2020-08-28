@@ -1,6 +1,8 @@
 library(shinythemes)
 library(shinyjqui)
 
+#TODO: choices with names (JavaScript, CSS, C++, etc)
+
 languages <- c(
   "abap",
   "ada",
@@ -116,6 +118,7 @@ shinyUI(fluidPage(
     tags$script(src = "prettier/parser-yaml.js"),
     tags$script(src = "customMessageHandlers.js"),
     tags$link(rel = "stylesheet", href = "shinyMonacoEditor.css"),
+    tags$link(rel = "stylesheet", href = "iconsClasses.css"),
     tags$link(
       rel="stylesheet", `data-name`="vs/editor/editor.main",
       href="monaco/vs/editor/editor.main.css"
@@ -149,6 +152,7 @@ shinyUI(fluidPage(
       ),
       tags$label("Or open a new tab"),
       actionButton("newTab", "New tab", class = "btn-block"),
+      tags$span(class = "icon-coffeescript"),
       tags$div(
         id = "options",
         tags$hr(),
@@ -159,7 +163,8 @@ shinyUI(fluidPage(
           selected = "javascript",
           options = list(
             placeholder = "Select language...",
-            onInitialize = I("function() { selectize = this; }")
+            onInitialize = I("function() { selectize = this; }"),
+            render = I("selectize_render")
           )
         ),
         tags$hr(),
