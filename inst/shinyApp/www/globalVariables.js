@@ -13,12 +13,21 @@ var counter = 0,
 
 var selectize_render = {
   item: function(item, escape) {
-    return "<div class='item'>" + escape(item.label) + "</div>";
+    var label = escape(item.label);
+    var div = "class='item' style='display: block;'";
+    var display = "display: inline-block;";
+    var left = `style='${display} float: left;'`;
+    var right_cls = `class='icon-${item.value}' `;
+    var right_style = `'${display} float: right; transform: translateX(-25px);'`;
+    var right = right_cls + "style=" + right_style;
+    return `<div ${div}><div ${left}>${label}</div><div ${right}></div></div>`;
   },
   option: function(item, escape) {
     var label = escape(item.label);
-    var style = "style='display: inline-block;'";
-    var cls = `class='icon-${item.value}'`;
-    return `<div class='option'><div ${cls} ${style}></div><div ${style}>${label}</div></div>`;
+    var div = "class='option'";
+    var display = "display: inline-block;";
+    var left = `style='${display} float: left;'`;
+    var right = `class='icon-${item.value}' style='${display} float: right;'`;
+    return `<div ${div}><div ${left}>${label}</div><div ${right}></div></div>`;
   }
 };
