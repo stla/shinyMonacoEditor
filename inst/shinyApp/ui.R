@@ -1,8 +1,6 @@
 library(shinythemes)
 library(shinyjqui)
 
-#TODO: choices with names (JavaScript, CSS, C++, etc)
-
 languages <- list(
   Abap = "abap",
   ADA = "ada",
