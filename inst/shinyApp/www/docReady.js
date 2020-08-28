@@ -13,7 +13,9 @@ $(document).ready(function() {
           $("#main").toggleClass("col-sm-11 col-sm-12");
           $("#show-sidebar-container").show("fade", {duration: d}, function() {
             $("#container").show("fade", {duration: d}, function() {
-              $(".chrome-tabs").animate({opacity: 1}, d);
+              $(".chrome-tabs").animate({opacity: 1}, d, function() {
+                editor.focus();
+              });
             });
           });
         });
@@ -28,7 +30,9 @@ $(document).ready(function() {
           $("#main").toggleClass("col-sm-11 col-sm-12");
           $("#sidebar").parent().show("fold", {duration: d}, function() {
             $("#container").show("fade", {duration: d}, function() {
-              $(".chrome-tabs").animate({opacity: 1}, d);
+              $(".chrome-tabs").animate({opacity: 1}, d, function() {
+                editor.focus();
+              });
             });
           });
         });

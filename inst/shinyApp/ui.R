@@ -223,7 +223,14 @@ shinyUI(fluidPage(
           tags$hr(),
           sliderInput(
             "wrapWidth",
-            label = "Word wrap - width",
+            label = tags$span(
+              "Word wrap - width",
+              `data-toggle` = "tooltip",
+              `data-placement` = "top",
+              title = paste0(
+                "Word wrapping is available for languages 'Markdown' and 'Text'."
+              )
+            ),
             min = 10, max = 120, value = 80, step = 1,
             ticks = FALSE
           ),
@@ -268,7 +275,7 @@ shinyUI(fluidPage(
             class = "mock-browser",
             tags$div(
               class = "chrome-tabs",
-              style = "--tab-content-margin: 9px",
+              style = "--tab-content-margin: 9px;",
               tags$div(
                 class = "chrome-tabs-content"
               ),

@@ -20,6 +20,7 @@
   display: none;
   transform: rotateZ(-90deg);
   transform-origin: bottom right;
+  z-index: 10;
 }
 
 #container {
@@ -38,7 +39,11 @@ hr {
   margin-bottom: 11px;
 }
 
+.tooltip {
+  pointer-events: none;
+}
 .tooltip > .tooltip-inner {
+  pointer-events: none;
   background-color: #73AD21;
   color: #FFFFFF;
   border: 1px solid green;
