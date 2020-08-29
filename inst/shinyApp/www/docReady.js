@@ -40,7 +40,18 @@ $(document).ready(function() {
     });
   });
 
-  $("[data-toggle=tooltip]").tooltip();
+  $("[data-toggle=tooltip]").tooltip({
+    delay: {
+      "show": 0,
+      "hide": 5000
+    }
+  }).on("hidden.bs.tooltip", function() {
+    var $this = $(this);
+    setTimeout(function() {
+      $this.tooltip("destroy");
+    }, 10000);
+  });
+
 
   setTimeout(function() {
     slider = $("#wrapWidth").data("ionRangeSlider");

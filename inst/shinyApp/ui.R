@@ -235,36 +235,49 @@ shinyUI(fluidPage(
             ticks = FALSE
           ),
           tags$hr(),
-          tags$label(
-            "Bookmark",
-            `data-toggle` = "tooltip",
-            `data-placement` = "top",
-            title = paste0(
-              "You can bookmark a tab with the context menu or by pressing ",
-              "'Ctrl+b', and restore it with the context menu or by pressing ",
-              "'Ctrl+r'. The title of a non-bookmarked tab appears in italic. ",
-              "A new tab is automatically bookmarked."
-            )
-          ),
           tags$div(
-            tinyCheckbox(
-              "bookmark",
-              "before prettifying/minifying"
+            class = "long-tooltip-container",
+            tags$label(
+              "Bookmark",
+              `data-toggle` = "tooltip",
+              `data-placement` = "top",
+              title = paste0(
+                "You can bookmark a tab with the context menu or by pressing ",
+                "'Ctrl+b', and restore it with the context menu or by pressing ",
+                "'Ctrl+r'. The title of a non-bookmarked tab appears in italic. ",
+                "A new tab is automatically bookmarked."
+              )
             ),
             tags$div(
-              style = "margin-top: -18px;"
+              tinyCheckbox(
+                "bookmark",
+                "before prettifying/minifying"
+              ),
+              tags$div(
+                style = "margin-top: -18px;"
+              )
+            ),
+            tinyCheckbox(
+              "bookmark2",
+              "before wrapping"
             )
-          ),
-          tinyCheckbox(
-            "bookmark2",
-            "before wrapping"
           ),
           tags$div(
             style = "margin-top: -18px;"
           ),
           tags$hr(),
-          actionButton(
-            "hide-sidebar", "Hide sidebar", class = "btn-sm btn-block")
+          tags$div(
+            class = "short-tooltip-container",
+            actionButton(
+              "hide-sidebar", "Hide sidebar", class = "btn-sm btn-block",
+              `data-toggle` = "tooltip",
+              `data-placement` = "top",
+              title = paste0(
+                "You can hide this sidebar (to gain some place) and restore it ",
+                "later."
+              )
+            )
+          )
         )
       ),
       mainPanel(

@@ -14,6 +14,8 @@ shinyServer(function(input, output, session){
 
   observeEvent(input[["file"]], {
 
+    session$sendCustomMessage("changeBorders", "file")
+
     enc <- suppressWarnings(detect_file_enc(input[["file"]][["datapath"]]))
 
     if(is.na(enc)){

@@ -714,6 +714,16 @@ function setCppCheck(x) {
   cppCheck = x;
 }
 
+function changeBorders(id) {
+  $(`label[for=${id}]`).next().find(".form-control")
+    .css("border-bottom-right-radius", 0);
+  $(`#${id}`).parent().css("border-bottom-left-radius", 0);
+  $(".input-group").css({
+    "border-bottom-left-radius": 0,
+    "border-bottom-right-radius": 0
+  });
+}
+
 $(document).on("shiny:connected", function() {
   Shiny.addCustomMessageHandler("modelInstance", setModel);
   Shiny.addCustomMessageHandler("language", setLanguage);
@@ -721,4 +731,5 @@ $(document).on("shiny:connected", function() {
   Shiny.addCustomMessageHandler("clangFormat", setClangFormat);
   Shiny.addCustomMessageHandler("cppCheck", setCppCheck);
   Shiny.addCustomMessageHandler("flashMessage", flashFunction);
+  Shiny.addCustomMessageHandler("changeBorders", changeBorders);
 });
