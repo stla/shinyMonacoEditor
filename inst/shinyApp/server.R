@@ -263,9 +263,129 @@ shinyServer(function(input, output, session){
 
   observeEvent(input[["svg"]], {
     showModal(modalDialog(
-      tags$div(HTML(input[["svg"]])),
-      size = "s"
+      tags$div(
+        style =
+          "width: 50%; margin-left: auto; margin-right: auto; margin-top: 2%;",
+        HTML(input[["svg"]])
+      ),
+      size = "l",
+      easyClose = TRUE
     ))
   })
+
+  Modal <- function (BODY, title = NULL, footer = modalButton("Dismiss"),
+                     size = c("m", "s", "l"), easyClose = FALSE, fade = TRUE)
+  {
+    size <- match.arg(size)
+    cls <- if (fade)
+      "modal fade"
+    else "modal"
+    div(id = "shiny-modal", class = cls, tabindex = "-1", `data-backdrop` = if (!easyClose)
+      "static", `data-keyboard` = if (!easyClose)
+        "false", div(class = "modal-dialog", class = switch(size,
+                                                            s = "modal-sm", m = NULL, l = "modal-lg"), div(class = "modal-content",
+                                                                                                           if (!is.null(title))
+                                                                                                             div(class = "modal-header", tags$h4(class = "modal-title",
+                                                                                                                                                 title)), div(class = "modal-body", BODY), if (!is.null(footer))
+                                                                                                                                                   div(class = "modal-footer", footer))),
+      tags$script("$('#mainPanel,#sidebar').css('opacity',0);$('.modal').css({position: 'relative', display: 'block'})")
+    )
+  }
+
+  #TODO: bouton dans le header $('#markdown-it').css('height', 'fit-content');
+
+  observeEvent(input[["html"]], {
+    # showModal(
+    #   modalDialog(
+    #     tags$iframe(
+    #       srcdoc = HTML(input[["html"]]),
+    #       seamless = TRUE,
+    #       #sandbox = TRUE,
+    #       width = "100%",
+    #       height = "500"
+    #     ),
+    #     size = "l"
+    #   )
+    # )
+    # style <- HTML(
+    #   "#markdown-it {",
+    #   "  overflow: auto;",
+    #   "  padding: 4px;",
+    #   "  outline-style: solid;",
+    #   "  outline-width: thin;",
+    #   "  outline-color: silver;",
+    #   "}",
+    #   ".modal-dialog {",
+    #   "  overflow: hidden auto;",
+    #   "}",
+    #   ".modal-dialog [class^='modal-'] {",
+    #   "  overflow: hidden;",
+    #   "}"
+    # )
+
+    # modal <- modalDialog(
+    #   # tagList(
+    #   #   tags$style(
+    #   #     style
+    #   #   ),
+    #         div(HTML(input[["html"]]), id = "markdown-it"),
+    #   # ),
+    #   title = "",
+    #   size = "l",
+    #   easyClose = FALSE,
+    #   fade = FALSE
+    # )
+    # modal[["children"]][[1L]][["children"]][[1L]][["children"]][[1]] <-
+    #   tags$div(
+    #     class = "modal-header",
+    #     tags$div(
+    #       style = "float: left;",
+    #       tags$h4(
+    #         class = "modal-title",
+    #         "Rendered Markdown"
+    #       )
+    #     ),
+    #     tags$div(
+    #       style = "float: right;",
+    #       actionButton(
+    #         "toggleHeight", "Toggle full height",
+    #         onclick = '$("#shiny-modal .modal-dialog").toggleClass("hfit eightyVH");'
+    #       )
+    #     )
+    #   )
+    # modal[["children"]][[3L]] <- tags$script(
+    #   HTML('$("#shiny-modal .modal-dialog").addClass("xhfit");$(".modal-body").addClass("xrow");')
+    # )
+    # showModal(
+    #   modal
+    # )
+    # jqui_resizable(
+    #   ".modal-dialog",
+    #   options = list(
+    #     handles = "e, s",
+    #     alsoResize = "#markdown-it"
+    #   )
+    # )
+  })
+
+  output[["html"]] <- renderUI({
+    req(input[["html"]])
+    #tags$div(id = "markdown-it", HTML(input[["html"]]))
+    Modal(
+      # tagList(
+      #   tags$style(
+      #     style
+      #   ),
+      div(HTML(input[["html"]]), id = "markdown-it"),
+      # ),
+      title = "",
+      size = "l",
+      easyClose = FALSE,
+      fade = FALSE
+    )
+
+  })
+
+  observe(print(input[["expand"]]))
 
 })

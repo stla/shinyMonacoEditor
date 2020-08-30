@@ -10,7 +10,8 @@ var actionRegistration_minifier = null,
   actionRegistration_svgViewer = null,
   actionRegistration_wordWrapper = null,
   actionRegistration_typescript = null,
-  actionRegistration_formatCodeApi = null;
+  actionRegistration_formatCodeApi = null,
+  actionRegistration_markdownit = null;
 
 function prettifier(parser, bookmark, label) {
   if(typeof label === "undefined") {
@@ -199,6 +200,9 @@ function actionRegistration(language) {
   if(actionRegistration_formatCodeApi !== null) {
     actionRegistration_formatCodeApi.dispose();
   }
+  if(actionRegistration_markdownit !== null) {
+    actionRegistration_markdownit.dispose();
+  }
   var languages_formatCodeApi = [
     "apex",
     "csharp",
@@ -292,6 +296,46 @@ function actionRegistration(language) {
       editor.addAction(prettifier("markdown", bookmark));
     actionRegistration_wordWrapper =
       editor.addAction(wordWrapper(bookmark2));
+    actionRegistration_markdownit = editor.addAction({
+      id: "markdown-it",
+      label: "View HTML",
+      precondition: null,
+      keybindingContext: null,
+      contextMenuGroupId: "navigation",
+      contextMenuOrder: 1.5,
+      run: function(ed) {
+        try {
+          var md = window.markdownit({
+            html: true,
+            linkify: true,
+            typographer: true
+          });
+          var result = md.render(ed.getValue());
+          //console.log(result);
+          Shiny.setInputValue("html", result);
+        } catch(err) {
+          var error = err.message.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+            return "&#" + i.charCodeAt(0) + ";";
+          });
+          flashFunction({
+            message: "<pre style='font-weight: bold; color: red;'>" +
+              error + "</pre>",
+            title: "An error occured!",
+            type: "danger",
+            icon: "glyphicon glyphicon-ban-circle",
+            withTime: false,
+            autoClose: false,
+            closeTime: 6000,
+            animation: true,
+            animShow: "rotateInDownLeft",
+            animHide: "bounceOutRight",
+            position: ["bottom-left", [0, 0.01]],
+            speed: "slow"
+          });
+        }
+        return null;
+      }
+    });
   } else if(language === "scss") { /*                                    scss */
     actionRegistration_sass = editor.addAction({
       id: "scssCompiler",

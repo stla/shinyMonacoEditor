@@ -39,6 +39,8 @@ hr {
   margin-bottom: 11px;
 }
 
+
+/* bootstrap tooltips */
 .tooltip {
   pointer-events: none;
 }
@@ -64,6 +66,8 @@ label[for=wrapWidth] .tooltip > .tooltip-inner,
   border-top: none;
 }
 
+
+/* selectize */
 .selectize-dropdown-content::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
   border-radius: 10px;
@@ -116,6 +120,7 @@ label[for=wrapWidth] .tooltip > .tooltip-inner,
   background-color: rgba(250,128,114,0.5);
 }
 
+/* file input */
 input.form-control[readonly] {
   background-color: rgba(176, 196, 222, 0.5);
   padding: 8.25px 12px;
@@ -139,7 +144,21 @@ input.form-control[readonly]::-moz-placeholder { /* Firefox 18- */
   font-size: 16px;
   padding: 6px 12px;
 }
+.progress {
+  width: 100%;
+  height: 13px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border: 1px solid #ccc;
+  border-top-style: none;
+}
+.input-group {
+  border: solid 1px #ccc;
+  border-radius: 4px;
+}
 
+
+/* bootstrap alerts */
 .alert .glyphicon {
   font-size: 30px;
 }
@@ -150,11 +169,8 @@ input.form-control[readonly]::-moz-placeholder { /* Firefox 18- */
   white-space: pre-line;
 }
 
-.input-group {
-  border: solid 1px #ccc;
-  border-radius: 4px;
-}
 
+/* some buttons */
 #newTab {
   padding: 4px;
   margin-bottom: 18px;
@@ -241,7 +257,7 @@ input.form-control[readonly]::-moz-placeholder { /* Firefox 18- */
 }
 */
 
-
+/* chrome tabs */
 .chrome-tab-favicon {
   background-repeat: no-repeat;
 }
@@ -258,14 +274,44 @@ input.form-control[readonly]::-moz-placeholder { /* Firefox 18- */
 }
 
 
-/* file input */
-.progress {
-  width: 100%;
-  height: 13px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border: 1px solid #ccc;
-  border-top-style: none;
+/* modals */
+#shiny-modal .modal-dialog {
+  overflow: hidden hidden !important;
+/*  box-sizing: content-box;
+  margin: 0 !important;
+  padding: 10px !important; */
+/*  width: fit-content !important; */
+}
+#shiny-modal .modal-dialog [class^="modal-"] {
+  overflow: hidden !important;
+  background-color: maroon;
+/*  box-sizing: content-box;
+  margin: 0 !important;
+  padding: 10px !important; */
+}
+.hfit {
+  height: auto !important;
+}
+.eightyVH {
+  height: 80vh !important;
+}
+#markdown-it {
+  overflow: auto auto;
+/*  top:30px;
+  left:30px;
+  outline-style: solid;
+  outline-width: thin;
+  outline-color: silver; */
+  padding: 14px;
+  background-color: #303030;
+/*  box-sizing: content-box; */
+/*  position: absolute;
+  top : 20px;
+  right: 20px;
+  bottom: 20px;
+  left: 20px;*/
+/*  width: fit-content;
+  height: fit-content;*/
 }
 
 

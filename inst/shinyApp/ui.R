@@ -1,5 +1,4 @@
 library(shinythemes)
-library(shinyjqui)
 
 languages <- list(
   Abap = "abap",
@@ -179,7 +178,14 @@ shinyUI(fluidPage(
     tags$script(src = "clean-css/bundle.min.js"),
     tags$script(src = "functions.js"),
     tags$script(src = "bootstrap-flash-alert/bootstrap-flash-alert.js"),
-    tags$link(rel = "stylesheet", href = "bootstrap-flash-alert/animate.css")
+    tags$link(rel = "stylesheet", href = "bootstrap-flash-alert/animate.css"),
+    tags$script(src = "markdown-it/markdown-it.min.js")
+  ),
+
+  absolutePanel(
+    uiOutput("html"),
+#    id = "markdown-it",
+    top = 0, left = 0, right = 0, bottom = 0
   ),
 
   tags$div(
