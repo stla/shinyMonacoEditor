@@ -298,7 +298,7 @@ function actionRegistration(language) {
       editor.addAction(wordWrapper(bookmark2));
     actionRegistration_markdownit = editor.addAction({
       id: "markdown-it",
-      label: "View HTML",
+      label: "View HTML rendering",
       precondition: null,
       keybindingContext: null,
       contextMenuGroupId: "navigation",
@@ -312,7 +312,7 @@ function actionRegistration(language) {
           });
           var result = md.render(ed.getValue());
           //console.log(result);
-          Shiny.setInputValue("html", result);
+          Shiny.setInputValue("html", result, {priority: "event"});
         } catch(err) {
           var error = err.message.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
             return "&#" + i.charCodeAt(0) + ";";
@@ -545,7 +545,7 @@ function actionRegistration(language) {
         var svg = ed.getValue();
         try {
           var json = SVGparse.parse(svg);
-          Shiny.setInputValue("svg", svg);
+          Shiny.setInputValue("svg", svg, {priority: "event"});
         } catch(err) {
           var error = err.message.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
             return "&#" + i.charCodeAt(0) + ";";

@@ -276,9 +276,20 @@ shinyServer(function(input, output, session){
   Modal <- function(BODY, title = NULL){
     script <- HTML(
       "$('#mainPanel,#sidebar').animate({opacity: 0}, function() {",
-      "  $('#shiny-modal').show('fade');",
+      "  $('#shiny-modal').show('fade', function() {",
+      "    var dialog = document.getElementById('modal-dialog');",
+      "    var bottom = dialog.getBoundingClientRect().bottom;",
+      "    if(bottom > window.innerHeight)",
+      "     $('#toggleHeight').css('visibility', 'visible');",
+      "  });",
       "});",
-      "$('.modal').css({position: 'relative'})"
+      "$('.modal').css({position: 'relative'});"
+      # "setTimeout(function(){",
+      # "var dialog = document.getElementById('modal-dialog');",
+      # "var bottom = dialog.getBoundingClientRect().bottom;",
+      # "if(bottom > window.innerHeight)",
+      # "  $('#toggleHeight').css('visibility', 'visible');",
+      # "}, 500);"
     )
     onclick_toggleHeight <- '$("#markdown-it").toggleClass("fiftyVH");'
     onclick_dismiss <- paste0(
@@ -290,6 +301,7 @@ shinyServer(function(input, output, session){
       style = "display: none;",
       class = "modal",
       div(
+        id = "modal-dialog",
         class = "modal-dialog",
         style = "width: 98%;",
         div(
@@ -305,8 +317,16 @@ shinyServer(function(input, output, session){
             },
             actionButton(
               "toggleHeight", "Toggle full height",
-              style = "float: right;",
+              style = "float: right; visibility: hidden;",
               onclick = onclick_toggleHeight
+            ),
+            tags$button(
+              style = paste0(
+                "position: absolute; top: 0; right: 5px; padding: 0; ",
+                "background-color: transparent; border: none; lineheight: 1;"
+              ),
+              type = "button", HTML("&times;"),
+              onclick = onclick_dismiss
             )
           ),
           div(
