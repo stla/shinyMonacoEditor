@@ -21,7 +21,7 @@ shinyServer(function(input, output, session){
     if(is.na(enc)){
       flashMessage <- list(
         message = "This file is not of type 'text'.",
-        title = "Invalid file",
+        title = "Invalid file!",
         type = "danger",
         icon = "glyphicon glyphicon-ban-circle",
         withTime = FALSE,
@@ -197,13 +197,12 @@ shinyServer(function(input, output, session){
     file.copy(
       system.file("clang-format.txt", package = "shinyMonacoEditor"),
       file.path(tmpDir, ".clang-format"),
-      ooverwrite = TRUE
+      overwrite = TRUE
     )
     tmpFile <-
       tempfile(fileext = paste0(".", input[["clangFormat"]][["language"]]))
     writeLines(input[["clangFormat"]][["content"]], tmpFile)
     formatted <- system(paste0("clang-format ", tmpFile), intern = TRUE)
-    print(formatted)
     session$sendCustomMessage("value", paste0(formatted, collapse = "\n"))
   })
 
