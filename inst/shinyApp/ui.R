@@ -1,4 +1,5 @@
 library(shinythemes)
+library(shinyjqui)
 
 languages <- list(
   Abap = "abap",
@@ -26,7 +27,7 @@ languages <- list(
   GO = "go",
   GraphQL = "graphql",
   Groovy = "groovy",
-  HandlerBars = "handlebars",
+  Handlebars = "handlebars",
   Haskell = "haskell",
   HTML = "html",
   INI = "ini",
@@ -89,7 +90,7 @@ tinyCheckbox <- function(id, label){
            tags$label(`for` = id, class = "check-box",
                       style = "margin-right: 0;"),
            tags$label(`for` = id,
-                      tags$span(style="color: whitesmoke;", label),
+                      tags$span(style = "color: whitesmoke;", label),
                       class = "check-box-label")
   )
 }
