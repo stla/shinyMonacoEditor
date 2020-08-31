@@ -2,10 +2,10 @@
 % Please edit documentation in R/shinyMonacoEditor.R
 \name{shinyMonacoEditor}
 \alias{shinyMonacoEditor}
-\title{Title}
+\title{Monaco Editor in Shiny}
 \usage{
 shinyMonacoEditor()
 }
 \description{
-Title
+Launch a Shiny app with the Monaco editor.
 }

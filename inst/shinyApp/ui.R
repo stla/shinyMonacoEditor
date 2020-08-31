@@ -151,8 +151,8 @@ App <- function(main){
 shinyUI(fluidPage(
   theme = shinytheme("darkly"),
   tags$head(
-    tags$script(src = "globalVariables.js"),
-    tags$script(src = "docReady.js"),
+    tags$script(src = "js/globalVariables.js"),
+    tags$script(src = "js/docReady.js"),
     tags$script(src = "sass/sass.js"),
     tags$script(src = "svg-parser/svg-parser-bundle.js"),
     tags$script(src = "word-wrap/word-wrap-bundle.js"),
@@ -166,9 +166,9 @@ shinyUI(fluidPage(
     tags$script(src = "prettier/parser-postcss.js"),
     tags$script(src = "prettier/parser-typescript.js"),
     tags$script(src = "prettier/parser-yaml.js"),
-    tags$script(src = "customMessageHandlers.js"),
-    tags$link(rel = "stylesheet", href = "shinyMonacoEditor.css"),
-    tags$link(rel = "stylesheet", href = "iconsClasses.css"),
+    tags$script(src = "js/customMessageHandlers.js"),
+    tags$link(rel = "stylesheet", href = "css/shinyMonacoEditor.css"),
+    tags$link(rel = "stylesheet", href = "css/iconsClasses.css"),
     tags$link(
       rel = "stylesheet", `data-name` = "vs/editor/editor.main",
       href = "monaco/vs/editor/editor.main.css"
@@ -176,7 +176,7 @@ shinyUI(fluidPage(
     tags$script(src = "terser/bundle.min.js"),
     tags$script(src = "html-minifier-terser/bundle.min.js"),
     tags$script(src = "clean-css/bundle.min.js"),
-    tags$script(src = "functions.js"),
+    tags$script(src = "js/functions.js"),
     tags$script(src = "bootstrap-flash-alert/bootstrap-flash-alert.js"),
     tags$link(rel = "stylesheet", href = "bootstrap-flash-alert/animate.css"),
     tags$script(src = "markdown-it/markdown-it.min.js")
@@ -211,7 +211,6 @@ shinyUI(fluidPage(
         ),
         tags$label("Or open a new tab"),
         actionButton("newTab", "New tab", class = "btn-block"),
-        tags$span(class = "icon-coffeescript"),
         tags$div(
           id = "options",
           tags$hr(),
@@ -335,7 +334,7 @@ shinyUI(fluidPage(
     src = "chrome-tabs/chrome-tabs.js"
   ),
   tags$script(
-    src = "chromeTabs.js"
+    src = "js/chromeTabs.js"
   ),
 
   tags$script(
@@ -397,6 +396,6 @@ shinyUI(fluidPage(
     src="monaco/vs/editor/editor.main.js"
   ),
 
-  tags$script(src = "shinyMonacoEditor.js")
+  tags$script(src = "js/shinyMonacoEditor.js")
 
 ))

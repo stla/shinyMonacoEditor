@@ -4,7 +4,7 @@ $(document).ready(function() {
 
   bg_well = $(".well").css("background-color");
 
-  var d = 1000;
+  var d = 500;
   $("#hide-sidebar").on("click", function() {
     $(".chrome-tabs").animate({opacity: 0}, d, function() {
       $("#container").hide("fade", {duration: d}, function() {

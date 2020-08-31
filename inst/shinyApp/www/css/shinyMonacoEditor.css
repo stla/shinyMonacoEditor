@@ -10,7 +10,7 @@
   margin: 0;
   top: 3px;
   right: 15px;
-  background: url(city-lights-three.svg) no-repeat 0 0;
+  background: url(../icons/city-lights-three.svg) no-repeat 0 0;
   background-size: 36px 36px;
   position: absolute;
   z-index: 100000000;

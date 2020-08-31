@@ -1,192 +1,192 @@
 .icon-c {
   width: 25px;
   height: 20px;
-  background-image: url(freeicons/c.svg);
+  background-image: url(../icons/freeicons/c.svg);
   background-repeat: no-repeat;
 }
 .icon-clojure {
   width: 25px;
   height: 20px;
-  background-image: url(SuperTinyIcons/clojure.svg);
+  background-image: url(../icons/SuperTinyIcons/clojure.svg);
   background-repeat: no-repeat;
 }
 .icon-coffeescript {
   width: 25px;
   height: 20px;
-  background-image: url(SuperTinyIcons/coffeescript.svg);
+  background-image: url(../icons/SuperTinyIcons/coffeescript.svg);
   background-repeat: no-repeat;
 }
 .icon-cpp {
   width: 25px;
   height: 20px;
-  background-image: url(freeicons/cpp.svg);
+  background-image: url(../icons/freeicons/cpp.svg);
   background-repeat: no-repeat;
 }
 .icon-css {
   width: 25px;
   height: 20px;
-  background-image: url(freeicons/css.svg);
+  background-image: url(../icons/freeicons/css.svg);
   background-repeat: no-repeat;
 }
 .icon-dart {
   width: 25px;
   height: 20px;
-  background-image: url(seeklogo/dart.svg);
+  background-image: url(../icons/seeklogo/dart.svg);
   background-repeat: no-repeat;
 }
 .icon-dockerfile {
   width: 25px;
   height: 20px;
-  background-image: url(SuperTinyIcons/docker.svg);
+  background-image: url(../icons/SuperTinyIcons/docker.svg);
   background-repeat: no-repeat;
 }
 .icon-erlang {
   width: 25px;
   height: 20px;
-  background-image: url(seeklogo/erlang.svg);
+  background-image: url(../icons/seeklogo/erlang.svg);
   background-repeat: no-repeat;
 }
 .icon-fsharp {
   width: 25px;
   height: 20px;
-  background-image: url(seeklogo/fsharp.svg);
+  background-image: url(../icons/seeklogo/fsharp.svg);
   background-repeat: no-repeat;
 }
 .icon-haskell {
   width: 25px;
   height: 20px;
-  background-image: url(freeicons/haskell.svg);
+  background-image: url(../icons/freeicons/haskell.svg);
   background-repeat: no-repeat;
 }
 .icon-html {
   width: 25px;
   height: 20px;
-  background-image: url(freeicons/html.svg);
+  background-image: url(../icons/freeicons/html.svg);
   background-repeat: no-repeat;
 }
 .icon-go {
   width: 25px;
   height: 20px;
-  background-image: url(SuperTinyIcons/go.svg);
+  background-image: url(../icons/SuperTinyIcons/go.svg);
   background-repeat: no-repeat;
 }
 .icon-java {
   width: 25px;
   height: 20px;
-  background-image: url(SuperTinyIcons/java.svg);
+  background-image: url(../icons/SuperTinyIcons/java.svg);
   background-repeat: no-repeat;
 }
 .icon-javascript {
   width: 25px;
   height: 20px;
-  background-image: url(SuperTinyIcons/javascript.svg);
+  background-image: url(../icons/SuperTinyIcons/javascript.svg);
   background-repeat: no-repeat;
 }
 .icon-json {
   width: 25px;
   height: 20px;
-  background-image: url(SuperTinyIcons/json.svg);
+  background-image: url(../icons/SuperTinyIcons/json.svg);
   background-repeat: no-repeat;
 }
 .icon-julia {
   width: 25px;
   height: 20px;
-  background-image: url(SuperTinyIcons/julia.svg);
+  background-image: url(../icons/SuperTinyIcons/julia.svg);
   background-repeat: no-repeat;
 }
 .icon-kotlin {
   width: 25px;
   height: 20px;
-  background-image: url(SuperTinyIcons/kotlin.svg);
+  background-image: url(../icons/SuperTinyIcons/kotlin.svg);
   background-repeat: no-repeat;
 }
 .icon-lua {
   width: 25px;
   height: 20px;
-  background-image: url(seeklogo/lua.svg);
+  background-image: url(../icons/seeklogo/lua.svg);
   background-repeat: no-repeat;
 }
 .icon-markdown {
   width: 25px;
   height: 20px;
-  background-image: url(SuperTinyIcons/markdown.svg);
+  background-image: url(../icons/SuperTinyIcons/markdown.svg);
   background-repeat: no-repeat;
 }
 .icon-ocaml {
   width: 25px;
   height: 20px;
-  background-image: url(OCaml_Sticker.svg);
+  background-image: url(../icons/OCaml_Sticker.svg);
   background-repeat: no-repeat;
 }
 .icon-perl {
   width: 25px;
   height: 20px;
-  background-image: url(seeklogo/perl.svg);
+  background-image: url(../icons/seeklogo/perl.svg);
   background-repeat: no-repeat;
 }
 .icon-php {
   width: 25px;
   height: 20px;
-  background-image: url(seeklogo/php.svg);
+  background-image: url(../icons/seeklogo/php.svg);
   background-repeat: no-repeat;
 }
 .icon-python {
   width: 25px;
   height: 20px;
-  background-image: url(SuperTinyIcons/python.svg);
+  background-image: url(../icons/SuperTinyIcons/python.svg);
   background-repeat: no-repeat;
 }
 .icon-r {
   width: 25px;
   height: 20px;
-  background-image: url(freeicons/r.svg);
+  background-image: url(../icons/freeicons/r.svg);
   background-repeat: no-repeat;
 }
 .icon-ruby {
   width: 25px;
   height: 20px;
-  background-image: url(SuperTinyIcons/ruby.svg);
+  background-image: url(../icons/SuperTinyIcons/ruby.svg);
   background-repeat: no-repeat;
 }
 .icon-rust {
   width: 25px;
   height: 20px;
-  background-image: url(SuperTinyIcons/rust.svg);
+  background-image: url(../icons/SuperTinyIcons/rust.svg);
   background-repeat: no-repeat;
 }
 .icon-scala {
   width: 25px;
   height: 20px;
-  background-image: url(seeklogo/scala.svg);
+  background-image: url(../icons/seeklogo/scala.svg);
   background-repeat: no-repeat;
 }
 .icon-scss {
   width: 25px;
   height: 20px;
-  background-image: url(SuperTinyIcons/sass.svg);
+  background-image: url(../icons/SuperTinyIcons/sass.svg);
   background-repeat: no-repeat;
 }
 .icon-svg {
   width: 25px;
   height: 20px;
-  background-image: url(SuperTinyIcons/svg.svg);
+  background-image: url(../icons/SuperTinyIcons/svg.svg);
   background-repeat: no-repeat;
 }
 .icon-swift {
   width: 25px;
   height: 20px;
-  background-image: url(seeklogo/swift.svg);
+  background-image: url(../icons/seeklogo/swift.svg);
   background-repeat: no-repeat;
 }
 .icon-typescript {
   width: 25px;
   height: 20px;
-  background-image: url(freeicons/typescript.svg);
+  background-image: url(../icons/freeicons/typescript.svg);
   background-repeat: no-repeat;
 }
 .icon-yaml {
   width: 25px;
   height: 20px;
-  background-image: url(yaml.svg);
+  background-image: url(../icons/yaml.svg);
   background-repeat: no-repeat;
 }

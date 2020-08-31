@@ -51,7 +51,7 @@ el.addEventListener("tabRemove", function(e) {
 
 chromeTabs.addTab({
   title: "example.js",
-  favicon: "SuperTinyIcons/javascript.svg",
+  favicon: "icons/SuperTinyIcons/javascript.svg",
   id: counter.toString(),
   language: "javascript"
 });
