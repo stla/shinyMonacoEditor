@@ -234,7 +234,25 @@ function actionRegistration(language) {
         minified.then(function(result) {
           ed.setValue(result.code);
         }).catch(function(error) {
-          console.log(error);
+          var err =
+            error.message.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+              return "&#" + i.charCodeAt(0) + ";";
+            });
+          flashFunction({
+            message: "<pre style='font-weight: bold; color: red;'>" +
+              err + "</pre>",
+            title: "An error occured!",
+            type: "danger",
+            icon: "glyphicon glyphicon-ban-circle",
+            withTime: false,
+            autoClose: false,
+            closeTime: 6000,
+            animation: true,
+            animShow: "rotateInDownLeft",
+            animHide: "bounceOutRight",
+            position: ["bottom-left", [0, 0.01]],
+            speed: "slow"
+          });
         });
         return null;
       }
