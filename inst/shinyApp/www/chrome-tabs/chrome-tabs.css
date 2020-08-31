@@ -1,7 +1,8 @@
 .chrome-tabs {
   box-sizing: border-box;
   position: relative;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 12px;
   height: 46px;
   padding: 8px 3px 4px 3px;
@@ -86,7 +87,11 @@
 .chrome-tabs .chrome-tab[active] {
   z-index: 5;
 }
-.chrome-tabs .chrome-tab[active] .chrome-tab-background > svg .chrome-tab-geometry {
+.chrome-tabs
+  .chrome-tab[active]
+  .chrome-tab-background
+  > svg
+  .chrome-tab-geometry {
   fill: #fff;
 }
 /*.chrome-tabs .chrome-tab:not([active]) .chrome-tab-background {
@@ -130,7 +135,7 @@
   width: 25px;
   background-size: 22px;
   margin-left: 4px;
-  transform: translate(0,-2px);
+  transform: translate(0, -2px);
 }
 .chrome-tabs .chrome-tab[is-small] .chrome-tab-favicon {
   margin-left: 0;
@@ -149,8 +154,18 @@
   white-space: nowrap;
   margin-left: 4px;
   color: #5f6368;
-  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 calc(100% - 24px), transparent);
-  mask-image: linear-gradient(90deg, #000 0%, #000 calc(100% - 24px), transparent);
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    #000 0%,
+    #000 calc(100% - 24px),
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    #000 0%,
+    #000 calc(100% - 24px),
+    transparent
+  );
 }
 .chrome-tabs .chrome-tab[is-small] .chrome-tab-title {
   margin-left: 0;
@@ -201,7 +216,9 @@
   }
 }
 @media (hover: hover) {
-  .chrome-tabs .chrome-tab:not([active]) .chrome-tab-close:not(:hover):not(:active) {
+  .chrome-tabs
+    .chrome-tab:not([active])
+    .chrome-tab-close:not(:hover):not(:active) {
     opacity: 0.8;
   }
 }
@@ -236,7 +253,8 @@
   }
 }
 .chrome-tabs.chrome-tabs-is-sorting .chrome-tab:not(.chrome-tab-is-dragging),
-.chrome-tabs:not(.chrome-tabs-is-sorting) .chrome-tab.chrome-tab-was-just-dragged {
+.chrome-tabs:not(.chrome-tabs-is-sorting)
+  .chrome-tab.chrome-tab-was-just-dragged {
   transition: transform 120ms ease-in-out;
 }
 .chrome-tabs .chrome-tabs-bottom-bar {
@@ -257,7 +275,12 @@
   background-repeat: repeat-x;
   background-position: 0% 0%;
 }
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (min--moz-device-pixel-ratio: 2),
+  only screen and (-o-min-device-pixel-ratio: 2/1),
+  only screen and (min-device-pixel-ratio: 2),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
   .chrome-tabs-optional-shadow-below-bottom-bar {
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='2' height='2' viewBox='0 0 2 2'><rect x='0' y='0' width='2' height='1' fill='rgba(0, 0, 0, .27)'></rect></svg>");
   }
