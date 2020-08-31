@@ -39,7 +39,7 @@ shinyServer(function(input, output, session){
       suppressWarnings(readLines(input[["file"]][["datapath"]])),
       collapse = "\n"
     )
-    #    session$sendCustomMessage("value", content)
+
     ext <- tolower(tools::file_ext(input[["file"]][["name"]]))
     language <- switch(
       ext,
@@ -123,9 +123,9 @@ shinyServer(function(input, output, session){
     if(is.null(language)) language <- "plaintext"
 
     favicon <- if(ext == "jsx"){
-      "SuperTinyIcons/react.svg"
+      "icons/SuperTinyIcons/react.svg"
     }else if(ext == "haml"){
-      "SuperTinyIcons/haml.svg"
+      "icons/SuperTinyIcons/haml.svg"
     }else{
       switch(
         language,
@@ -174,13 +174,14 @@ shinyServer(function(input, output, session){
       )
     )
 
-    session$sendCustomMessage("modelInstance",
-                              list(value = content, language = language))
+    session$sendCustomMessage(
+      "modelInstance",
+      list(value = content, language = language)
+    )
     updateSelectizeInput(session, "language", selected = language)
   })
 
   observeEvent(input[["language"]], {
-    print(input[["language"]])
     if(input[["language"]] != ""){
       session$sendCustomMessage("language", input[["language"]])
     }
@@ -226,12 +227,11 @@ shinyServer(function(input, output, session){
         tmpFile
       ),
       stderr = TRUE, stdout = TRUE)
-    print(report)
     session$sendCustomMessage(
       "addChromeTab",
       list(
         title = paste0(input[["cppCheck"]][["title"]], ".check"),
-        icon = "cppcheck-gui.svg"
+        icon = "icons/cppcheck-gui.svg"
       )
     )
     if(length(report) == 0L){
@@ -284,12 +284,6 @@ shinyServer(function(input, output, session){
       "  });",
       "});",
       "$('.modal').css({position: 'relative'});"
-      # "setTimeout(function(){",
-      # "var dialog = document.getElementById('modal-dialog');",
-      # "var bottom = dialog.getBoundingClientRect().bottom;",
-      # "if(bottom > window.innerHeight)",
-      # "  $('#toggleHeight').css('visibility', 'visible');",
-      # "}, 500);"
     )
     onclick_toggleHeight <- '$("#markdown-it").toggleClass("fiftyVH");'
     onclick_dismiss <- paste0(
@@ -348,82 +342,6 @@ shinyServer(function(input, output, session){
       )
     )
   }
-
-  #TODO: bouton dans le header $('#markdown-it').css('height', 'fit-content');
-
-  observeEvent(input[["html"]], {
-    # showModal(
-    #   modalDialog(
-    #     tags$iframe(
-    #       srcdoc = HTML(input[["html"]]),
-    #       seamless = TRUE,
-    #       #sandbox = TRUE,
-    #       width = "100%",
-    #       height = "500"
-    #     ),
-    #     size = "l"
-    #   )
-    # )
-    # style <- HTML(
-    #   "#markdown-it {",
-    #   "  overflow: auto;",
-    #   "  padding: 4px;",
-    #   "  outline-style: solid;",
-    #   "  outline-width: thin;",
-    #   "  outline-color: silver;",
-    #   "}",
-    #   ".modal-dialog {",
-    #   "  overflow: hidden auto;",
-    #   "}",
-    #   ".modal-dialog [class^='modal-'] {",
-    #   "  overflow: hidden;",
-    #   "}"
-    # )
-
-    # modal <- modalDialog(
-    #   # tagList(
-    #   #   tags$style(
-    #   #     style
-    #   #   ),
-    #         div(HTML(input[["html"]]), id = "markdown-it"),
-    #   # ),
-    #   title = "",
-    #   size = "l",
-    #   easyClose = FALSE,
-    #   fade = FALSE
-    # )
-    # modal[["children"]][[1L]][["children"]][[1L]][["children"]][[1]] <-
-    #   tags$div(
-    #     class = "modal-header",
-    #     tags$div(
-    #       style = "float: left;",
-    #       tags$h4(
-    #         class = "modal-title",
-    #         "Rendered Markdown"
-    #       )
-    #     ),
-    #     tags$div(
-    #       style = "float: right;",
-    # actionButton(
-    #   "toggleHeight", "Toggle full height",
-    #   onclick = '$("#shiny-modal .modal-dialog").toggleClass("hfit eightyVH");'
-    # )
-    #     )
-    #   )
-    # modal[["children"]][[3L]] <- tags$script(
-    #   HTML('$("#shiny-modal .modal-dialog").addClass("xhfit");$(".modal-body").addClass("xrow");')
-    # )
-    # showModal(
-    #   modal
-    # )
-    # jqui_resizable(
-    #   ".modal-dialog",
-    #   options = list(
-    #     handles = "e, s",
-    #     alsoResize = "#markdown-it"
-    #   )
-    # )
-  })
 
   output[["html"]] <- renderUI({
     req(input[["html"]])

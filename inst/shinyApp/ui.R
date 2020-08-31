@@ -95,16 +95,6 @@ tinyCheckbox <- function(id, label){
 }
 
 App <- function(main){
-  # flowLayout(left, right, cellArgs = list(style = "width: auto;"))
-  # tags$table(
-  #   style = "table-layout: fixed;",
-  #   tags$tbody(
-  #     tags$tr(
-  #       tags$td(left),
-  #       tags$td(right)
-  #     )
-  #   )
-  # )
   fluidRow(
     column(
       width = 1,
@@ -129,23 +119,6 @@ App <- function(main){
       main
     )
   )
-  # tags$div(
-  #   #class = "row",
-  #   style = "display: block;",
-  #   tags$div(
-  #     class = "",
-  #     style = "float: left;",
-  #     left,
-  #   ),
-  #   tags$div(
-  #     class = "",
-  #     style = "float: right;",
-  #     right
-  #   ),
-  #   tags$div(
-  #     style = "clear: both;"
-  #   )
-  # )
 }
 
 shinyUI(fluidPage(
@@ -184,7 +157,6 @@ shinyUI(fluidPage(
 
   absolutePanel(
     uiOutput("html"),
-#    id = "markdown-it",
     top = 0, left = 0, right = 0, bottom = 0
   ),
 
@@ -384,16 +356,20 @@ shinyUI(fluidPage(
   ),
 
   tags$script(
-    HTML("var require = { paths: { 'vs': 'monaco/vs', 'tokenizer': 'monaco-ace-tokenizer' } };")
+    HTML(
+      "var require = {",
+      "  paths: { 'vs': 'monaco/vs', 'tokenizer': 'monaco-ace-tokenizer' }",
+      "};"
+    )
   ),
   tags$script(
-    src="monaco/vs/loader.js"
+    src = "monaco/vs/loader.js"
   ),
   tags$script(
-    src="monaco/vs/editor/editor.main.nls.js"
+    src = "monaco/vs/editor/editor.main.nls.js"
   ),
   tags$script(
-    src="monaco/vs/editor/editor.main.js"
+    src = "monaco/vs/editor/editor.main.js"
   ),
 
   tags$script(src = "js/shinyMonacoEditor.js")
