@@ -56,7 +56,7 @@ chromeTabs.addTab({
   language: "javascript"
 });
 
-function addChromeTab(titleIconLanguage){
+function addChromeTab(titleIconLanguage) {
   $(".background").hide("fade", 1000);
   $("#options").show("fade", 1000);
   $(".well").css("background-color", bg_well);

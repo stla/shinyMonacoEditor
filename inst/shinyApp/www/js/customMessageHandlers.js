@@ -311,12 +311,12 @@ function actionRegistration(language) {
             typographer: true
           });
           var result = md.render(ed.getValue());
-          //console.log(result);
           Shiny.setInputValue("html", result, {priority: "event"});
         } catch(err) {
-          var error = err.message.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
-            return "&#" + i.charCodeAt(0) + ";";
-          });
+          var error =
+            err.message.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+              return "&#" + i.charCodeAt(0) + ";";
+            });
           flashFunction({
             message: "<pre style='font-weight: bold; color: red;'>" +
               error + "</pre>",
@@ -357,7 +357,7 @@ function actionRegistration(language) {
             var title = (fileSansExt === "" ? fileName : fileSansExt) + ".css";
             addChromeTab({
               title: title,
-              icon: "freeicons/css.svg",
+              icon: "icons/freeicons/css.svg",
               language: "css"
             });
           }
@@ -508,13 +508,14 @@ function actionRegistration(language) {
           var title = (fileSansExt === "" ? fileName : fileSansExt) + ".json";
           addChromeTab({
             title: title,
-            icon: "SuperTinyIcons/json.svg",
+            icon: "icons/SuperTinyIcons/json.svg",
             language: "json"
           });
         } catch(err) {
-          var error = err.message.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
-            return "&#" + i.charCodeAt(0) + ";";
-          });
+          var error =
+            err.message.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+              return "&#" + i.charCodeAt(0) + ";";
+            });
           flashFunction({
             message: "<pre style='font-weight: bold; color: red;'>" +
               error + "</pre>",
@@ -547,9 +548,10 @@ function actionRegistration(language) {
           var json = SVGparse.parse(svg);
           Shiny.setInputValue("svg", svg, {priority: "event"});
         } catch(err) {
-          var error = err.message.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
-            return "&#" + i.charCodeAt(0) + ";";
-          });
+          var error =
+            err.message.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+              return "&#" + i.charCodeAt(0) + ";";
+            });
           flashFunction({
             message: "<pre style='font-weight: bold; color: red;'>" +
               error + "</pre>",
@@ -595,9 +597,10 @@ function actionRegistration(language) {
             speed: "slow"
           });
         } catch(err) {
-          var error = err.message.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
-            return "&#" + i.charCodeAt(0) + ";";
-          });
+          var error =
+            err.message.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+              return "&#" + i.charCodeAt(0) + ";";
+            });
           flashFunction({
             message: "<pre style='font-weight: bold; color: red;'>" +
               error + "</pre>",
@@ -650,7 +653,7 @@ function actionRegistration(language) {
 								var title = (fileSansExt === "" ? fileName : fileSansExt) + ".js";
 								addChromeTab({
 									title: title,
-									icon: "SuperTinyIcons/javascript.svg",
+									icon: "icons/SuperTinyIcons/javascript.svg",
 									language: "javascript"
 								});
 							} catch(err) {
@@ -675,7 +678,6 @@ function actionRegistration(language) {
 								});
 							}
 						} else {
-              console.log("textStatus", textStatus);
   						flashFunction({
 	  						message: "textStatus: " + textStatus,
 		  					title: "A problem occured!",
@@ -735,7 +737,6 @@ function setModel(valueAndLanguage) {
   });
   modelInstances.push(modelInstance);
   modelValues[modelInstance.id] = valueAndLanguage.value;
-  console.log("modelInstance", modelInstance);
   actionRegistration(language0);
 }
 

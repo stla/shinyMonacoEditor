@@ -81,7 +81,8 @@ editor.addAction({
   contextMenuOrder: 0,
   run: function(ed) {
     var fileName = $(chromeTabs.activeTabEl).find(".chrome-tab-title").html();
-    var unnamed = fileName.match(/^unnamed/) !== null && fileName.match(/\./) === null;
+    var unnamed =
+      fileName.match(/^unnamed/) !== null && fileName.match(/\./) === null;
     if(unnamed) {
       var language = ed.getModel().getLanguageIdentifier().language;
       var ext = languageExt(language);

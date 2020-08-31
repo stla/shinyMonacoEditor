@@ -57,8 +57,7 @@ $(document).ready(function() {
     slider = $("#wrapWidth").data("ionRangeSlider");
   }, 0);
 
-  $("#newTab").on("click", function(){
-
+  $("#newTab").on("click", function() {
     setModel({value: "", language: "plaintext"});
     counter_unnamed++;
     addChromeTab({
@@ -71,12 +70,20 @@ $(document).ready(function() {
     }, 0);
   });
 
-  $(".radialred,.radialgreen,.radialblue").on("mouseenter", function(){
+  $(".radialred,.radialgreen,.radialblue").on("mouseenter", function() {
     $(".radialred,.radialgreen,.radialblue")
-      .animate({width:"250px",height:"250px",margin:"-125px 0 0 -125px"}, "slow");
-  }).on("mouseleave", function(){
+      .animate({
+        width: "250px",
+        height: "250px",
+        margin: "-125px 0 0 -125px"
+      }, "slow");
+  }).on("mouseleave", function() {
     $(".radialred,.radialgreen,.radialblue")
-      .animate({width:"300px",height:"300px",margin:"-150px 0 0 -150px"}, "slow");
+      .animate({
+        width: "300px",
+        height: "300px",
+        margin: "-150px 0 0 -150px"
+      }, "slow");
   });
 
 });
