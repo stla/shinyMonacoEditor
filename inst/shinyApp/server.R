@@ -323,7 +323,7 @@ shinyServer(function(input, output, session){
             tags$button(
               style = paste0(
                 "position: absolute; top: 0; right: 5px; padding: 0; ",
-                "background-color: transparent; border: none; lineheight: 1;"
+                "background-color: transparent; border: none; line-height: 1;"
               ),
               type = "button", HTML("&times;"),
               onclick = onclick_dismiss
