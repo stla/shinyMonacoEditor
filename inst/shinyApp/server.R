@@ -289,34 +289,26 @@ shinyServer(function(input, output, session){
       id = "shiny-modal",
       style = "display: none;",
       class = "modal",
-      # tabindex = "-1",
-      # `data-backdrop` = if(!easyClose) "static",
-      # `data-keyboard` = if(!easyClose) "false",
       div(
         class = "modal-dialog",
         style = "width: 98%;",
-        # class = switch(
-        #   size,
-        #   s = "modal-sm",
-        #   m = NULL,
-        #   l = "modal-lg"
-        # ),
         div(
           class = "modal-content",
-          if(!is.null(title))
-            div(
-              class = "modal-header",
+          div(
+            class = "modal-header",
+            if(!is.null(title)){
               tags$h4(
                 class = "modal-title",
                 style = "float: left;",
                 title
-              ),
-              actionButton(
-                "toggleHeight", "Toggle full height",
-                style = "float: right;",
-                onclick = onclick_toggleHeight
               )
-            ),
+            },
+            actionButton(
+              "toggleHeight", "Toggle full height",
+              style = "float: right;",
+              onclick = onclick_toggleHeight
+            )
+          ),
           div(
             class = "modal-body",
             BODY
@@ -420,7 +412,5 @@ shinyServer(function(input, output, session){
       title = "Rendered Markdown"
     )
   })
-
-  observe(print(input[["expand"]]))
 
 })
