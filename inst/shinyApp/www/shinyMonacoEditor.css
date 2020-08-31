@@ -295,6 +295,9 @@ input.form-control[readonly]::-moz-placeholder { /* Firefox 18- */
 .eightyVH {
   height: 80vh !important;
 }
+.fiftyVH {
+  height: 50vh;
+}
 #markdown-it {
   overflow: auto auto;
 /*  top:30px;
