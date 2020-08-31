@@ -11,6 +11,7 @@ The VS code editor in a Shiny app.
 - **Java**: prettifier (requires `clang-format`)
 - **JavaScript**: prettifier, minifier
 - **JSX**: prettifier
+- **Markdown**: prettifier, HTML rendering
 - **R**: prettifier
 - **SCSS**: prettifier, compiler
 - **SVG**: prettifier, code checking, viewer
@@ -40,6 +41,7 @@ these components:
 - **HTMLMinifier**, https://github.com/terser/html-minifier-terser
 - **Sass.js**, https://github.com/medialize/sass.js
 - **svg-parser**, https://github.com/Rich-Harris/svg-parser
+- **markdown-it**, https://github.com/markdown-it/markdown-it
 - **word-wrap**, https://github.com/jonschlinkert/word-wrap
 - **SuperTinyIcons**, https://github.com/edent/SuperTinyIcons
 
