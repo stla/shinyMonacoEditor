@@ -9,3 +9,8 @@ shinyMonacoEditor()
 \description{
 Launch a Shiny app with the Monaco editor.
 }
+\examples{
+if(interactive()){
+  shinyMonacoEditor()
+}
+}
