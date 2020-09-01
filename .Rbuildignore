@@ -4,3 +4,4 @@
 ^inst/screenshots$
 ^inst/testFiles$
 ^LICENSE\.note\.md$
+^cran-comments\.md$

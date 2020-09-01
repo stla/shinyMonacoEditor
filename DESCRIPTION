@@ -64,7 +64,7 @@ Authors@R: c(
            role = c("ctb", "cph"),
            comment = "SuperTinyIcons")
     )
-Description: A 'Shiny' app including the Monaco editor. The Monaco editor is the code editor which powers VS Code. Additional features include prettifiers and minifiers for multiple languages, SCSS and TypeScript compilers, code checking for C and C++ (requires 'cppcheck').
+Description: A 'Shiny' app including the Monaco editor. The Monaco editor is the code editor which powers 'VS Code'. It is particularly well developed for JavaScript. In addition to the Monaco editor features, the app provides prettifiers and minifiers for multiple languages, SCSS and TypeScript compilers, code checking for C and C++ (requires 'cppcheck').
 URL: https://github.com/stla/shinyMonacoEditor
 BugReports: https://github.com/stla/shinyMonacoEditor/issues
 License: GPL-3

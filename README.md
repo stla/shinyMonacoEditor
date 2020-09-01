@@ -6,7 +6,7 @@ The VS code editor in a Shiny app.
 
 ### Some features:
 
-- **C, C++**: prettifer (requires `clang-format`), code checking (requires `cppcheck`)
+- **C, C++**: prettifier (requires `clang-format`), code checking (requires `cppcheck`)
 - **CSS**: prettifier, minifier
 - **Java**: prettifier (requires `clang-format`)
 - **JavaScript**: prettifier, minifier
@@ -46,7 +46,7 @@ these components:
 - **SuperTinyIcons**, https://github.com/edent/SuperTinyIcons
 
 Full copies of the license agreements used by these components are included 
-in the file [LICENSE.note](https://github.com/stla/shinyMonacoEditor/blob/master/LICENSE.note.md)
+in the file [LICENSE.note](https://github.com/stla/shinyMonacoEditor/blob/master/LICENSE.note.md).
 
 ___ 
 
