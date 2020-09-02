@@ -54,4 +54,4 @@ ___
 
 The 'shinyMonacoEditor' package includes some SVG icons found on the 
 [Free icons](https://freeicons.io/) website. 
-These icons are made by Free icons from [www.freeicons.io](www.freeicons.io).
+These icons are made by Free icons from [https://www.freeicons.io/](https://www.freeicons.io/).
