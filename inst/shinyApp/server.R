@@ -2,6 +2,54 @@ library(styler)
 library(formatR)
 library(uchardet)
 
+svgFooter <- function(){
+  fluidRow(
+    column(
+      width = 6,
+      tags$div(
+        style = "display: flex; width: 100%;",
+        tags$div(
+          style = "display: inline-block; width: 30%; vertical-align: top;",
+          tags$input(
+            id = "scale", type = "number", class = "form-control input-sm",
+            style = "border-top-right-radius: 0; border-bottom-right-radius: 0;",
+            value = 1, min = 0.1, max = NA, step = 0.1
+          )
+        ),
+        tags$div(
+          style = "display: inline-block; width: 30%; vertical-align: top;",
+          tags$button(
+            id = "scaleSVG", "Scale", class = "btn btn-default btn-block btn-sm",
+            style = "border-top-left-radius: 0; border-bottom-left-radius: 0;",
+          )
+        )
+      )
+    ),
+    column(
+      width = 6,
+      modalButton("Dismiss")
+    )
+  )
+  # tags$div(
+  #   tags$div(
+  #     style = "float: left;",
+  #     tags$div(
+  #       style = "display: inline-block;",
+  #       numericInput("scale", label = NULL,
+  #                    value = 1, min = 0.1, max = NA, step = 0.1)
+  #     ),
+  #     tags$div(
+  #       style = "display: inline-block;",
+  #       actionButton("scaleSVG", "Scale")
+  #     )
+  #   ),
+  #   tags$div(
+  #     style = "float: right;",
+  #     modalButton("Dismiss")
+  #   )
+  # )
+}
+
 shinyServer(function(input, output, session){
 
   uploaded <- reactiveVal(FALSE)
@@ -260,15 +308,22 @@ shinyServer(function(input, output, session){
     session$sendCustomMessage("value", formatted)
   })
 
+  output[["svg"]] <- renderUI({
+    req(input[["svg"]])
+    HTML(input[["svg"]])
+  })
+
   observeEvent(input[["svg"]], {
     showModal(modalDialog(
       tags$div(
         style =
           "width: 50%; margin-left: auto; margin-right: auto; margin-top: 2%;",
-        HTML(input[["svg"]])
+        uiOutput("svg")
+        # HTML(input[["svg"]])
       ),
       size = "l",
-      easyClose = TRUE
+      easyClose = TRUE,
+      footer = svgFooter()
     ))
   })
 
