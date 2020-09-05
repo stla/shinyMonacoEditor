@@ -61,3 +61,15 @@ function languageExt(language) {
   }
   return ext;
 }
+
+function ScaleSVG(scale) {
+  scaleSVG(
+    editor.getValue(),
+    {scale: Math.max(scale,0.1)}
+  )
+  .then(function(scaledFromString) {
+    console.log(scaledFromString);
+    editor.setValue(scaledFromString);
+    $("#shiny-modal").modal("hide");
+  });
+}

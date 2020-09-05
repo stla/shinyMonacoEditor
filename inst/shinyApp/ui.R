@@ -130,6 +130,7 @@ shinyUI(fluidPage(
     tags$script(src = "js/docReady.js"),
     tags$script(src = "sass/sass.js"),
     tags$script(src = "svg-parser/svg-parser-bundle.js"),
+    tags$script(src = "scale-that-svg/scale-that-svg-bundle.js"),
     tags$script(src = "word-wrap/word-wrap-bundle.js"),
     tags$link(rel = "stylesheet", href = "chrome-tabs/chrome-tabs.css"),
     tags$link(rel = "stylesheet", href = "chrome-tabs/chrome-tabs-dark-theme.css"),

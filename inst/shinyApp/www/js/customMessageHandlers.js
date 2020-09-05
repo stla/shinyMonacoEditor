@@ -572,7 +572,7 @@ function actionRegistration(language) {
     });
     actionRegistration_svgViewer = editor.addAction({
       id: "svgViewer",
-      label: "View SVG image",
+      label: "View (and scale) SVG image",
       precondition: null,
       keybindingContext: null,
       contextMenuGroupId: "navigation",

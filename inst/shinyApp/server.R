@@ -21,6 +21,7 @@ svgFooter <- function(){
           tags$button(
             id = "scaleSVG", "Scale", class = "btn btn-default btn-block btn-sm",
             style = "border-top-left-radius: 0; border-bottom-left-radius: 0;",
+            onclick = 'ScaleSVG($("#scale").val());'
           )
         )
       )
