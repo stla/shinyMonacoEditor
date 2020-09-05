@@ -6,3 +6,4 @@
 ^LICENSE\.note\.md$
 ^cran-comments\.md$
 ^CRAN-RELEASE$
+^TODO\.txt$
