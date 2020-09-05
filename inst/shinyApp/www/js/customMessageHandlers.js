@@ -114,33 +114,50 @@ function formatCodeApi(language, bookmark, label) {
           .find(".chrome-tab-title")
             .css("font-style", "normal");
       }
-      $.post({
-        url: url,
-//        timeout: 0,
-        contentType: "text/plain; charset=UTF-8",
-        data: ed.getValue(),
-        success: function(data) {
-          var formattedCode = decodeURIComponent(data);
-          ed.setValue(formattedCode);
-        },
-        error: function(e) {
-          console.log(e);
-					flashFunction({
-						message: "The POST request has failed (status " + e.status + ")",
-						title: "An error occured!",
-						type: "danger",
-						icon: "glyphicon glyphicon-ban-circle",
-						withTime: true,
-						autoClose: true,
-						closeTime: 7000,
-						animation: true,
-						animShow: "rotateInDownLeft",
-						animHide: "bounceOutRight",
-						position: ["bottom-left", [0, 0.01]],
-						speed: "slow"
-					});
-        }
-      });
+      if(navigator.onLine) {
+        $.post({
+          url: url,
+//          timeout: 0,
+          contentType: "text/plain; charset=UTF-8",
+          data: ed.getValue(),
+          success: function(data) {
+            var formattedCode = decodeURIComponent(data);
+            ed.setValue(formattedCode);
+          },
+          error: function(e) {
+            console.log(e);
+            flashFunction({
+              message: "Probable causes: your code is invalid or it is too big.",
+              title: "Failed to prettify!",
+              type: "danger",
+              icon: "glyphicon glyphicon-ban-circle",
+              withTime: true,
+              autoClose: true,
+              closeTime: 7000,
+              animation: true,
+              animShow: "rotateInDownLeft",
+              animHide: "bounceOutRight",
+              position: ["bottom-left", [0, 0.01]],
+              speed: "slow"
+            });
+          }
+        });
+      } else {
+        flashFunction({
+          message: "This feature requires an Internet connection.",
+          title: "No Internet connection!",
+          type: "danger",
+          icon: "freeicon freeicon-wifi-off",
+          withTime: true,
+          autoClose: true,
+          closeTime: 7000,
+          animation: true,
+          animShow: "rotateInDownLeft",
+          animHide: "bounceOutRight",
+          position: ["bottom-left", [0, 0.01]],
+          speed: "slow"
+        });
+      }
       return null;
     }
   };
@@ -657,78 +674,95 @@ function actionRegistration(language) {
       contextMenuGroupId: "navigation",
       contextMenuOrder: 1.5,
       run: function(ed) {
-				$.getScript("https://unpkg.com/typescript@latest/lib/typescriptServices.js")
-					.done(function(script, textStatus) {
-						if(textStatus === "success") {
-							var tsCode = ed.getValue();
-							try {
-								var jsCode = window.ts.transpile(tsCode);
-								setModel({value: jsCode, language: "javascript"});
-								var fileName = $(chromeTabs.activeTabEl)
-									.find(".chrome-tab-title")
-									.html();
-								var fileSansExt = fileName.split(".").slice(0, -1).join(".");
-								var title = (fileSansExt === "" ? fileName : fileSansExt) + ".js";
-								addChromeTab({
-									title: title,
-									icon: "icons/SuperTinyIcons/javascript.svg",
-									language: "javascript"
-								});
-							} catch(err) {
-								var error =
-								  err.message.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
-									  return "&#" + i.charCodeAt(0) + ";";
-								  });
-								flashFunction({
-									message:
-										"<pre style='font-weight: bold; color: red;'>" + error + "</pre>",
-									title: "An error occured!",
-									type: "danger",
-									icon: "glyphicon glyphicon-ban-circle",
-									withTime: false,
-									autoClose: false,
-									closeTime: 6000,
-									animation: true,
-									animShow: "rotateInDownLeft",
-									animHide: "bounceOutRight",
-									position: ["bottom-left", [0, 0.01]],
-									speed: "slow"
-								});
-							}
-						} else {
-  						flashFunction({
-	  						message: "textStatus: " + textStatus,
-		  					title: "A problem occured!",
-			  				type: "danger",
-				  			icon: "glyphicon glyphicon-ban-circle",
-					  		withTime: true,
-						  	autoClose: true,
-							  closeTime: 7000,
-							  animation: true,
-							  animShow: "rotateInDownLeft",
-							  animHide: "bounceOutRight",
-							  position: ["bottom-left", [0, 0.01]],
-							  speed: "slow"
-						  });
-						}
-					})
-					.fail(function(jqxhr, settings, exception) {
-						console.log("exception", exception);
-						flashFunction({
-							message: "Do you have an Internet connection?",
-							title: "Failed to load <span style='font-family: monospace;'>typescriptServices.js</span>!",
-							type: "danger",
-							icon: "glyphicon glyphicon-ban-circle",
-							withTime: true,
-							autoClose: true,
-							closeTime: 7000,
-							animation: true,
-							animShow: "rotateInDownLeft",
-							animHide: "bounceOutRight",
-							position: ["bottom-left", [0, 0.01]],
-							speed: "slow"
-						});
-					});
+        if(navigator.onLine) {
+          $.getScript("https://unpkg.com/typescript@latest/lib/typescriptServices.js")
+            .done(function(script, textStatus) {
+              if(textStatus === "success") {
+                var tsCode = ed.getValue();
+                try {
+                  var jsCode = window.ts.transpile(tsCode);
+                  setModel({value: jsCode, language: "javascript"});
+                  var fileName = $(chromeTabs.activeTabEl)
+                    .find(".chrome-tab-title")
+                    .html();
+                  var fileSansExt = fileName.split(".").slice(0, -1).join(".");
+                  var title = (fileSansExt === "" ? fileName : fileSansExt) + ".js";
+                  addChromeTab({
+                    title: title,
+                    icon: "icons/SuperTinyIcons/javascript.svg",
+                    language: "javascript"
+                  });
+                } catch(err) {
+                  var error =
+                    err.message.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+                      return "&#" + i.charCodeAt(0) + ";";
+                    });
+                  flashFunction({
+                    message:
+                      "<pre style='font-weight: bold; color: red;'>" + error + "</pre>",
+                    title: "An error occured!",
+                    type: "danger",
+                    icon: "glyphicon glyphicon-ban-circle",
+                    withTime: false,
+                    autoClose: false,
+                    closeTime: 6000,
+                    animation: true,
+                    animShow: "rotateInDownLeft",
+                    animHide: "bounceOutRight",
+                    position: ["bottom-left", [0, 0.01]],
+                    speed: "slow"
+                  });
+                }
+              } else {
+                flashFunction({
+                  message: "textStatus: " + textStatus,
+                  title: "A problem occured!",
+                  type: "danger",
+                  icon: "glyphicon glyphicon-ban-circle",
+                  withTime: true,
+                  autoClose: true,
+                  closeTime: 7000,
+                  animation: true,
+                  animShow: "rotateInDownLeft",
+                  animHide: "bounceOutRight",
+                  position: ["bottom-left", [0, 0.01]],
+                  speed: "slow"
+                });
+              }
+            })
+            .fail(function(jqxhr, settings, exception) {
+              console.log("exception", exception);
+              flashFunction({
+                message: "I have no idea about this issue.",
+                title: "Failed to load <span style='font-family: monospace;'>typescriptServices.js</span>!",
+                type: "danger",
+                icon: "glyphicon glyphicon-ban-circle",
+                withTime: true,
+                autoClose: true,
+                closeTime: 7000,
+                animation: true,
+                animShow: "rotateInDownLeft",
+                animHide: "bounceOutRight",
+                position: ["bottom-left", [0, 0.01]],
+                speed: "slow"
+              });
+            });
+        } else {
+          flashFunction({
+            message: "This feature requires an Internet connection.",
+            title: "No Internet connection!",
+            type: "danger",
+            icon: "freeicon freeicon-wifi-off",
+            withTime: true,
+            autoClose: true,
+            closeTime: 7000,
+            animation: true,
+            animShow: "rotateInDownLeft",
+            animHide: "bounceOutRight",
+            position: ["bottom-left", [0, 0.01]],
+            speed: "slow"
+          });
+        }
         return null;
       }
     });

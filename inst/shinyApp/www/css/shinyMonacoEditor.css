@@ -169,7 +169,7 @@ input.form-control[readonly]::-moz-placeholder { /* Firefox 18- */
 
 
 /* bootstrap alerts */
-.alert .glyphicon {
+.alert .glyphicon, .alert .freeicon {
   font-size: 30px;
 }
 .alert .header strong {

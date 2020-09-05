@@ -125,6 +125,7 @@ App <- function(main){
 shinyUI(fluidPage(
   theme = shinytheme("darkly"),
   tags$head(
+    tags$link(rel = "stylesheet", href = "icons/freeicons/freeicons.css"),
     tags$script(src = "js/globalVariables.js"),
     tags$script(src = "js/docReady.js"),
     tags$script(src = "sass/sass.js"),

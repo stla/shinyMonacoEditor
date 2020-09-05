@@ -20,7 +20,8 @@ function prettify(code, parser) {
   try {
     prettyCode = prettier.format(code, {
       parser: parser,
-      plugins: prettierPlugins
+      plugins: prettierPlugins,
+      trailingComma: "none"
     });
     editor.setValue(prettyCode);
   } catch(err) {
