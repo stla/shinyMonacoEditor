@@ -7,20 +7,18 @@ svgFooter <- function(){
     column(
       width = 6,
       tags$div(
-        style = "display: flex; width: 100%;",
+        class = "scaling-group",
         tags$div(
-          style = "display: inline-block; width: 30%; vertical-align: top;",
+          class = "scaling",
           tags$input(
             id = "scale", type = "number", class = "form-control input-sm",
-            style = "border-top-right-radius: 0; border-bottom-right-radius: 0;",
             value = 1, min = 0.1, max = NA, step = 0.1
           )
         ),
         tags$div(
-          style = "display: inline-block; width: 30%; vertical-align: top;",
+          class = "scaling",
           tags$button(
-            id = "scaleSVG", "Scale", class = "btn btn-default btn-block btn-sm",
-            style = "border-top-left-radius: 0; border-bottom-left-radius: 0;",
+            id = "scaleSVG", "Scale", class = "btn btn-block btn-sm",
             onclick = 'ScaleSVG($("#scale").val());'
           )
         )
@@ -31,25 +29,36 @@ svgFooter <- function(){
       modalButton("Dismiss")
     )
   )
-  # tags$div(
-  #   tags$div(
-  #     style = "float: left;",
-  #     tags$div(
-  #       style = "display: inline-block;",
-  #       numericInput("scale", label = NULL,
-  #                    value = 1, min = 0.1, max = NA, step = 0.1)
-  #     ),
-  #     tags$div(
-  #       style = "display: inline-block;",
-  #       actionButton("scaleSVG", "Scale")
-  #     )
-  #   ),
-  #   tags$div(
-  #     style = "float: right;",
-  #     modalButton("Dismiss")
-  #   )
-  # )
 }
+
+# svgCarousel <- function(svg1, svg2){
+#   tags$div(
+#     class = "slider-container",
+#     tags$div(
+#       class = "slider",
+#       tags$div(
+#         class = "slider__item",
+#         HTML(svg1)
+#       ),
+#       if(!is.null(svg2)){
+#         tags$div(
+#           class = "slider__item",
+#           HTML(svg2)
+#         )
+#       }
+#     ),
+#     tags$div(
+#       class = "slider__switch slider__switch--prev",
+#       `data-ikslider-dir` = "prev",
+#       tags$span()
+#     ),
+#     tags$div(
+#       class = "slider__switch slider__switch--next",
+#       `data-ikslider-dir` = "next",
+#       tags$span()
+#     )
+#   )
+# }
 
 shinyServer(function(input, output, session){
 
@@ -309,21 +318,25 @@ shinyServer(function(input, output, session){
     session$sendCustomMessage("value", formatted)
   })
 
-  output[["svg"]] <- renderUI({
-    req(input[["svg"]])
-    HTML(input[["svg"]])
-  })
+  # output[["svg"]] <- renderUI({
+  #   req(input[["svg"]])
+  #   svgCarousel(input[["svg"]], input[["svgScaled"]])
+  # })
 
   observeEvent(input[["svg"]], {
     showModal(modalDialog(
-      tags$div(
-        style =
-          "width: 50%; margin-left: auto; margin-right: auto; margin-top: 2%;",
-        uiOutput("svg")
-        # HTML(input[["svg"]])
+      tagList(
+        tags$div(
+          id = "svg",
+          style =
+            "width: 50%; cursor: move; margin-left: auto; margin-right: auto; margin-top: 2%;",
+          HTML(input[["svg"]])
+        ),
+        tags$script('panzoom(document.getElementById("svg"));')
       ),
       size = "l",
-      easyClose = TRUE,
+      easyClose = FALSE,
+      title = "You can zoom and pan the image",
       footer = svgFooter()
     ))
   })
@@ -331,7 +344,7 @@ shinyServer(function(input, output, session){
   Modal <- function(BODY, title = NULL){
     script <- HTML(
       "$('#mainPanel,#sidebar').animate({opacity: 0}, function() {",
-      "  $('#shiny-modal').show('fade', function() {",
+      "  $('#my-modal').show('fade', function() {",
       "    var dialog = document.getElementById('modal-dialog');",
       "    var bottom = dialog.getBoundingClientRect().bottom;",
       "    if(bottom > window.innerHeight)",
@@ -346,7 +359,7 @@ shinyServer(function(input, output, session){
       "$('#mainPanel,#sidebar').animate({opacity: 1});"
     )
     div(
-      id = "shiny-modal",
+      id = "my-modal",
       style = "display: none;",
       class = "modal",
       div(

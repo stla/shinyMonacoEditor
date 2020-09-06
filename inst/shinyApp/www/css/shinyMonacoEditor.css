@@ -210,12 +210,15 @@ input.form-control[readonly]::-moz-placeholder { /* Firefox 18- */
 
 
 /* modals */
-#shiny-modal .modal-dialog {
+#shiny-modal .modal-dialog div[class^="modal-"],
+#my-modal .modal-dialog div[class^="modal-"] {
+  background-color: maroon;
+}
+#my-modal .modal-dialog {
   overflow: hidden hidden !important;
 }
-#shiny-modal .modal-dialog [class^="modal-"] {
+#my-modal .modal-dialog div[class^="modal-"] {
   overflow: hidden !important;
-  background-color: maroon;
 }
 .fiftyVH {
   height: 50vh;
@@ -225,8 +228,35 @@ input.form-control[readonly]::-moz-placeholder { /* Firefox 18- */
   padding: 14px;
   background-color: #303030;
 }
-
-
+.scaling-group {
+  position: relative;
+  display: table;
+  width: 60%;
+  border-collapse: separate;
+}
+.scaling {
+  display: table-cell;
+  width: 30%;
+  vertical-align: top;
+}
+#scale {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+#scaleSVG {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  background-color: deeppink;
+  border-color: deeppink;
+}
+#dismiss, button[data-dismiss="modal"] {
+  background-color: crimson;
+  border-color: crimson;
+}
 /* tiny checkbox */
 @-moz-keyframes dothabottomcheck {
   0% {

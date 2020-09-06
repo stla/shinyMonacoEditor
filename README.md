@@ -42,6 +42,7 @@ these components:
 - **Sass.js**, https://github.com/medialize/sass.js
 - **svg-parser**, https://github.com/Rich-Harris/svg-parser
 - **scale-that-svg**, https://github.com/elrumordelaluz/scale-that-svg
+- **panzoom**, https://github.com/anvaka/panzoom
 - **markdown-it**, https://github.com/markdown-it/markdown-it
 - **word-wrap**, https://github.com/jonschlinkert/word-wrap
 - **SuperTinyIcons**, https://github.com/edent/SuperTinyIcons

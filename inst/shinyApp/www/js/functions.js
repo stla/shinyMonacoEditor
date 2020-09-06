@@ -68,8 +68,12 @@ function ScaleSVG(scale) {
     {scale: Math.max(scale,0.1)}
   )
   .then(function(scaledFromString) {
-    console.log(scaledFromString);
+//    console.log(scaledFromString);
     editor.setValue(scaledFromString);
+//    Shiny.setInputValue("svgScaled", scaledFromString);
+//    setTimeout(function() {
+//    $(".slider-container").ikSlider({responsive: false});
+//    }, 1000);
     $("#shiny-modal").modal("hide");
   });
 }
