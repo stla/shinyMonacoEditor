@@ -328,8 +328,6 @@ shinyServer(function(input, output, session){
       tagList(
         tags$div(
           id = "svg",
-          style =
-            "width: 50%; cursor: move; margin-left: auto; margin-right: auto; margin-top: 2%;",
           HTML(input[["svg"]])
         ),
         tags$script('panzoom(document.getElementById("svg"));')

@@ -234,6 +234,13 @@ input.form-control[readonly]::-moz-placeholder { /* Firefox 18- */
   width: 60%;
   border-collapse: separate;
 }
+#svg {
+  width: 50%;
+  cursor: move;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+}
 .scaling {
   display: table-cell;
   width: 30%;
@@ -244,6 +251,7 @@ input.form-control[readonly]::-moz-placeholder { /* Firefox 18- */
   border-bottom-right-radius: 0;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
+  font-weight: bold;
 }
 #scaleSVG {
   border-top-right-radius: 3px;
