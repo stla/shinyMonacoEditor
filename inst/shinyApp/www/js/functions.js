@@ -67,13 +67,17 @@ function ScaleSVG(scale) {
     editor.getValue(),
     {scale: Math.max(scale,0.1)}
   )
-  .then(function(scaledFromString) {
-//    console.log(scaledFromString);
-    editor.setValue(scaledFromString);
-//    Shiny.setInputValue("svgScaled", scaledFromString);
-//    setTimeout(function() {
-//    $(".slider-container").ikSlider({responsive: false});
-//    }, 1000);
+  .then(function(scaledSVG) {
+    setModel({value: scaledSVG, language: "svg"});
+    var fileName =
+      $(chromeTabs.activeTabEl).find(".chrome-tab-title").html();
+    var fileSansExt = fileName.split('.').slice(0, -1).join('.');
+    var title = (fileSansExt === "" ? fileName : fileSansExt) + "_scaled.svg";
+    addChromeTab({
+      title: title,
+      icon: "icons/SuperTinyIcons/svg.svg",
+      language: "svg"
+    });
     $("#shiny-modal").modal("hide");
   });
 }

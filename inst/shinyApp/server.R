@@ -18,7 +18,7 @@ svgFooter <- function(){
         tags$div(
           class = "scaling",
           tags$button(
-            id = "scaleSVG", "Scale", class = "btn btn-block btn-sm",
+            id = "scaleSVG", "Scale image", class = "btn btn-block btn-sm",
             onclick = 'ScaleSVG($("#scale").val());'
           )
         )

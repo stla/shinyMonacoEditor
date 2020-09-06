@@ -256,7 +256,15 @@ input.form-control[readonly]::-moz-placeholder { /* Firefox 18- */
 #dismiss, button[data-dismiss="modal"] {
   background-color: crimson;
   border-color: crimson;
+  background-image: linear-gradient(20deg, firebrick 20%, crimson 50%);
 }
+#dismiss:hover, button[data-dismiss="modal"]:hover {
+  background-color: crimson;
+  border-color: firebrick;
+  background-image: linear-gradient(200deg, firebrick 20%, crimson 50%);
+}
+
+
 /* tiny checkbox */
 @-moz-keyframes dothabottomcheck {
   0% {
