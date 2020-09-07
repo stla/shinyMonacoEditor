@@ -2,6 +2,17 @@ $(document).ready(function() {
 
   $("#container").height(0.8 * window.innerHeight);
 
+  $("#container").on("resize", function(event, ui) {
+    if(editor2isShown && editorsAreStacked) {
+      var x = editorsHeight - ui.size.height;
+      $("#container2").height(x);
+    }
+  });
+
+  $("#container2").on("resizestop", function(event, ui) {
+    editorsHeight = $("#editors").height();
+  });
+
   bg_well = $(".well").css("background-color");
 
   var d = 500;

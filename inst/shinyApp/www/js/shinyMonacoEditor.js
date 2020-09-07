@@ -163,9 +163,12 @@ editor2.addAction({
   contextMenuOrder: 0,
   run: function(ed) {
     $("#editors").css("display", "block");
+    editorsAreStacked = true;
     $("#container2").hide();
     $("#container,#container2").css("width", "100%");
-    $("#container").height(0.8 * window.innerHeight);
+    var h = 0.8 * window.innerHeight;
+    $("#container").height(h);
+    editorsHeight = h;
     if(editorIsDisposed) {
       $(".background").show("fade", 1000);
     }
@@ -183,14 +186,18 @@ editor2.addAction({
   contextMenuOrder: 0,
   run: function(ed) {
     var display = $("#editors").css("display");
+    var h = 0.8 * window.innerHeight;
+    editorsHeight = h;
     if(display === "flex") {
       $("#editors").css("display", "block");
+      editorsAreStacked = true;
       $("#container,#container2").css("width", "100%");
-      $("#container,#container2").height(0.4 * window.innerHeight);
+      $("#container,#container2").height(h/2);
     } else {
       $("#editors").css("display", "flex");
+      editorsAreStacked = false;
       $("#container,#container2").css("width", "calc(50% + 1px)");
-      $("#container,#container2").height(0.8 * window.innerHeight);
+      $("#container,#container2").height(h);
     }
     return null;
   }

@@ -1,5 +1,8 @@
 function openEditor2() {
-  $("#container,#container2").height(0.4 * window.innerHeight);
+  var display = $("#editors").css("display");
+  if(display === "block") {
+    $("#container,#container2").height(0.4 * window.innerHeight);
+  }
   var model = editor.getModel();
   var modelClone = monaco.editor.createModel(
     model.getValue(),
