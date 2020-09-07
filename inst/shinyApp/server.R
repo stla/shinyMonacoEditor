@@ -3,30 +3,50 @@ library(formatR)
 library(uchardet)
 
 svgFooter <- function(){
-  fluidRow(
-    column(
-      width = 6,
-      tags$div(
-        class = "scaling-group",
+  tagList(
+    fluidRow(
+      column(
+        width = 6,
         tags$div(
-          class = "scaling",
-          tags$input(
-            id = "scale", type = "number", class = "form-control input-sm",
-            value = 1, min = 0.1, max = NA, step = 0.1
+          class = "scaling-group",
+          tags$div(
+            class = "scaling",
+            tags$input(
+              id = "scale", type = "number", class = "form-control input-sm",
+              value = 1, min = 0.1, max = NA, step = 0.1
+            )
+          ),
+          tags$div(
+            class = "scaling",
+            tags$button(
+              id = "scaleSVG", "Scale image", class = "btn btn-block btn-sm",
+              onclick = 'ScaleSVG($("#scale").val());'
+            )
           )
-        ),
-        tags$div(
-          class = "scaling",
-          tags$button(
-            id = "scaleSVG", "Scale image", class = "btn btn-block btn-sm",
-            onclick = 'ScaleSVG($("#scale").val());'
+        )
+      ),
+      column(
+        width = 6,
+        modalButton("Dismiss")
+      )
+    ),
+    fluidRow(
+      column(
+        width = 12,
+        tags$p(
+          style = "text-align: left;",
+          tags$span(
+            "SVG scaling has some limitations. You can "
+          ),
+          tags$a(
+            href = "https://github.com/elrumordelaluz/scale-that-svg/issues",
+            "fill an issue"
+          ),
+          tags$span(
+            " if you encounter a problem."
           )
         )
       )
-    ),
-    column(
-      width = 6,
-      modalButton("Dismiss")
     )
   )
 }
@@ -334,7 +354,7 @@ shinyServer(function(input, output, session){
       ),
       size = "l",
       easyClose = FALSE,
-      title = "You can zoom and pan the image",
+      title = "You can zoom and pan the image.",
       footer = svgFooter()
     ))
   })
