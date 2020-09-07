@@ -6,15 +6,18 @@ $(document).ready(function() {
 
   var d = 500;
   $("#hide-sidebar").on("click", function() {
+    var containers = editor2isShown ? "#container,#container2" : "#container";
     $(".chrome-tabs").animate({opacity: 0}, d, function() {
-      $("#container").hide("fade", {duration: d}, function() {
-        $("#sidebar").parent().hide("fold", {duration: d}, function() {
-          $("#mainPanel").toggleClass("col-sm-8 col-sm-12");
-          $("#main").toggleClass("col-sm-11 col-sm-12");
-          $("#show-sidebar-container").show("fade", {duration: d}, function() {
-            $("#container").show("fade", {duration: d}, function() {
-              $(".chrome-tabs").animate({opacity: 1}, d, function() {
-                editor.focus();
+      $("#container2").hide("fade", {duration: d}, function() {
+        $("#container").hide("fade", {duration: d}, function() {
+          $("#sidebar").parent().hide("fold", {duration: d}, function() {
+            $("#mainPanel").toggleClass("col-sm-8 col-sm-12");
+            $("#main").toggleClass("col-sm-11 col-sm-12");
+            $("#show-sidebar-container").show("fade", {duration: d}, function() {
+              $(containers).show("fade", {duration: d}, function() {
+                $(".chrome-tabs").animate({opacity: 1}, d, function() {
+                  editor.focus();
+                });
               });
             });
           });
@@ -23,15 +26,18 @@ $(document).ready(function() {
     });
   });
   $("#show-sidebar").on("click", function() {
+    var containers = editor2isShown ? "#container,#container2" : "#container";
     $(".chrome-tabs").animate({opacity: 0}, d, function() {
-      $("#container").hide("fade", {duration: d}, function() {
-        $("#show-sidebar-container").hide("fade", {duration: d}, function() {
-          $("#mainPanel").toggleClass("col-sm-8 col-sm-12");
-          $("#main").toggleClass("col-sm-11 col-sm-12");
-          $("#sidebar").parent().show("fold", {duration: d}, function() {
-            $("#container").show("fade", {duration: d}, function() {
-              $(".chrome-tabs").animate({opacity: 1}, d, function() {
-                editor.focus();
+      $("#container2").hide("fade", {duration: d}, function() {
+        $("#container").hide("fade", {duration: d}, function() {
+          $("#show-sidebar-container").hide("fade", {duration: d}, function() {
+            $("#mainPanel").toggleClass("col-sm-8 col-sm-12");
+            $("#main").toggleClass("col-sm-11 col-sm-12");
+            $("#sidebar").parent().show("fold", {duration: d}, function() {
+              $(containers).show("fade", {duration: d}, function() {
+                $(".chrome-tabs").animate({opacity: 1}, d, function() {
+                  editor.focus();
+                });
               });
             });
           });

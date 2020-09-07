@@ -169,6 +169,7 @@ editor2.addAction({
     if(editorIsDisposed) {
       $(".background").show("fade", 1000);
     }
+    editor2isShown = false;
     return null;
   }
 });

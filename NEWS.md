@@ -4,6 +4,7 @@
 * No more trailing comma in JavaScript objects when prettifying JavaScript or HTML.
 * New feature: SVG rescaling. 
 * New feature: SVG panning and zooming.
+* New feature: second editor.
 
 
 

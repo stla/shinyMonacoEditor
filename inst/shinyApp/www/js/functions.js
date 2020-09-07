@@ -7,6 +7,7 @@ function openEditor2() {
   );
   editor2.setModel(modelClone);
   $("#container2").show();
+  editor2isShown = true;
 }
 
 function flashFunction(opts) {
