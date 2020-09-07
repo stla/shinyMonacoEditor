@@ -43,7 +43,9 @@ el.addEventListener("tabRemove", function(e) {
   if(chromeTabs.tabEls.length === 0) {
     editor.getModel().dispose();
     editorIsDisposed = true;
-    $(".background").show("fade", 1000);
+    if($("#container2").css("display") === "none") {
+      $(".background").show("fade", 1000);
+    }
     $("#options").hide("fade", 1000);
     $(".well").css("background-color", "transparent");
   }

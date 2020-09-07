@@ -1,6 +1,7 @@
 var counter = 0,
   counter_unnamed = 0,
   editor,
+  editor2,
   modelInstances = [],
   modelValues = {},
   modelStates = {},

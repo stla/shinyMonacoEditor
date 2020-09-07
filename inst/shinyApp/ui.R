@@ -278,10 +278,12 @@ shinyUI(fluidPage(
               )
             ),
             tags$div(
+              id = "editors",
               class = "mock-browser-content",
               jqui_resizable(
                 tags$div(
                   id = "container",
+                  class = "editor",
                   tags$div(
                     class = "background",
                     tags$div(
@@ -294,6 +296,13 @@ shinyUI(fluidPage(
                       tags$div(class = "radialblue")
                     )
                   )
+                ),
+                options = list(handles = "s")
+              ),
+              jqui_resizable(
+                tags$div(
+                  id = "container2",
+                  class = "editor"
                 ),
                 options = list(handles = "s")
               )

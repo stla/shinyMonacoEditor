@@ -1,3 +1,14 @@
+function openEditor2() {
+  $("#container,#container2").height(0.4 * window.innerHeight);
+  var model = editor.getModel();
+  var modelClone = monaco.editor.createModel(
+    model.getValue(),
+    model.getLanguageIdentifier().language
+  );
+  editor2.setModel(modelClone);
+  $("#container2").show();
+}
+
 function flashFunction(opts) {
   $.alert(opts.message, {
     title: opts.title || null,

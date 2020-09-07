@@ -133,3 +133,64 @@ editor.addAction({
     return null;
   }
 });
+
+editor.addAction({
+  id: "newEditor",
+  label: "Open in new editor",
+  precondition: null,
+  keybindingContext: null,
+  contextMenuGroupId: "navigation",
+  contextMenuOrder: 0,
+  run: function(ed) {
+    openEditor2();
+    return null;
+  }
+});
+
+editor2 = monaco.editor.create(document.getElementById("container2"), {
+  model: null,
+	tabSize: 2,
+	automaticLayout: true
+});
+
+editor2.addAction({
+  id: "close",
+  label: "Close this editor",
+  keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_W],
+  precondition: null,
+  keybindingContext: null,
+  contextMenuGroupId: "navigation",
+  contextMenuOrder: 0,
+  run: function(ed) {
+    $("#editors").css("display", "block");
+    $("#container2").hide();
+    $("#container,#container2").css("width", "100%");
+    $("#container").height(0.8 * window.innerHeight);
+    if(editorIsDisposed) {
+      $(".background").show("fade", 1000);
+    }
+    return null;
+  }
+});
+
+editor2.addAction({
+  id: "move",
+  label: "Move this editor",
+  precondition: null,
+  keybindingContext: null,
+  contextMenuGroupId: "navigation",
+  contextMenuOrder: 0,
+  run: function(ed) {
+    var display = $("#editors").css("display");
+    if(display === "flex") {
+      $("#editors").css("display", "block");
+      $("#container,#container2").css("width", "100%");
+      $("#container,#container2").height(0.4 * window.innerHeight);
+    } else {
+      $("#editors").css("display", "flex");
+      $("#container,#container2").css("width", "calc(50% + 1px)");
+      $("#container,#container2").height(0.8 * window.innerHeight);
+    }
+    return null;
+  }
+});
