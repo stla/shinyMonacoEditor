@@ -1,5 +1,42 @@
 $(document).ready(function() {
 
+  $("#tabs").tabs({
+    tabPosition: "bottom",
+    border: false,
+    onUnselect: function(title, index) {
+      onLeaveTab();
+    },
+    onSelect: function(title, index) {
+      console.log("select");
+      setTimeout(function() {
+        $("#container2").append($("#tabs"));
+      }, 0);
+      var id = $('#tabs').tabs("getSelected").attr("id");
+      var modelInstance = modelInstances2[id];
+      if(modelInstance) {
+        editor2.setModel(modelInstance);
+      }
+    },
+    onClose: function(title, index) {
+      if($(".tabs-panels").children().length === 0) {
+        $("#editors").css("display", "block");
+        editorsAreStacked = true;
+        $("#container2").hide();
+        $("#container,#container2").css("width", "100%");
+        var h = 0.8 * window.innerHeight;
+        $("#container").height(h);
+        $("#editors").css("height", "");
+        editorsHeight = h;
+        $("#container,#container2").resizable("enable");
+        $("#editors").resizable("disable");
+        if(editorIsDisposed) {
+          $(".background").show("fade", 1000);
+        }
+        editor2isShown = false;
+      }
+    }
+  });
+
   $("#container").height(0.8 * window.innerHeight);
 
   $("#editors").resizable({

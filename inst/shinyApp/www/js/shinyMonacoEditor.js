@@ -153,31 +153,8 @@ editor2 = monaco.editor.create(document.getElementById("container2"), {
 	automaticLayout: true
 });
 
-editor2.addAction({
-  id: "close",
-  label: "Close this editor",
-  keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_W],
-  precondition: null,
-  keybindingContext: null,
-  contextMenuGroupId: "navigation",
-  contextMenuOrder: 0,
-  run: function(ed) {
-    $("#editors").css("display", "block");
-    editorsAreStacked = true;
-    $("#container2").hide();
-    $("#container,#container2").css("width", "100%");
-    var h = 0.8 * window.innerHeight;
-    $("#container").height(h);
-    $("#editors").css("height", "");
-    editorsHeight = h;
-    $("#container,#container2").resizable("enable");
-    $("#editors").resizable("disable");
-    if(editorIsDisposed) {
-      $(".background").show("fade", 1000);
-    }
-    editor2isShown = false;
-    return null;
-  }
+editor2.onDidBlurEditorText(function() {
+  onLeaveTab();
 });
 
 editor2.addAction({

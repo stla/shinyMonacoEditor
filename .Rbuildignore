@@ -7,3 +7,4 @@
 ^cran-comments\.md$
 ^CRAN-RELEASE$
 ^TODO\.txt$
+^inst/shinyApp/www/jquery-easyui/jquery-easyui-1\.9\.7\.zip$

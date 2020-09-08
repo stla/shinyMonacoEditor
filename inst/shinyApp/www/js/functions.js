@@ -1,3 +1,12 @@
+function onLeaveTab() {
+  var model = editor2.getModel();
+  var modelInstance = monaco.editor.createModel(
+    model.getValue(),
+    model.getLanguageIdentifier().language
+  );
+  modelInstances2[model.id] = modelInstance;
+}
+
 function openEditor2() {
   if(editorsAreStacked) {
     $("#container,#container2").height(0.4 * window.innerHeight);
@@ -10,6 +19,17 @@ function openEditor2() {
   editor2.setModel(modelClone);
   $("#container2").show();
   editor2isShown = true;
+//  setTimeout(function() {
+//    $("#container2").append($("#tabs"));
+//  }, 500);
+  var title = $(chromeTabs.activeTabEl).find(".chrome-tab-title").html();
+  var id = editor2.getModel().id;
+  $("#tabs").tabs("add", {
+    title: title,
+    id: id,
+    closable: true
+  });
+  modelInstances2[id] = modelClone;
 }
 
 function flashFunction(opts) {

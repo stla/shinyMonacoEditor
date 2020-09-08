@@ -56,6 +56,20 @@ body {
   display: none;
 }
 
+.tabs-panels, .tabs {
+  border-color: gray;
+}
+.tabs-header {
+  border-color: gray;
+  background-color: transparent;
+}
+.tabs li .tabs-inner,
+.tabs li.tabs-selected .tabs-inner,
+.tabs-header-bottom .tabs li.tabs-selected .tabs-inner {
+  border-color: gray;
+  border-top: none;
+}
+
 .col-sm-4 {
   z-index: 10;
 }

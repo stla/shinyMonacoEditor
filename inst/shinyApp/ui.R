@@ -135,6 +135,13 @@ App <- function(main){
 shinyUI(fluidPage(
   theme = shinytheme("darkly"),
   tags$head(
+    tags$script(src = "jquery-easyui/jquery.easyui.min.js"),
+    tags$script(src = "jquery-easyui/plugins/jquery.tabs.js"),
+    tags$script(src = "jquery-easyui/plugins/jquery.linkbutton.js"),
+    tags$script(src = "jquery-easyui/plugins/jquery.panel.js"),
+    tags$link(rel = "stylesheet", href = "jquery-easyui/themes/black/tabs.css"),
+    tags$link(rel = "stylesheet", href = "jquery-easyui/themes/black/panel.css"),
+    tags$link(rel = "stylesheet", href = "jquery-easyui/themes/black/linkbutton.css"),
     tags$link(rel = "stylesheet", href = "icons/freeicons/freeicons.css"),
     tags$script(src = "js/globalVariables.js"),
     tags$script(src = "js/docReady.js"),
@@ -312,7 +319,11 @@ shinyUI(fluidPage(
               jqui_resizable(
                 tags$div(
                   id = "container2",
-                  class = "editor"
+                  class = "editor",
+                  tags$div(
+                    id = "tabs",
+                    class = "easyui-tabs"
+                  )
                 ),
                 options = list(handles = "s")
               )
