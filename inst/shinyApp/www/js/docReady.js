@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+  $("#container2").hide();
+
   $("#tabs").tabs({
     tabPosition: "bottom",
     border: false,
@@ -8,9 +10,9 @@ $(document).ready(function() {
       onLeaveTab();
     },
     onSelect: function(title, index) {
-      setTimeout(function() {
-        $("#container2").append($("#tabs"));
-      }, 0);
+//      setTimeout(function() {
+//        $("#container2").append($("#tabs"));
+//      }, 0);
       var id = $('#tabs').tabs("getSelected").attr("id");
       var modelInstance = modelInstances2[id];
       if(modelInstance) {

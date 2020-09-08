@@ -53,9 +53,22 @@ body {
   width: 100%;
   border: 1px solid grey;
   background-color: black;
+}
+#container {
   display: none;
 }
+#container2 {
+  display: flex;
+  flex-direction: column;
+}
+#tabs {
+  order: 1;
+}
 
+
+.tabs-container {
+  overflow: visible;
+}
 .tabs-panels, .tabs {
   border-color: gray;
 }
