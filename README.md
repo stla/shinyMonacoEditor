@@ -46,6 +46,7 @@ these components:
 - **markdown-it**, https://github.com/markdown-it/markdown-it
 - **word-wrap**, https://github.com/jonschlinkert/word-wrap
 - **SuperTinyIcons**, https://github.com/edent/SuperTinyIcons
+- **EasyUI**, https://www.jeasyui.com
 
 Full copies of the license agreements used by these components are included 
 in the file [LICENSE.note](https://github.com/stla/shinyMonacoEditor/blob/master/LICENSE.note.md).
