@@ -96,28 +96,38 @@ tinyCheckbox <- function(id, label){
 }
 
 App <- function(main){
-  fluidRow(
-    column(
-      width = 1,
-      fluidRow(
-        column(
-          width = 6
-        ),
-        column(
-          width = 6,
-          id = "show-sidebar-container",
-          actionButton(
-            "show-sidebar", "Show sidebar",
-            class = "btn-sm",
-            style = "float: right;"
-          )
-        )
+  tagList(
+    tags$div(
+      id = "show-sidebar-container",
+      actionButton(
+        "show-sidebar", "Show sidebar",
+        class = "btn-sm"
       )
     ),
-    column(
-      width = 12,
-      id = "main",
-      main
+    fluidRow(
+      id = "main-container",
+      # column(
+      #   width = 1,
+      #   fluidRow(
+      #     column(
+      #       width = 6
+      #     ),
+      #     column(
+      #       width = 6,
+      #       id = "show-sidebar-container",
+      #       actionButton(
+      #         "show-sidebar", "Show sidebar",
+      #         class = "btn-sm",
+      #         style = "float: right;"
+      #       )
+      #     )
+      #   )
+      # ),
+      column(
+        width = 12,
+        id = "main",
+        main
+      )
     )
   )
 }

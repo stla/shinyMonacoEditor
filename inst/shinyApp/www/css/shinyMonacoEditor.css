@@ -24,11 +24,29 @@ body {
   z-index: 100000000;
 }
 
-#show-sidebar-container {
+/*#show-sidebar-container {
   display: none;
   transform: rotateZ(-90deg);
   transform-origin: bottom right;
   z-index: 10;
+}*/
+
+#show-sidebar-container {
+  position: fixed;
+  display: none;
+  left: 3px;
+  transform: translateX(-100%);
+}
+
+#show-sidebar {
+  position: absolute;
+  right: 0;
+  transform-origin: 100% 0;
+  transform: rotateZ(-90deg);
+}
+
+.ml10 {
+  margin-left: 10px;
 }
 
 .editor {

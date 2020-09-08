@@ -34,7 +34,8 @@ $(document).ready(function() {
         $("#container").hide("fade", {duration: d}, function() {
           $("#sidebar").parent().hide("fold", {duration: d}, function() {
             $("#mainPanel").toggleClass("col-sm-8 col-sm-12");
-            $("#main").toggleClass("col-sm-11 col-sm-12");
+            $("#main-container").addClass("ml10");
+            //$("#main").toggleClass("col-sm-11 col-sm-12");
             $("#show-sidebar-container").show("fade", {duration: d}, function() {
               $(containers).show("fade", {duration: d}, function() {
                 $(".chrome-tabs").animate({opacity: 1}, d, function() {
@@ -54,7 +55,8 @@ $(document).ready(function() {
         $("#container").hide("fade", {duration: d}, function() {
           $("#show-sidebar-container").hide("fade", {duration: d}, function() {
             $("#mainPanel").toggleClass("col-sm-8 col-sm-12");
-            $("#main").toggleClass("col-sm-11 col-sm-12");
+            $("#main-container").removeClass("ml10");
+            //$("#main").toggleClass("col-sm-11 col-sm-12");
             $("#sidebar").parent().show("fold", {duration: d}, function() {
               $(containers).show("fade", {duration: d}, function() {
                 $(".chrome-tabs").animate({opacity: 1}, d, function() {
