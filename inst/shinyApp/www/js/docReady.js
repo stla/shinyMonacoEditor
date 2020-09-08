@@ -2,6 +2,17 @@ $(document).ready(function() {
 
   $("#container").height(0.8 * window.innerHeight);
 
+  $("#editors").resizable({
+    handles: "s",
+    disabled: true,
+    alsoResize: ".editor",
+    stop: function(event, ui) {
+      if(editor2isShown && !editorsAreStacked) {
+        $(".editor").css("width", "calc(50% + 1px)");
+      }
+    }
+  });
+
   $("#container").on("resize", function(event, ui) {
     if(editor2isShown && editorsAreStacked) {
       var x = editorsHeight - ui.size.height;

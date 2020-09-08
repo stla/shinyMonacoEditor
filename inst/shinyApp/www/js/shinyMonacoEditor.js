@@ -168,7 +168,10 @@ editor2.addAction({
     $("#container,#container2").css("width", "100%");
     var h = 0.8 * window.innerHeight;
     $("#container").height(h);
+    $("#editors").css("height", "");
     editorsHeight = h;
+    $("#container,#container2").resizable("enable");
+    $("#editors").resizable("disable");
     if(editorIsDisposed) {
       $(".background").show("fade", 1000);
     }
@@ -193,11 +196,15 @@ editor2.addAction({
       editorsAreStacked = true;
       $("#container,#container2").css("width", "100%");
       $("#container,#container2").height(h/2);
+      $("#container,#container2").resizable("enable");
+      $("#editors").resizable("disable");
     } else {
       $("#editors").css("display", "flex");
       editorsAreStacked = false;
       $("#container,#container2").css("width", "calc(50% + 1px)");
       $("#container,#container2").height(h);
+      $("#container,#container2").resizable("disable");
+      $("#editors").resizable("enable");
     }
     return null;
   }
