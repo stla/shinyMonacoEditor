@@ -3,11 +3,11 @@ $(document).ready(function() {
   $("#tabs").tabs({
     tabPosition: "bottom",
     border: false,
+    narrow: true,
     onUnselect: function(title, index) {
       onLeaveTab();
     },
     onSelect: function(title, index) {
-      console.log("select");
       setTimeout(function() {
         $("#container2").append($("#tabs"));
       }, 0);

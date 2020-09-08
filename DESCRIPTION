@@ -73,7 +73,7 @@ Authors@R: c(
            comment = "SuperTinyIcons"),
     person(given = "www.jeasyui.com", 
            role = c("ctb", "cph"),
-           comment = "EasyUI"))
+           comment = "EasyUI")
     )
 Description: A 'Shiny' app including the 'Monaco' editor. The 'Monaco' editor is the code editor which powers 'VS Code'. It is particularly well developed for 'JavaScript'. In addition to the 'Monaco' editor features, the app provides prettifiers and minifiers for multiple languages, 'SCSS' and 'TypeScript' compilers, code checking for 'C' and 'C++' (requires 'cppcheck').
 URL: https://github.com/stla/shinyMonacoEditor
