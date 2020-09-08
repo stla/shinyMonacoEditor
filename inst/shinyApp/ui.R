@@ -277,39 +277,36 @@ shinyUI(fluidPage(
                 class = "chrome-tabs-bottom-bar"
               )
             ),
-#            jqui_resizable(
-              tags$div(
-                id = "editors",
-                class = "mock-browser-content",
-                jqui_resizable(
+            tags$div(
+              id = "editors",
+              class = "mock-browser-content",
+              jqui_resizable(
+                tags$div(
+                  id = "container",
+                  class = "editor",
                   tags$div(
-                    id = "container",
-                    class = "editor",
+                    class = "background",
                     tags$div(
-                      class = "background",
-                      tags$div(
-                        class = "delight"
-                      ),
-                      tags$div(
-                        id = "radials",
-                        tags$div(class = "radialred"),
-                        tags$div(class = "radialgreen"),
-                        tags$div(class = "radialblue")
-                      )
+                      class = "delight"
+                    ),
+                    tags$div(
+                      id = "radials",
+                      tags$div(class = "radialred"),
+                      tags$div(class = "radialgreen"),
+                      tags$div(class = "radialblue")
                     )
-                  ),
-                  options = list(handles = "s")
+                  )
                 ),
-                jqui_resizable(
-                  tags$div(
-                    id = "container2",
-                    class = "editor"
-                  ),
-                  options = list(handles = "s")
-                )
+                options = list(handles = "s")
+              ),
+              jqui_resizable(
+                tags$div(
+                  id = "container2",
+                  class = "editor"
+                ),
+                options = list(handles = "s")
               )
-            #   options = list(handles = "s", disabled = TRUE, alsoResize = ".editor")
-            # )
+            )
           )
         )
       )

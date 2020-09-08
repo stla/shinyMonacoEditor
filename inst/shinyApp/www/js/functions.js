@@ -1,6 +1,5 @@
 function openEditor2() {
-  var display = $("#editors").css("display");
-  if(display === "block") {
+  if(editorsAreStacked) {
     $("#container,#container2").height(0.4 * window.innerHeight);
   }
   var model = editor.getModel();
