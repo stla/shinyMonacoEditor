@@ -99,6 +99,9 @@ body {
 li:not(.tabs-selected) .tabs-title {
   opacity: 0.7;
 }
+.tabs li {
+  float: none;
+}
 
 .col-sm-4 {
   z-index: 10;

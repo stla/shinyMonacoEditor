@@ -29,6 +29,12 @@ function openEditor2() {
     id: id,
     closable: true
   });
+  setTimeout(function() {
+    var $li = $("ul.tabs").children().last();
+    $li.css("order", $li.index());
+    $li.attr("data-rank", $li.index());
+    $("ul.tabs").sortable("refresh");
+  }, 0);
   modelInstances2[id] = modelClone;
 }
 
