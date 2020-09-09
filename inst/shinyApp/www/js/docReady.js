@@ -36,6 +36,12 @@ $(document).ready(function() {
           $(".background").show("fade", 1000);
         }
         editor2isShown = false;
+      } else {
+        var $lis = $tabs.find("li");
+        for(var i = 0; i < $lis.length; i++) {
+          $($lis[i]).attr("data-rank", i);
+        }
+        $tabs.sortable("refresh");
       }
     }
   });
@@ -47,6 +53,7 @@ $(document).ready(function() {
   var updated = false;
   $tabs.sortable({
     axis: "x",
+    connectWith: $tabs,
     start: function(event, ui) {
       $tabs.css("display", "block");
     },
@@ -67,7 +74,7 @@ $(document).ready(function() {
           $($lis[i]).css("order", orders[i]);
         }
       }
-      $tabs.sortable("refreshPositions");
+      //$tabs.sortable("refreshPositions");
       $tabs.css("display", "flex");
     }
   });
