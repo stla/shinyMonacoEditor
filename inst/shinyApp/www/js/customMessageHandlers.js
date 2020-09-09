@@ -781,7 +781,15 @@ function setModel(valueAndLanguage) {
   var modelInstance = monaco.editor.createModel(
     valueAndLanguage.value,
     language
+/*    {
+      tabSize: 2,
+      indentSize: 2
+    } */
   );
+  modelInstance.updateOptions({
+    tabSize: 2,
+    indentSize: 2
+  });
   modelInstance.onDidChangeContent((event) => {
     $(chromeTabs.activeTabEl)
       .find(".chrome-tab-title")

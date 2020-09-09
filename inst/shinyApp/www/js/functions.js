@@ -16,6 +16,10 @@ function openEditor2() {
     model.getValue(),
     model.getLanguageIdentifier().language
   );
+  modelClone.updateOptions({
+    tabSize: 2,
+    indentSize: 2
+  });
   editor2.setModel(modelClone);
   $("#container2").show();
   editor2isShown = true;
@@ -31,8 +35,9 @@ function openEditor2() {
   });
   setTimeout(function() {
     var $li = $("ul.tabs").children().last();
-    $li.css("order", $li.index());
-    $li.attr("data-rank", $li.index());
+    var index = $li.index();
+    $li.css("order", index);
+    $li.attr("data-rank", index);
     $("ul.tabs").sortable("refresh");
   }, 0);
   modelInstances2[id] = modelClone;
