@@ -16,6 +16,7 @@ $(document).ready(function() {
 //      }, 0);
       var id = $('#tabs').tabs("getSelected").attr("id");
       var modelInstance = modelInstances2[id];
+      // il faut remettre les options tabSize!
       if(modelInstance) {
         editor2.setModel(modelInstance);
       }
@@ -53,7 +54,8 @@ $(document).ready(function() {
   var updated = false;
   $tabs.sortable({
     axis: "x",
-    connectWith: $tabs,
+    items: "> li",
+    handle: $tabs,
     start: function(event, ui) {
       $tabs.css("display", "block");
     },
@@ -69,10 +71,11 @@ $(document).ready(function() {
         $lis.sort(function(a, b) {
           return $(a).data("rank") > $(b).data("rank");
         }).appendTo($tabs);
-        $lis = $tabs.find("li");
+        $lis = $tabs.find("li"); // useless, I think
         for(var i = 0; i < $lis.length; i++) {
           $($lis[i]).css("order", orders[i]);
         }
+        updated = false;
       }
       //$tabs.sortable("refreshPositions");
       $tabs.css("display", "flex");
