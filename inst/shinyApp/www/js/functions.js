@@ -27,9 +27,6 @@ function openEditor2() {
   editor2.setModel(modelClone);
   $("#container2").show();
   editor2isShown = true;
-//  setTimeout(function() {
-//    $("#container2").append($("#tabs"));
-//  }, 500);
   var title = $(chromeTabs.activeTabEl).find(".chrome-tab-title").html();
   var id = editor2.getModel().id;
   $("#tabs").tabs("add", {

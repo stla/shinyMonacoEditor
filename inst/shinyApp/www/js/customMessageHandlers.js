@@ -781,10 +781,6 @@ function setModel(valueAndLanguage) {
   var modelInstance = monaco.editor.createModel(
     valueAndLanguage.value,
     language
-/*    {
-      tabSize: 2,
-      indentSize: 2
-    } */
   );
   modelInstance.updateOptions({
     tabSize: 2,
@@ -801,7 +797,7 @@ function setModel(valueAndLanguage) {
 }
 
 function setLanguage(language0) {
-  var model = editor.getModel(); // create a model if the editor created from string value.
+  var model = editor.getModel();
   var language = language0 === "svg" ? "xml" : language0;
   monaco.editor.setModelLanguage(model, language);
   actionRegistration(language0);
