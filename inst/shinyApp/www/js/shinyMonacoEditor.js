@@ -181,8 +181,10 @@ editor2.addAction({
       $("#container,#container2").css("width", "calc(50% + 1px)");
       $("#container,#container2").height(h);
       $("#container,#container2").resizable("disable");
+      $("#tabs .tabs-header,#tabs .tabs-wrap").css("width", "100%");
       $("#editors").resizable("enable");
     }
+    $("#tabs").tabs("resize");
     return null;
   }
 });

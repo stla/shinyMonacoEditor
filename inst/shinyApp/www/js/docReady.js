@@ -27,6 +27,10 @@ $(document).ready(function() {
   });
 
   // easyui
+  $(window).resize(function() {
+    $("#tabs").tabs("resize");
+  });
+
   var initAll = function() {
     $("#tabs").tabs({
       tabPosition: "bottom",
