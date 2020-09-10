@@ -76,32 +76,45 @@ $(document).ready(function() {
     $tabs.css("display", "flex");
 
     var updated = false;
+    var orders;
     $tabs.sortable({
       axis: "x",
       items: "> li",
       handle: $tabs,
+      helper: function(event, item) {
+        orders = $tabs.children().map(function(i, e) {
+          return $(e).css("order");
+        }).get();
+        return item;
+      },
       start: function(event, ui) {
-        $tabs.css("display", "block");
+        var $lis = $tabs.children();
+        $lis.sort(function(a, b) {
+          return $(a).css("order") > $(b).css("order");
+        }).appendTo($tabs);
+        $lis.css("order", "");
       },
       change: function(event, ui) {
         updated = true;
       },
       stop: function(event, ui) {
+        var $lis = $tabs.children();
         if(updated) {
-          var $lis = $tabs.find("li");
-          var orders = $lis.map(function(i, e) {
-            return $(e).data("rank");
-          }).get();
+          for(var i = 0; i < $lis.length; i++) {
+            $($lis[i]).css("order", i);
+          }
+          $lis.sort(function(a, b) {
+            return $(a).data("rank") > $(b).data("rank");
+          }).appendTo($tabs);
+          updated = false;
+        } else {
           $lis.sort(function(a, b) {
             return $(a).data("rank") > $(b).data("rank");
           }).appendTo($tabs);
           for(var i = 0; i < $lis.length; i++) {
             $($lis[i]).css("order", orders[i]);
           }
-          updated = false;
         }
-        //$tabs.sortable("refreshPositions");
-        $tabs.css("display", "flex");
       }
     });
   };
