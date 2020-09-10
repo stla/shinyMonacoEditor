@@ -64,9 +64,14 @@ $(document).ready(function() {
           }
           editor2isShown = false;
         } else {
-          var $lis = $tabs.find("li");
+          var $lis = $tabs.children();
+          var orders = $lis.map(function(i, e) {
+            return $(e).css("order");
+          }).get();
           for(var i = 0; i < $lis.length; i++) {
             $($lis[i]).attr("data-rank", i);
+            var order = $($lis[i]).css("order");
+            $($lis[i]).css("order", orders.indexOf(order));
           }
           $tabs.sortable("refresh");
         }
@@ -108,12 +113,12 @@ $(document).ready(function() {
             $($lis[i]).css("order", i);
           }
           $lis.sort(function(a, b) {
-            return $(a).data("rank") > $(b).data("rank");
+            return parseInt(a.dataset.rank) > parseInt(b.dataset.rank);
           }).appendTo($tabs);
           updated = false;
         } else {
           $lis.sort(function(a, b) {
-            return $(a).data("rank") > $(b).data("rank");
+            return parseInt(a.dataset.rank) > parseInt(b.dataset.rank);
           }).appendTo($tabs);
           for(var i = 0; i < $lis.length; i++) {
             $($lis[i]).css("order", orders[i]);
