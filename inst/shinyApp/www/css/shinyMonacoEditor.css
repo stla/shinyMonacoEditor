@@ -66,40 +66,42 @@ body {
 }
 
 
-.tabs-container {
+#tabs.tabs-container {
   overflow: visible;
 }
-.tabs-panels, .tabs {
+#tabs .tabs-panels,
+#tabs .tabs {
   border-color: gray;
 }
-.tabs-header {
+#tabs .tabs-header {
   border-color: gray;
   background-color: transparent;
+  left: -1px;
 }
-.tabs li .tabs-inner,
-.tabs li.tabs-selected .tabs-inner,
-.tabs-header-bottom .tabs li.tabs-selected .tabs-inner {
+#tabs .tabs li .tabs-inner,
+#tabs .tabs li.tabs-selected .tabs-inner,
+#tabs .tabs-header-bottom .tabs li.tabs-selected .tabs-inner {
   border-color: gray;
   border-top: none;
 }
-.tabs li .tabs-inner {
+#tabs .tabs li .tabs-inner {
   background: -webkit-linear-gradient(top,black 0,#383838 100%);
   background: -moz-linear-gradient(top,black 0,#383838 100%);
   background: -o-linear-gradient(top,black 0,#383838 100%);
   background: linear-gradient(to bottom,black 0,#383838 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#000000,endColorstr=#383838,GradientType=0);
 }
-.tabs-header-bottom .tabs li.tabs-selected .tabs-inner {
+#tabs .tabs-header-bottom .tabs li.tabs-selected .tabs-inner {
   background: -webkit-linear-gradient(top,black 10%,#454545 80%,darkgray 120%);
   background: -moz-linear-gradient(top,black 10%,#454545 80%,darkgray 120%);
   background: -o-linear-gradient(top,black 10%,#454545 80%,darkgray 120%);
   background: linear-gradient(to bottom,black 10%,#454545 80%,darkgray 120%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#000000,endColorstr=#454545,GradientType=0);
 }
-li:not(.tabs-selected) .tabs-title {
+#tabs li:not(.tabs-selected) .tabs-title {
   opacity: 0.7;
 }
-.tabs li {
+#tabs .tabs li {
   float: none;
 }
 

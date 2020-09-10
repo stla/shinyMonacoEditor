@@ -2,86 +2,6 @@ $(document).ready(function() {
 
   $("#container2").hide();
 
-  $("#tabs").tabs({
-    tabPosition: "bottom",
-    border: false,
-    narrow: true,
-    onUnselect: function(title, index) {
-      onLeaveTab();
-    },
-    onSelect: function(title, index) {
-      $("ul.tabs").sortable("refreshPositions");
-//      setTimeout(function() {
-//        $("#container2").append($("#tabs"));
-//      }, 0);
-      var id = $('#tabs').tabs("getSelected").attr("id");
-      var modelInstance = modelInstances2[id];
-      // il faut remettre les options tabSize!
-      if(modelInstance) {
-        editor2.setModel(modelInstance);
-      }
-    },
-    onClose: function(title, index) {
-      if($(".tabs-panels").children().length === 0) {
-        $("#editors").css("display", "block");
-        editorsAreStacked = true;
-        $("#container2").hide();
-        $("#container,#container2").css("width", "100%");
-        var h = 0.8 * window.innerHeight;
-        $("#container").height(h);
-        $("#editors").css("height", "");
-        editorsHeight = h;
-        $("#container,#container2").resizable("enable");
-        $("#editors").resizable("disable");
-        if(editorIsDisposed) {
-          $(".background").show("fade", 1000);
-        }
-        editor2isShown = false;
-      } else {
-        var $lis = $tabs.find("li");
-        for(var i = 0; i < $lis.length; i++) {
-          $($lis[i]).attr("data-rank", i);
-        }
-        $tabs.sortable("refresh");
-      }
-    }
-  });
-
-  var $tabs = $("ul.tabs");
-
-  $tabs.css("display", "flex");
-
-  var updated = false;
-  $tabs.sortable({
-    axis: "x",
-    items: "> li",
-    handle: $tabs,
-    start: function(event, ui) {
-      $tabs.css("display", "block");
-    },
-    change: function(event, ui) {
-      updated = true;
-    },
-    stop: function(event, ui) {
-      if(updated) {
-        var $lis = $tabs.find("li");
-        var orders = $lis.map(function(i, e) {
-          return $(e).data("rank");
-        }).get();
-        $lis.sort(function(a, b) {
-          return $(a).data("rank") > $(b).data("rank");
-        }).appendTo($tabs);
-        $lis = $tabs.find("li"); // useless, I think
-        for(var i = 0; i < $lis.length; i++) {
-          $($lis[i]).css("order", orders[i]);
-        }
-        updated = false;
-      }
-      //$tabs.sortable("refreshPositions");
-      $tabs.css("display", "flex");
-    }
-  });
-
   $("#container").height(0.8 * window.innerHeight);
 
   $("#editors").resizable({
@@ -105,6 +25,93 @@ $(document).ready(function() {
   $("#container2").on("resizestop", function(event, ui) {
     editorsHeight = $("#editors").height();
   });
+
+  // easyui
+  var initAll = function() {
+    $("#tabs").tabs({
+      tabPosition: "bottom",
+      border: false,
+      narrow: true,
+      onUnselect: function(title, index) {
+        onLeaveTab();
+      },
+      onSelect: function(title, index) {
+        $("ul.tabs").sortable("refreshPositions");
+        var id = $('#tabs').tabs("getSelected").attr("id");
+        var modelInstance = modelInstances2[id];
+        if(modelInstance) {
+          editor2.setModel(modelInstance);
+        }
+      },
+      onClose: function(title, index) {
+        if($(".tabs-panels").children().length === 0) {
+          $("#editors").css("display", "block");
+          editorsAreStacked = true;
+          $("#container2").hide();
+          $("#container,#container2").css("width", "100%");
+          var h = 0.8 * window.innerHeight;
+          $("#container").height(h);
+          $("#editors").css("height", "");
+          editorsHeight = h;
+          $("#container,#container2").resizable("enable");
+          $("#editors").resizable("disable");
+          if(editorIsDisposed) {
+            $(".background").show("fade", 1000);
+          }
+          editor2isShown = false;
+        } else {
+          var $lis = $tabs.find("li");
+          for(var i = 0; i < $lis.length; i++) {
+            $($lis[i]).attr("data-rank", i);
+          }
+          $tabs.sortable("refresh");
+        }
+      }
+    }).removeClass(
+      ["ui-tabs", "ui-corner-all", "ui-widget", "ui-widget-content"]
+    );
+
+    var $tabs = $("ul.tabs");
+
+    $tabs.css("display", "flex");
+
+    var updated = false;
+    $tabs.sortable({
+      axis: "x",
+      items: "> li",
+      handle: $tabs,
+      start: function(event, ui) {
+        $tabs.css("display", "block");
+      },
+      change: function(event, ui) {
+        updated = true;
+      },
+      stop: function(event, ui) {
+        if(updated) {
+          var $lis = $tabs.find("li");
+          var orders = $lis.map(function(i, e) {
+            return $(e).data("rank");
+          }).get();
+          $lis.sort(function(a, b) {
+            return $(a).data("rank") > $(b).data("rank");
+          }).appendTo($tabs);
+          for(var i = 0; i < $lis.length; i++) {
+            $($lis[i]).css("order", orders[i]);
+          }
+          updated = false;
+        }
+        //$tabs.sortable("refreshPositions");
+        $tabs.css("display", "flex");
+      }
+    });
+  };
+
+  easyloader.theme = "black";
+  using(["tabs"], function() {
+    initAll.call(this);
+  });
+
+  //
 
   bg_well = $(".well").css("background-color");
 

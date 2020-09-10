@@ -4,6 +4,10 @@ function onLeaveTab() {
     model.getValue(),
     model.getLanguageIdentifier().language
   );
+  modelInstance.updateOptions({
+    tabSize: 2,
+    indentSize: 2
+  });
   modelInstances2[model.id] = modelInstance;
 }
 
