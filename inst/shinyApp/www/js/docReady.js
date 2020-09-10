@@ -69,9 +69,10 @@ $(document).ready(function() {
             return $(e).css("order");
           }).get();
           for(var i = 0; i < $lis.length; i++) {
-            $($lis[i]).attr("data-rank", i);
-            var order = $($lis[i]).css("order");
-            $($lis[i]).css("order", orders.indexOf(order));
+            var $li = $($lis[i]);
+            $li.attr("data-rank", i);
+            var order = $li.css("order");
+            $li.css("order", orders.indexOf(order));
           }
           $tabs.sortable("refresh");
         }
