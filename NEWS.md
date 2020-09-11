@@ -5,6 +5,7 @@
 * New feature: SVG rescaling. 
 * New feature: SVG panning and zooming.
 * New feature: second editor.
+* Possibility to change theme with the context menu.
 
 
 
