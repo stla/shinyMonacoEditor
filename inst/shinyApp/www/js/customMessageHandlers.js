@@ -825,6 +825,10 @@ function changeBorders(id) {
   });
 }
 
+function setTheme(theme) {
+  monaco.editor.setTheme(theme);
+}
+
 $(document).on("shiny:connected", function() {
   Shiny.addCustomMessageHandler("modelInstance", setModel);
   Shiny.addCustomMessageHandler("language", setLanguage);
@@ -833,4 +837,5 @@ $(document).on("shiny:connected", function() {
   Shiny.addCustomMessageHandler("cppCheck", setCppCheck);
   Shiny.addCustomMessageHandler("flashMessage", flashFunction);
   Shiny.addCustomMessageHandler("changeBorders", changeBorders);
+  Shiny.addCustomMessageHandler("setTheme", setTheme);
 });

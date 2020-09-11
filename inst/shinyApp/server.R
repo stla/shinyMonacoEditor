@@ -437,4 +437,28 @@ shinyServer(function(input, output, session){
     )
   })
 
+  observeEvent(input[["theme"]], {
+    showModal(modalDialog(
+      selectInput(
+        "setTheme",
+        NULL,
+        choices = list(
+          "All Hallows Eve" = "AllHallowsEve",
+          "Dark" = "Dark",
+          "Merbivore" = "Merbivore",
+          "Vibrant Ink" = "VibrantInk"
+        ),
+        selected = input[["theme"]]
+      ),
+      title = "Select a theme",
+      footer = NULL,
+      easyClose = TRUE,
+      size = "s"
+    ))
+  })
+
+  observeEvent(input[["setTheme"]], {
+    session$sendCustomMessage("setTheme", input[["setTheme"]])
+  })
+
 })
