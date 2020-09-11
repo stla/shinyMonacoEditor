@@ -11,15 +11,16 @@ el.addEventListener("activeTabChange", function(e) {
   var language = $(e.detail.tabEl).data("tab-language");
   if(editor) {
     var interval = setInterval(function() {
-      if(editor.getModel() || editorIsDisposed) {
+      if((editor.getModel() || editorIsDisposed) && modelInstances[index]) {
         clearInterval(interval);
         editorIsDisposed = false;
         if(editor.getModel()){
           var previousModelId = editor.getModel().id;
           modelStates[previousModelId] = editor.saveViewState();
         }
+        var newModel = modelInstances[index];
         editor.setModel(modelInstances[index]);
-        var newModel = editor.getModel();
+        //var newModel = editor.getModel();
         var newModelId = newModel.id;
         if(modelStates[newModelId]) {
           editor.restoreViewState(modelStates[newModelId]);
