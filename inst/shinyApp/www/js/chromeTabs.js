@@ -19,8 +19,7 @@ el.addEventListener("activeTabChange", function(e) {
           modelStates[previousModelId] = editor.saveViewState();
         }
         var newModel = modelInstances[index];
-        editor.setModel(modelInstances[index]);
-        //var newModel = editor.getModel();
+        editor.setModel(newModel);
         var newModelId = newModel.id;
         if(modelStates[newModelId]) {
           editor.restoreViewState(modelStates[newModelId]);
