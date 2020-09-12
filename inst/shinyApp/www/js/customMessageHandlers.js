@@ -511,7 +511,7 @@ function actionRegistration(language) {
       }
     });
     actionRegistration_formatR = editor.addAction({
-      id: "styler",
+      id: "formatR",
       label: "Prettify (formatR)",
       precondition: null,
       keybindingContext: null,

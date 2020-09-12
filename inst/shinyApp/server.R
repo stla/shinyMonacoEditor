@@ -113,11 +113,6 @@ shinyServer(function(input, output, session){
     }
     uploaded(TRUE)
 
-    content <- paste0(
-      suppressWarnings(readLines(input[["file"]][["datapath"]])),
-      collapse = "\n"
-    )
-
     ext <- tolower(tools::file_ext(input[["file"]][["name"]]))
     language <- switch(
       ext,
@@ -251,6 +246,19 @@ shinyServer(function(input, output, session){
         language = language
       )
     )
+
+    contentLines <- suppressWarnings(readLines(input[["file"]][["datapath"]]))
+
+    if(language == "r"){
+      roxygenLines <- grep("^#'", contentLines)
+      for(i in roxygenLines){
+        if(!grepl(" $", contentLines[i])){
+          contentLines[i] <- paste0(contentLines[i], " ")
+        }
+      }
+    }
+
+    content <- paste0(contentLines, collapse = "\n")
 
     session$sendCustomMessage(
       "modelInstance",
