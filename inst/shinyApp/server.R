@@ -331,19 +331,49 @@ shinyServer(function(input, output, session){
   })
 
   observeEvent(input[["styler"]], {
-    styled <- paste0(style_text(input[["styler"]]), collapse = "\n")
-    session$sendCustomMessage("value", styled)
+    tryCatch({
+      styled <- paste0(style_text(input[["styler"]]), collapse = "\n")
+      session$sendCustomMessage("value", styled)
+    }, error = function(e){
+      flashMessage <- list(
+        message = "An error occured",
+        title = "Failed to prettify!",
+        type = "danger",
+        icon = "glyphicon glyphicon-ban-circle",
+        withTime = TRUE,
+        closeTime = 10000,
+        animShow = "flash",
+        animHide = "backOutDown",
+        position = list("center", list(0, 0))
+      )
+      session$sendCustomMessage("flashMessage", flashMessage)
+    })
   })
 
   observeEvent(input[["formatR"]], {
-    formatted <- paste0(tidy_source(
-      text = input[["formatR"]],
-      indent = 2,
-      arrow = TRUE,
-      output = FALSE,
-      width.cutoff = 80
-    )[["text.tidy"]], collapse = "\n")
-    session$sendCustomMessage("value", formatted)
+    tryCatch({
+      formatted <- paste0(tidy_source(
+        text = input[["formatR"]],
+        indent = 2,
+        arrow = TRUE,
+        output = FALSE,
+        width.cutoff = 80
+      )[["text.tidy"]], collapse = "\n")
+      session$sendCustomMessage("value", formatted)
+    }, error = function(e){
+      flashMessage <- list(
+        message = "An error occured",
+        title = "Failed to prettify!",
+        type = "danger",
+        icon = "glyphicon glyphicon-ban-circle",
+        withTime = TRUE,
+        closeTime = 10000,
+        animShow = "flash",
+        animHide = "backOutDown",
+        position = list("center", list(0, 0))
+      )
+      session$sendCustomMessage("flashMessage", flashMessage)
+    })
   })
 
   # output[["svg"]] <- renderUI({
