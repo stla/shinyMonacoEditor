@@ -58,6 +58,8 @@ body {
   display: none;
 }
 #container2 {
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   flex-direction: column;
 }
@@ -77,6 +79,11 @@ body {
   border-color: gray;
   background-color: transparent;
   left: -1px;
+}
+#tabs ul.tabs {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 #tabs .tabs li .tabs-inner,
 #tabs .tabs li.tabs-selected .tabs-inner,

@@ -83,7 +83,7 @@ $(document).ready(function() {
 
     var $tabs = $("ul.tabs");
 
-    $tabs.css("display", "flex");
+    //$tabs.css("display", "flex");
 
     var updated = false;
     var orders;

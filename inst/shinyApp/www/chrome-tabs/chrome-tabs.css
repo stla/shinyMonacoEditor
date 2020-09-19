@@ -112,6 +112,8 @@
 }
 .chrome-tabs .chrome-tab .chrome-tab-content {
   position: absolute;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   top: 0;
   bottom: 0;
@@ -148,6 +150,8 @@
   display: none;
 }
 .chrome-tabs .chrome-tab .chrome-tab-title {
+  -webkit-flex: 1;
+  -ms-flex: 1;
   flex: 1;
   vertical-align: top;
   overflow: hidden;
