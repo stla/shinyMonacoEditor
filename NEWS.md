@@ -1,11 +1,11 @@
-# shinyMonacoEditor 0.1.0.9000
+# shinyMonacoEditor 1.0.0
 
 * Updated 'prettier'.
-* No more trailing comma in JavaScript objects when prettifying JavaScript or HTML.
+* A trailing comma was added in JavaScript objects when prettifying JavaScript or HTML; this does not happen anymore.
 * New feature: SVG rescaling. 
 * New feature: SVG panning and zooming.
-* New feature: second editor.
 * Possibility to change theme with the context menu.
+* The main new feature: second editor.
 
 
 
