@@ -4,6 +4,11 @@ The VS code editor in a Shiny app.
 
 ![](https://raw.githubusercontent.com/stla/shinyMonacoEditor/master/inst/screenshots/shinyMonacoEditor.gif)
 
+#### New feature in version 1.0.0: second editor
+
+![](https://raw.githubusercontent.com/stla/shinyMonacoEditor/master/inst/screenshots/shinyMonacoEditor2.gif)
+
+
 ### Some features:
 
 - **C, C++**: prettifier (requires `clang-format`), code checking (requires `cppcheck`)
