@@ -273,11 +273,6 @@ shinyServer(function(input, output, session){
     }
   }, ignoreInit = TRUE)
 
-  session$sendCustomMessage(
-    "clangFormat",
-    unname(Sys.which("clang-format") != "")
-  )
-
   observeEvent(input[["clangFormat"]], {
     tmpDir <- tempdir()
     file.copy(
@@ -291,11 +286,6 @@ shinyServer(function(input, output, session){
     formatted <- system(paste0("clang-format ", tmpFile), intern = TRUE)
     session$sendCustomMessage("value", paste0(formatted, collapse = "\n"))
   })
-
-  session$sendCustomMessage(
-    "cppCheck",
-    unname(Sys.which("cppcheck") != "")
-  )
 
   observeEvent(input[["cppCheck"]], {
     tmpDir <- tempdir()
@@ -328,6 +318,30 @@ shinyServer(function(input, output, session){
       "modelInstance",
       list(value = report, language = "plaintext")
     )
+  })
+
+  observeEvent(input[["brittany"]], {
+    formatted <- suppressWarnings(system2(
+      "brittany",
+      input = input[["brittany"]],
+      stdout = TRUE, stderr = TRUE
+    ))
+    if(is.null(attr(formatted, "status"))){
+      session$sendCustomMessage("value", paste0(formatted, collapse = "\n"))
+    }else{
+      flashMessage <- list(
+        message = "An error occured",
+        title = "Failed to prettify!",
+        type = "danger",
+        icon = "glyphicon glyphicon-ban-circle",
+        withTime = TRUE,
+        closeTime = 10000,
+        animShow = "flash",
+        animHide = "backOutDown",
+        position = list("center", list(0, 0))
+      )
+      session$sendCustomMessage("flashMessage", flashMessage)
+    }
   })
 
   observeEvent(input[["styler"]], {

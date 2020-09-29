@@ -167,7 +167,16 @@ shinyUI(fluidPage(
     tags$script(src = "js/functions.js"),
     tags$script(src = "bootstrap-flash-alert/bootstrap-flash-alert.js"),
     tags$link(rel = "stylesheet", href = "bootstrap-flash-alert/animate.css"),
-    tags$script(src = "markdown-it/markdown-it.min.js")
+    tags$script(src = "markdown-it/markdown-it.min.js"),
+    tags$script(
+      HTML(
+        "var executables = {",
+        sprintf("  clangFormat: %s,", tolower(Sys.which("clang-format") != "")),
+        sprintf("  cppCheck: %s,", tolower(Sys.which("cppcheck") != "")),
+        sprintf("  brittany: %s", tolower(Sys.which("brittany") != "")),
+        "};"
+      )
+    )
   ),
 
   absolutePanel(

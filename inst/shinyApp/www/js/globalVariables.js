@@ -12,9 +12,7 @@ var counter = 0,
   selectize,
   slider,
   bg_well,
-  editorIsDisposed = false,
-  clangFormat = false,
-  cppCheck = false;
+  editorIsDisposed = false;
 
 var selectize_render = {
   item: function(item, escape) {

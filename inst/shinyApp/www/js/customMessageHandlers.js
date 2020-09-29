@@ -3,6 +3,7 @@ var actionRegistration_minifier = null,
   actionRegistration_sass = null,
   actionRegistration_clangFormat = null,
   actionRegistration_cppCheck = null,
+  actionRegistration_brittany = null,
   actionRegistration_styler = null,
   actionRegistration_formatR = null,
   actionRegistration_svgChecker = null,
@@ -195,6 +196,9 @@ function actionRegistration(language) {
   }
   if(actionRegistration_cppCheck !== null) {
     actionRegistration_cppCheck.dispose();
+  }
+  if(actionRegistration_brittany !== null) {
+    actionRegistration_brittany.dispose();
   }
   if(actionRegistration_styler !== null) {
     actionRegistration_styler.dispose();
@@ -415,7 +419,7 @@ function actionRegistration(language) {
       contextMenuGroupId: "navigation",
       contextMenuOrder: 1.5,
       run: function(ed) {
-        if(clangFormat) {
+        if(executables.clangFormat) {
           var bookmark = $("#bookmark").prop("checked");
           if(bookmark) {
             var modelId = ed.getModel().id;
@@ -456,7 +460,7 @@ function actionRegistration(language) {
         contextMenuGroupId: "navigation",
         contextMenuOrder: 1.5,
         run: function(ed) {
-          if(cppCheck) {
+          if(executables.cppCheck) {
             var fileName =
               $(chromeTabs.activeTabEl).find(".chrome-tab-title").html();
             Shiny.setInputValue("cppCheck", {
@@ -489,6 +493,44 @@ function actionRegistration(language) {
           formatCodeApi("java", "Prettify (formatCodeApi)")
         );
     }
+  } else if(language === "haskell") { /*                              haskell */
+    actionRegistration_brittany = editor.addAction({
+      id: "brittany",
+      label: "Prettify",
+      precondition: null,
+      keybindingContext: null,
+      contextMenuGroupId: "navigation",
+      contextMenuOrder: 1.5,
+      run: function(ed) {
+        if(executables.brittany) {
+          var bookmark = $("#bookmark").prop("checked");
+          if(bookmark) {
+            var modelId = ed.getModel().id;
+            modelValues[modelId] = ed.getValue();
+            $(chromeTabs.activeTabEl)
+              .find(".chrome-tab-title")
+                .css("font-style", "normal");
+          }
+          Shiny.setInputValue("brittany", ed.getValue());
+        } else {
+          flashFunction({
+            message: "Either <span style='font-style: monospace;'>brittany</span> is not installed or it is not in the PATH variable.",
+            title: "<span style='font-style: monospace;'>brittany</span> not found",
+            type: "info",
+            icon: "glyphicon glyphicon-ban-circle",
+            withTime: true,
+            autoClose: true,
+            closeTime: 10000,
+            animation: true,
+            animShow: "rotateInDownLeft",
+            animHide: "bounceOutRight",
+            position: ["bottom-left", [0, 0.01]],
+            speed: "slow"
+          });
+        }
+        return null;
+      }
+    });
   } else if(language === "r") { /*                                          r */
     actionRegistration_styler = editor.addAction({
       id: "styler",
@@ -814,14 +856,6 @@ function setValue(value) {
   editor.setValue(value);
 }
 
-function setClangFormat(x) {
-  clangFormat = x;
-}
-
-function setCppCheck(x) {
-  cppCheck = x;
-}
-
 function changeBorders(id) {
   $(`label[for=${id}]`).next().find(".form-control")
     .css("border-bottom-right-radius", 0);
@@ -840,8 +874,6 @@ $(document).on("shiny:connected", function() {
   Shiny.addCustomMessageHandler("modelInstance", setModel);
   Shiny.addCustomMessageHandler("language", setLanguage);
   Shiny.addCustomMessageHandler("value", setValue);
-  Shiny.addCustomMessageHandler("clangFormat", setClangFormat);
-  Shiny.addCustomMessageHandler("cppCheck", setCppCheck);
   Shiny.addCustomMessageHandler("flashMessage", flashFunction);
   Shiny.addCustomMessageHandler("changeBorders", changeBorders);
   Shiny.addCustomMessageHandler("setTheme", setTheme);

@@ -1,7 +1,7 @@
 Package: shinyMonacoEditor
 Type: Package
 Title: The 'Monaco' Editor in 'Shiny'
-Version: 1.0.0
+Version: 1.0.0.9000
 Authors@R: c(
     person(given = "Stéphane",
            family = "Laurent",

@@ -1,3 +1,9 @@
+# shinyMonacoEditor 1.0.0.9000
+
+* Haskell formatter, requires `brittany`.
+
+
+
 # shinyMonacoEditor 1.0.0
 
 * Updated 'prettier'.
