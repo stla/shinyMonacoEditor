@@ -2,6 +2,8 @@ library(styler)
 library(formatR)
 library(uchardet)
 
+tabSize <- getOption("monaco.indentSize")
+
 svgFooter <- function(){
   tagList(
     fluidRow(
@@ -346,7 +348,9 @@ shinyServer(function(input, output, session){
 
   observeEvent(input[["styler"]], {
     tryCatch({
-      styled <- paste0(style_text(input[["styler"]]), collapse = "\n")
+      styled <- paste0(
+        style_text(input[["styler"]], indent_by = tabSize), collapse = "\n"
+      )
       session$sendCustomMessage("value", styled)
     }, error = function(e){
       flashMessage <- list(
@@ -368,7 +372,7 @@ shinyServer(function(input, output, session){
     tryCatch({
       formatted <- paste0(tidy_source(
         text = input[["formatR"]],
-        indent = 2,
+        indent = tabSize,
         arrow = TRUE,
         output = FALSE,
         width.cutoff = 80
