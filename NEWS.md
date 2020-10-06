@@ -1,6 +1,7 @@
 # shinyMonacoEditor 1.0.0.9000
 
 * Haskell formatter, requires `brittany`.
+* Option `indentSize`, to set the number of spaces of the indentation.
 
 
 

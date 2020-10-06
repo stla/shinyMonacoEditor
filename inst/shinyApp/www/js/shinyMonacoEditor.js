@@ -488,7 +488,7 @@ monaco.editor.setTheme("Dark");
 
 editor = monaco.editor.create(document.getElementById("container"), {
   model: null,
-	tabSize: 2,
+	tabSize: tabSize,
 	automaticLayout: true
 });
 
@@ -625,7 +625,7 @@ editor.addAction({
 
 editor2 = monaco.editor.create(document.getElementById("container2"), {
   model: null,
-	tabSize: 2,
+	tabSize: tabSize,
 	automaticLayout: true
 });
 
@@ -644,7 +644,7 @@ editor2.addAction({
     var display = $("#editors").css("display");
     var h = 0.8 * window.innerHeight;
     editorsHeight = h;
-    if(display === "flex") {
+    if(display === "flex") { // ms-flex, etc !!
       $("#editors").css("display", "block");
       editorsAreStacked = true;
       $("#container,#container2").css("width", "100%");

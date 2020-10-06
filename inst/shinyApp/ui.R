@@ -174,7 +174,8 @@ shinyUI(fluidPage(
         sprintf("  clangFormat: %s,", tolower(Sys.which("clang-format") != "")),
         sprintf("  cppCheck: %s,", tolower(Sys.which("cppcheck") != "")),
         sprintf("  brittany: %s", tolower(Sys.which("brittany") != "")),
-        "};"
+        "};",
+        sprintf("var tabSize = %d;", getOption("monaco.indentSize"))
       )
     )
   ),

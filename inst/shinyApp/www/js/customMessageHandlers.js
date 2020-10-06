@@ -832,8 +832,8 @@ function setModel(valueAndLanguage) {
     language
   );
   modelInstance.updateOptions({
-    tabSize: 2,
-    indentSize: 2
+    tabSize: tabSize,
+    indentSize: tabSize
   });
   modelInstance.onDidChangeContent((event) => {
     $(chromeTabs.activeTabEl)

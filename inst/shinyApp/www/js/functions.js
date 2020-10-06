@@ -5,8 +5,8 @@ function onLeaveTab() {
     model.getLanguageIdentifier().language
   );
   modelInstance.updateOptions({
-    tabSize: 2,
-    indentSize: 2
+    tabSize: tabSize,
+    indentSize: tabSize
   });
   modelInstances2[model.id] = modelInstance;
 }
@@ -21,8 +21,8 @@ function openEditor2() {
     model.getLanguageIdentifier().language
   );
   modelClone.updateOptions({
-    tabSize: 2,
-    indentSize: 2
+    tabSize: tabSize,
+    indentSize: tabSize
   });
   editor2.setModel(modelClone);
   $("#container2").show();
@@ -67,7 +67,8 @@ function prettify(code, parser) {
     prettyCode = prettier.format(code, {
       parser: parser,
       plugins: prettierPlugins,
-      trailingComma: "none"
+      trailingComma: "none",
+      tabWidth: tabSize
     });
     editor.setValue(prettyCode);
   } catch(err) {

@@ -4,7 +4,11 @@
 \alias{shinyMonacoEditor}
 \title{Monaco Editor in Shiny}
 \usage{
-shinyMonacoEditor()
+shinyMonacoEditor(indentSize = 2)
+}
+\arguments{
+\item{indentSize}{an integer, at least 2, the number of spaces of the
+indentation}
 }
 \description{
 Launch a Shiny app with the Monaco editor.
