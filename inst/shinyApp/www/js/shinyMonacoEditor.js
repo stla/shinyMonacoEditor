@@ -644,7 +644,7 @@ editor2.addAction({
     var display = $("#editors").css("display");
     var h = 0.8 * window.innerHeight;
     editorsHeight = h;
-    if(display === "flex") { // ms-flex, etc !!
+    if(/flex/.test(display)) { // flex, ms-flex, etc
       $("#editors").css("display", "block");
       editorsAreStacked = true;
       $("#container,#container2").css("width", "100%");
