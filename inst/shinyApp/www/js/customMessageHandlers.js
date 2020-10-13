@@ -101,6 +101,9 @@ function formatCodeApi(language, label) {
     case "swift":
       url = "http://www.zafuswitchout.com:3001/swift";
       break;
+    case "xml":
+      url = "http://aozozo.com:600/xml";
+      break;
   }
   return {
     id: "formatCodeApi",
@@ -234,7 +237,8 @@ function actionRegistration(language) {
     "php",
     "python",
     "ruby",
-    "swift"
+    "swift",
+    "xml"
   ];
   if(language === "javascript") { /*                               javascript */
     actionRegistration_minifier = editor.addAction({
@@ -704,9 +708,6 @@ function actionRegistration(language) {
         return null;
       }
     });
-    actionRegistration_prettifier =
-      editor.addAction(prettifier("html"));
-  } else if(language === "xml") { /*                                       xml */
     actionRegistration_prettifier =
       editor.addAction(prettifier("html"));
   } else if(language === "plaintext" || language === undefined) {/* plaintext */
