@@ -235,6 +235,9 @@ function actionRegistration(language) {
   if(actionRegistration_xmllint !== null) {
     actionRegistration_xmllint.dispose();
   }
+  if(actionRegistration_xml2 !== null) {
+    actionRegistration_xml2.dispose();
+  }
   var languages_formatCodeApi = [
     "apex",
     "csharp",
@@ -858,6 +861,26 @@ function actionRegistration(language) {
             speed: "slow"
           });
         }
+        return null;
+      }
+    });
+    actionRegistration_xml2 = editor.addAction({
+      id: "xml2",
+      label: "Prettify (R)",
+      precondition: null,
+      keybindingContext: null,
+      contextMenuGroupId: "navigation",
+      contextMenuOrder: 1.5,
+      run: function(ed) {
+        var bookmark = $("#bookmark").prop("checked");
+        if(bookmark) {
+          var modelId = ed.getModel().id;
+          modelValues[modelId] = ed.getValue();
+          $(chromeTabs.activeTabEl)
+            .find(".chrome-tab-title")
+              .css("font-style", "normal");
+        }
+        Shiny.setInputValue("xml2", ed.getValue());
         return null;
       }
     });

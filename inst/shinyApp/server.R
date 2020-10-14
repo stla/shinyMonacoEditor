@@ -1,3 +1,4 @@
+library(xml2)
 library(styler)
 library(formatR)
 library(uchardet)
@@ -637,6 +638,32 @@ shinyServer(function(input, output, session){
       session$sendCustomMessage("flashMessage", flashMessage)
     }else{
       session$sendCustomMessage("value", paste0(formatted, collapse = "\n"))
+    }
+  })
+
+  observeEvent(input[["xml2"]], {
+    tmpFile <- tempfile(fileext = ".xml")
+    writeLines(input[["xml2"]], tmpFile)
+    formatted <- tryCatch({
+      as.character(read_xml(tmpFile))
+    }, error = function(e){
+      NULL
+    })
+    if(is.null(formatted)){
+      flashMessage <- list(
+        message = "Something went wrong (probable cause: invalid XML)",
+        title = "Failed to prettify!",
+        type = "danger",
+        icon = "glyphicon glyphicon-ban-circle",
+        withTime = TRUE,
+        closeTime = 10000,
+        animShow = "flash",
+        animHide = "backOutDown",
+        position = list("center", list(0, 0))
+      )
+      session$sendCustomMessage("flashMessage", flashMessage)
+    }else{
+      session$sendCustomMessage("value", formatted)
     }
   })
 
