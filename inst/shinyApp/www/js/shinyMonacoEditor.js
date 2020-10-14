@@ -553,7 +553,7 @@ editor.addAction({
     const a = document.createElement("a");
     document.body.append(a);
     a.download = fileName;
-    a.href = "data:text/plain;base64," + btoa(ed.getValue());
+    a.href = "data:text/plain;base64," + utf8_to_base64(ed.getValue());
     a.click();
     a.remove();
     return null;

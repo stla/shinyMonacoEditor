@@ -1,3 +1,8 @@
+function utf8_to_base64(str) {
+  // https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
+  return btoa(unescape(encodeURIComponent(str)));
+}
+
 function onLeaveTab() {
   var model = editor2.getModel();
   var modelInstance = monaco.editor.createModel(

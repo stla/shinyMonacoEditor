@@ -1,3 +1,9 @@
+# shinyMonacoEditor 1.1.0.9000
+
+* Fixed the 'Save' functionality.
+
+
+
 # shinyMonacoEditor 1.1.0
 
 * Haskell formatter, requires `brittany`.
