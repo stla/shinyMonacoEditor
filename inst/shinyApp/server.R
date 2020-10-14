@@ -612,6 +612,34 @@ shinyServer(function(input, output, session){
     }
   })
 
+  observeEvent(input[["xmllint"]], {
+    tmpFile <- tempfile(fileext = ".xml")
+    writeLines(input[["xmllint"]], tmpFile)
+    Sys.setenv(
+      XMLLINT_INDENT =
+        paste0(rep(" ", getOption("monaco.indentSize", 2)), collapse = "")
+    )
+    formatted <- suppressWarnings(system2(
+      "xmllint", paste0("--format ", tmpFile), stdout = TRUE, stderr = TRUE
+    ))
+    if(!is.null(attr(formatted, "status"))){
+      flashMessage <- list(
+        message = "`xmllint` returned an error (probable cause: invalid XML)",
+        title = "Failed to prettify!",
+        type = "danger",
+        icon = "glyphicon glyphicon-ban-circle",
+        withTime = TRUE,
+        closeTime = 10000,
+        animShow = "flash",
+        animHide = "backOutDown",
+        position = list("center", list(0, 0))
+      )
+      session$sendCustomMessage("flashMessage", flashMessage)
+    }else{
+      session$sendCustomMessage("value", paste0(formatted, collapse = "\n"))
+    }
+  })
+
   observeEvent(input[["styler"]], {
     tryCatch({
       styled <- paste0(

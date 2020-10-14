@@ -1,6 +1,8 @@
 # shinyMonacoEditor 1.0.0.9000
 
 * Haskell formatter, requires `brittany`.
+* XML formatter requiring `xmllint`.
+* XML formatter using the `xml2` package.
 * Option `indentSize`, to set the number of spaces of the indentation.
 
 

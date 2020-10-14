@@ -12,7 +12,9 @@ var actionRegistration_minifier = null,
   actionRegistration_wordWrapper = null,
   actionRegistration_typescript = null,
   actionRegistration_formatCodeApi = null,
-  actionRegistration_markdownit = null;
+  actionRegistration_markdownit = null,
+  actionRegistration_xmllint = null,
+  actionRegistration_xml2 = null;
 
 function prettifier(parser, label) {
   if(typeof label === "undefined") {
@@ -230,6 +232,9 @@ function actionRegistration(language) {
   if(actionRegistration_markdownit !== null) {
     actionRegistration_markdownit.dispose();
   }
+  if(actionRegistration_xmllint !== null) {
+    actionRegistration_xmllint.dispose();
+  }
   var languages_formatCodeApi = [
     "apex",
     "csharp",
@@ -237,8 +242,7 @@ function actionRegistration(language) {
     "php",
     "python",
     "ruby",
-    "swift",
-    "xml"
+    "swift"
   ];
   if(language === "javascript") { /*                               javascript */
     actionRegistration_minifier = editor.addAction({
@@ -819,6 +823,46 @@ function actionRegistration(language) {
   } else if(language === "yaml") { /*                                    yaml */
     actionRegistration_prettifier =
       editor.addAction(prettifier("yaml"));
+  } else if(language === "xml") { /*                                      xml */
+    actionRegistration_xmllint = editor.addAction({
+      id: "xmllint",
+      label: "Prettify (xmllint)",
+      precondition: null,
+      keybindingContext: null,
+      contextMenuGroupId: "navigation",
+      contextMenuOrder: 1.5,
+      run: function(ed) {
+        if(executables.xmllint) {
+          var bookmark = $("#bookmark").prop("checked");
+          if(bookmark) {
+            var modelId = ed.getModel().id;
+            modelValues[modelId] = ed.getValue();
+            $(chromeTabs.activeTabEl)
+              .find(".chrome-tab-title")
+                .css("font-style", "normal");
+          }
+          Shiny.setInputValue("xmllint", ed.getValue());
+        } else {
+          flashFunction({
+            message: "Either <span style='font-style: monospace;'>xmllint</span> is not installed or it is not in the PATH variable.",
+            title: "<span style='font-style: monospace;'>xmllint</span> not found",
+            type: "info",
+            icon: "glyphicon glyphicon-ban-circle",
+            withTime: true,
+            autoClose: true,
+            closeTime: 10000,
+            animation: true,
+            animShow: "rotateInDownLeft",
+            animHide: "bounceOutRight",
+            position: ["bottom-left", [0, 0.01]],
+            speed: "slow"
+          });
+        }
+        return null;
+      }
+    });
+    actionRegistration_formatCodeApi =
+      editor.addAction(formatCodeApi("xml", "Prettify (formatCodeApi)"));
   } else if(languages_formatCodeApi.indexOf(language) > -1) {/* formatCodeApi */
     actionRegistration_formatCodeApi =
       editor.addAction(formatCodeApi(language));

@@ -143,6 +143,7 @@ shinyUI(fluidPage(
     tags$script(src = "svg-parser/svg-parser-bundle.js"),
     tags$script(src = "scale-that-svg/scale-that-svg-bundle.js"),
     tags$script(src = "word-wrap/word-wrap-bundle.js"),
+#    tags$script(src = "xml-formatter/xml-formatter_bundle.js"),
     tags$script(src = "panzoom/panzoom.min.js"),
     tags$link(rel = "stylesheet", href = "chrome-tabs/chrome-tabs.css"),
     tags$link(rel = "stylesheet", href = "chrome-tabs/chrome-tabs-dark-theme.css"),
@@ -173,9 +174,10 @@ shinyUI(fluidPage(
         "var executables = {",
         sprintf("  clangFormat: %s,", tolower(Sys.which("clang-format") != "")),
         sprintf("  cppCheck: %s,", tolower(Sys.which("cppcheck") != "")),
-        sprintf("  brittany: %s", tolower(Sys.which("brittany") != "")),
+        sprintf("  brittany: %s,", tolower(Sys.which("brittany") != "")),
+        sprintf("  xmllint: %s", tolower(Sys.which("xmllint") != "")),
         "};",
-        sprintf("var tabSize = %d;", getOption("monaco.indentSize"))
+        sprintf("var tabSize = %d;", getOption("monaco.indentSize", 2))
       )
     )
   ),
