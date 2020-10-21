@@ -24,6 +24,11 @@ The VS code editor in a Shiny app.
 - **XML**: prettifier
 
 
+### Related projects
+
+- [monaco](https://github.com/stla/monaco)
+- [aceEditor](https://github.com/stla/aceEditor)
+
 ___
 
 # __Copies of license agreements__
